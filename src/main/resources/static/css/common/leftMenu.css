@@ -1,0 +1,92 @@
+.left-menu{
+  flex: 0 0 300px;
+  height: 100vh;
+  /* border: 3px solid; */
+  box-sizing: border-box;
+  background-color: #ffffff;
+  position: sticky;
+  top: 0;
+  left: 0;
+  /* padding: 10px; */
+}
+
+.left-menu .left-con{
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+.left-menu .left-con .dash-board{
+  /* border: 1px solid; */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: rgb(255, 255, 255);
+}
+
+.left-menu .left-con .dash-board h1.title{
+  width: 400px;
+  height: 100px;
+  /* border:1px solid; */
+  box-sizing: border-box;
+  color: #ffffff;
+  background-color: #000000;
+  padding-top: 20px;
+  padding-left: 130px;
+}
+.left-menu .left-con .dash-board h1.title a{
+ color: #ffffff;
+}
+
+.left-menu .left-con .dash-board .menu{
+  /* border: 1px solid; */
+  box-sizing: border-box;
+  padding: 3px 5px;
+
+}
+
+
+.left-menu .left-con .dash-board .menu>ul>li {
+  /* border: 1px solid #ff0000; */
+  box-sizing: border-box;
+  padding: 20px 5px;
+  position: relative;
+  font-size: 30px;
+}
+
+.left-menu .left-con .dash-board .menu>ul>li::after{
+  content: "■";
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 1px;
+  color: #000000;
+
+}
+
+.left-menu .left-con .dash-board .menu>ul>li:hover::after{
+  content: "▼";
+  color: #000000;
+}
+
+.left-menu .left-con .dash-board .menu>ul>li:hover ul.sub{
+  display: block;
+}
+
+.left-menu .left-con .dash-board .menu>ul>li ul.sub{
+  display: none;
+  padding: 2px 10px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  font-size: 20px;
+}
+.left-menu .left-con .dash-board .menu>ul>li ul.sub li{
+  background-color: inherit;
+}
+
+.left-menu .left-con .dash-board .menu>ul>li ul.sub li a{
+  font-size: inherit;
+}

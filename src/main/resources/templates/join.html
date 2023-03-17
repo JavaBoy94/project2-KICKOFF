@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>join/title>
+    <link rel="stylesheet" th:href="@{/css/join.css}">
+</head>
+
+<body>
+    <h1>회원가입</h1>
+    <form th:action="@{/joinOk}" method="post" th:object="${memberDto}" enctype="multipart/form-data">
+        이메일: <input type="text" name="mEmail">
+        비밀번호: <input type="password" name="mPw">
+        우편번호: <input type="text" name="mZipcode">
+        주소: <input type="text" name="mAddr1">
+        상세주소: <input type="text" name="mAddr2">
+        이름: <input type="text" name="mName">
+        연락처: <input type="text" name="mTel">
+        자기소개: <input type="memo" name="mIntro">
+        희망포지션: <select name="mPosition">
+            <option value="" selected>포지션</option>
+            <option value="MULTI" selected>MultiPlayer</option>
+            <option value="ST" selected>ST</option>
+            <option value="MF" selected>MF</option>
+            <option value="DF" selected>DF</option>
+            <option value="GK" selected>GK</option>
+        </select>
+        프로필 : <input type="file" name="profileImg">
+        
+        <input type="submit" value="가입!">
+
+    </form>
+</body>
+
+</html>

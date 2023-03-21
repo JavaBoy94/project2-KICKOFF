@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.project2.omwp2.dto.MemberDto;
 import org.project2.omwp2.member.constant.Role;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -15,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Builder
+//@Builder
 @Entity
 @Table(name = "member")
 public class MemberEntity {
@@ -104,12 +105,13 @@ public class MemberEntity {
     private List<CommentEntity> commentEntities = new ArrayList<>();
 
 
-    public static MemberEntity toMemberEntity(MemberDto memberDto) {
+//    회원가입용
+    public static MemberEntity toMemberEntity(MemberDto memberDto, PasswordEncoder passwordEncoder) {
 
         MemberEntity memberEntity = new MemberEntity();
 
         memberEntity.mEmail = memberDto.getMEmail();
-        memberEntity.mPw = memberDto.getMPw();
+        memberEntity.mPw = passwordEncoder.encode(memberDto.getMPw());
         memberEntity.mName = memberDto.getMName();
         memberEntity.mZipcode = memberDto.getMZipcode();
         memberEntity.mAddr1 = memberDto.getMAddr1();
@@ -127,4 +129,32 @@ public class MemberEntity {
 
         return memberEntity;
     }
+
+//    회원수정용
+public static MemberEntity toMemberEntity2(MemberDto memberDto, PasswordEncoder passwordEncoder) {
+
+    MemberEntity memberEntity = new MemberEntity();
+
+    memberEntity.mId = memberDto.getMId();
+    memberEntity.mEmail = memberDto.getMEmail();
+    memberEntity.mPw = passwordEncoder.encode(memberDto.getMPw());
+    memberEntity.mName = memberDto.getMName();
+    memberEntity.mZipcode = memberDto.getMZipcode();
+    memberEntity.mAddr1 = memberDto.getMAddr1();
+    memberEntity.mAddr2 = memberDto.getMAddr2();
+    memberEntity.mTel = memberDto.getMTel();
+    memberEntity.mIntro = memberDto.getMIntro();
+    memberEntity.mRole = memberDto.getMRole();
+    memberEntity.mDept = memberDto.getMDept();
+    memberEntity.mCreate = memberDto.getMCreate();
+    memberEntity.mPosition = memberDto.getMPosition();
+    memberEntity.mAttach = memberDto.getMAttach();
+    if(memberDto.getProfileImg().isEmpty()){
+        memberEntity.mAttach = 0;
+    } else {
+        memberEntity.mAttach = 1;
+    }
+
+    return memberEntity;
+}
 }

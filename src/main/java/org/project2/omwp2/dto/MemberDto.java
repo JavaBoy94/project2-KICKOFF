@@ -54,13 +54,11 @@ public class MemberDto {
         memberDto.setMDept(memberEntity.getMDept());
         memberDto.setMPosition(memberEntity.getMPosition());
         memberDto.setMIntro(memberEntity.getMIntro());
-        if(memberEntity.getMAttach() == 1) {
         memberDto.setMAttach(memberEntity.getMAttach());
+        if(memberEntity.getMAttach() == 1) {
 //            프로필 사진이 존재할 경우
             memberDto.setOriginName(memberEntity.getProfileEntities().get(0).getProfileOrigin());
             memberDto.setSaveName(memberEntity.getProfileEntities().get(0).getProfileSave());
-        }else{
-        memberDto.setMAttach(memberEntity.getMAttach());
         }
         return memberDto;
     }

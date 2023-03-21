@@ -17,61 +17,70 @@
                 <div class="right-con">
                     <div class="memberDetail">
                         <div class="con2">
-                            <div class="img">
-                                <span th:if="${memberDto.mAttach==1}">
-                                    <img th:src="@{|/upload/${memberDto.saveName}|}" style="width: 300px; height: 300px;" alt="">
-                                </span>
-                                <span th:if="${memberDto.mAttach==0}">
-                                    <img src="https://via.placeholder.com/300" alt="">
-                                </span>
-                            </div>
-                            <div class="info">
-                                <ul>
-                                    <li>
-                                        <label th:for="mId">No</label>
-                                        <span th:text="${memberDto.mId}"></span>
-                                    </li>
-                                    <li>
-                                        <label th:for="mCreate">Create</label>
-                                        <span th:text="${#temporals.format(memberDto.mCreate, 'yyyy-MM-dd HH:mm:ss')}"></span>
-                                    </li>
-                                    <li>
-                                        <label th:for="mEmail">Email</label>
-                                        <span th:text="${memberDto.mEmail}"></span>
-                                    </li>
-                                    <li>
-                                        <label th:for="mName">Name</label>
-                                        <span th:text="${memberDto.mName}"></span>
-                                    </li>
-                                    <li>
-                                        <label th:for="mTel">Tel</label>
-                                        <span th:text="${memberDto.mTel}"></span>
-                                    </li>
-                                    <li>
-                                        <label th:for="mZipcode">Address</label>
-                                        <span th:text="${memberDto.mZipcode}"></span>
-                                        <label th:for="mAddr1" hidden></label>
-                                        <span th:text="${memberDto.mAddr1}"></span>
-                                        <label th:for="mAddr2" hidden></label>
-                                        <span th:text="${memberDto.mAddr2}"></span>
-                                    </li>
-                                    <li>
-                                        <label th:for="mRole">Role</label>
-                                        <span th:text="${memberDto.mRole}"></span>
-                                    </li>
-                                    <li>
-                                        <label th:for="mDept">Dept</label>
-                                        <span th:text="${memberDto.mDept}"></span>
-                                    </li>
-                                    <li>
-                                        <label th:for="mPosition">Position</label>
-                                        <span th:text="${memberDto.mPosition}"></span>
-                                    </li>
-                                    <li>
-                                        <a th:href="@{#}">회원수정</a>
-                                        <a th:href="@{#}">회원탈퇴</a>
-                                    </li>
-                                </ul>
+                            <div class="member">
+                                <div class="img">
+                                    <span th:if="${memberDto.mAttach==1}">
+                                        <img th:src="@{|/upload/${memberDto.saveName}|}" style="width: 300px; height: 300px; background: no-repeat 50%/cover;" alt="">
+                                    </span>
+                                    <span th:unless="${memberDto.mAttach==1}">
+                                        <img src="https://via.placeholder.com/300" alt="">
+                                    </span>
+                                </div>
+                                <div class="info">
+                                    <ul>
+                                        <li>
+                                            <label th:for="mId">No</label>
+                                            <span class="detail" th:text="${memberDto.mId}"></span>
+                                        </li>
+                                        <li>
+                                            <label th:for="mCreate">Create</label>
+                                            <span class="detail" th:text="${#temporals.format(memberDto.mCreate, 'yyyy-MM-dd HH:mm:ss')}"></span>
+                                        </li>
+                                        <li>
+                                            <label th:for="mEmail">Email</label>
+                                            <span class="detail" th:text="${memberDto.mEmail}"></span>
+                                        </li>
+                                        <li>
+                                            <label th:for="mName">Name</label>
+                                            <span class="detail" th:text="${memberDto.mName}"></span>
+                                        </li>
+                                        <li>
+                                            <label th:for="mTel">Tel</label>
+                                            <span class="detail" th:text="${memberDto.mTel}"></span>
+                                        </li>
+                                        <li>
+                                            <label th:for="mZipcode">Address</label>
+                                            <div class="address">
+                                                <span th:text="${memberDto.mZipcode}"></span>
+                                                <label th:for="mAddr1" hidden></label>
+                                                <span th:text="${memberDto.mAddr1}"></span>
+                                                <label th:for="mAddr2" hidden></label>
+                                                <span th:text="${memberDto.mAddr2}"></span>
+                                            </div>
+                                            
+                                        </li>
+                                        <li>
+                                            <label th:for="mRole">Role</label>
+                                            <span class="detail" th:text="${memberDto.mRole}"></span>
+                                        </li>
+                                        <li>
+                                            <label th:for="mDept">Dept</label>
+                                            <span class="detail" th:text="${memberDto.mDept}"></span>
+                                        </li>
+                                        <li>
+                                            <label th:for="mPosition">Position</label>
+                                            <span class="detail" th:text="${memberDto.mPosition}"></span>
+                                        </li>
+                                        <li>
+                                            <label th:for="mIntro">Intro</label>
+                                            <span class="detail" th:text="${memberDto.mIntro}"></span>
+                                        </li>
+                                        <li>
+                                            <button><a th:href="@{/member/update}">회원수정</a></button>
+                                            <button><a th:href="@{/member/delete}">회원탈퇴</a></button>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                         

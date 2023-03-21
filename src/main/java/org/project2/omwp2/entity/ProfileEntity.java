@@ -37,6 +37,7 @@ public class ProfileEntity {
                                          String saveName) {
 
         ProfileEntity profileEntity = new ProfileEntity();
+
         profileEntity.setMemberEntity(memberEntity);
         profileEntity.setProfileOrigin(originName);
         profileEntity.setProfileSave(saveName);

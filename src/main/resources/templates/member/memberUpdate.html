@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>memberUpdate</title>
+    <link rel="stylesheet" th:href="@{/css/member/memberUpdate.css}">
+</head>
+
+<body>
+    <div th:replace="~{fragment/common/adminHeader :: adminHeaderFragment}"></div>
+    <div id="wrap">
+        <div th:replace="~{fragment/common/leftMenu :: leftMenuFragment}"></div>
+        <div class="right-menu">
+            <div class="con">
+                <h2>회원수정</h2>
+                <div class="right-con">
+                    <div class="memberUpdate">
+                        <div class="con2">
+                            <div class="member">
+                                <div class="img">
+                                    <span th:if="${memberDto.mAttach==1}">
+                                        <img th:src="@{|/upload/${memberDto.saveName}|}" style="width: 300px; height: 300px; background: no-repeat 50%/cover;" alt="">
+                                    </span>
+                                    <span th:if="${memberDto.mAttach==0}">
+                                        <img src="https://via.placeholder.com/300" alt="">
+                                    </span>
+                                </div>
+                                <form th:action="@{/member/updateOk}" method="post" th:object="${memberDto}" enctype="multipart/form-data">
+                                    <div class="info">
+                                        <input type="hidden" name="mId" th:value="${memberDto.mId}">
+                                        <input type="hidden" name="mRole" th:value="${memberDto.mRole}">
+                                        <input type="hidden" name="mDept" th:value="${memberDto.mDept}">
+                                        <ul>
+                                            <li>
+                                                <label th:for="mEmail">Email</label>
+                                                <input type="text" name="mEmail" th:value="${memberDto.mEmail}">
+                                            </li>
+                                            <li>
+                                                <label th:for="mPw">Password</label>
+                                                <input type="password" name="mPw">
+                                            </li>
+                                            <li>
+                                                <label th:for="mName">Name</label>
+                                                <input type="text" name="mName" th:value="${memberDto.mName}">
+                                            </li>
+                                            <li>
+                                                <label th:for="mTel">Tel</label>
+                                                <input type="text" name="mTel" th:value="${memberDto.mTel}">
+                                            </li>
+                                            <li>
+                                                <label>Address</label>
+                                                <div class="address">
+                                                    <input type="text" name="mZipcode" th:value="${memberDto.mZipcode}">
+                                                    <input type="text" name="mAddr1" th:value="${memberDto.mAddr1}">
+                                                    <input type="text" name="mAddr2" th:value="${memberDto.mAddr2}">
+                                                </div>
+                                                
+                                            </li>
+                                            <li>
+                                                <label th:for="mPosition">Position</label>
+                                                <select name="mPosition">
+                                                    <option th:value="${memberDto.mPosition}" selected>포지션 선택</option>
+                                                    <option value="MULTI">상관없음</option>
+                                                    <option value="ST">ST</option>
+                                                    <option value="MF">MF</option>
+                                                    <option value="DF">DF</option>
+                                                    <option value="GK">GK</option>
+                                                </select>
+                                            </li>
+                                            <li>
+                                                <label th:for="mIntro">Introduce</label>
+                                                <textarea name="mIntro" th:text="${memberDto.mIntro}" cols="33" rows="10" style="resize:none;"></textarea>
+                                            </li>
+                                            <li>
+                                                <label th:for="profileImg">ProfileImage</label>
+                                                <input type="file" name="profileImg">
+                                            </li>
+                                            <li>
+                                                <input type="submit" value="수정완료">
+                                                <button><a th:href="@{/member/detail}">돌아가기</a></button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

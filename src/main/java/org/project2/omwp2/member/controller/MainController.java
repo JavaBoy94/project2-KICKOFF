@@ -29,8 +29,10 @@ public class MainController {
         return "join";
     }
 
-    @PostMapping("/join")
-    public String joinOk(MemberDto memberDto) throws IOException {
+//    회원가입
+    @PostMapping("/joinOk")
+    public String joinOk(@RequestParam("profileImg") MultipartFile files, MemberDto memberDto) throws IOException {
+
         int rs = memberService.memberJoin(memberDto);
 
         if (rs!=1) {
@@ -42,5 +44,11 @@ public class MainController {
         }
 
     }
+
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
+
 
 }

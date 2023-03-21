@@ -1,4 +1,4 @@
-@import url(../css/common/reset.css);
+@import url(common/reset.css);
 
 .wrap{
   width: 100%;
@@ -11,7 +11,7 @@
 }
 
 
-.wrap .join{
+.wrap .login{
   flex: 0 1 400px;
   height: auto;
   display: flex;

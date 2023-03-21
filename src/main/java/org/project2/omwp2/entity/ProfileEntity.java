@@ -21,14 +21,26 @@ public class ProfileEntity {
     private Long profileId;
 
     // 원본파일명
-    @Column(name = "doc_origin",nullable = false)
-    public String docOrigin;
+    @Column(name = "profile_origin",nullable = false)
+    public String profileOrigin;
 
     // 저장파일명
-    @Column(name = "doc_save",nullable = false)
-    public String docSave;
+    @Column(name = "profile_save",nullable = false)
+    public String profileSave;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "m_id")
     private MemberEntity memberEntity;
+
+    public static ProfileEntity toProfileEntity(MemberEntity memberEntity,
+                                         String originName,
+                                         String saveName) {
+
+        ProfileEntity profileEntity = new ProfileEntity();
+        profileEntity.setMemberEntity(memberEntity);
+        profileEntity.setProfileOrigin(originName);
+        profileEntity.setProfileSave(saveName);
+
+        return profileEntity;
+    }
 }

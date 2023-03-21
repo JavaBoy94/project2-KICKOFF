@@ -48,6 +48,7 @@
   padding: 10px;
   border: 1px solid black;
   box-sizing: border-box;
+  display: flex;
 }
 
 

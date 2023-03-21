@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>memberDetail</title>
+    <link rel="stylesheet" th:href="@{/css/member/memberDetail.css}">
+</head>
+
+<body>
+    <div th:replace="~{fragment/common/adminHeader :: adminHeaderFragment}"></div>
+    <div id="wrap">
+        <div th:replace="~{fragment/common/leftMenu :: leftMenuFragment}"></div>
+        <div class="right-menu">
+            <div class="con">
+                <h2>회원상세</h2>
+                <div class="right-con">
+                    <div class="memberDetail">
+                        <div class="con2">
+                            <div class="img">
+                                <span th:if="${memberDto.mAttach==1}">
+                                    <img th:src="@{|/upload/${memberDto.saveName}|}" style="width: 300px; height: 300px;" alt="">
+                                </span>
+                                <span th:if="${memberDto.mAttach==0}">
+                                    <img src="https://via.placeholder.com/300" alt="">
+                                </span>
+                            </div>
+                            <div class="info">
+                                <ul>
+                                    <li>
+                                        <label th:for="mId">No</label>
+                                        <span th:text="${memberDto.mId}"></span>
+                                    </li>
+                                    <li>
+                                        <label th:for="mCreate">Create</label>
+                                        <span th:text="${#temporals.format(memberDto.mCreate, 'yyyy-MM-dd HH:mm:ss')}"></span>
+                                    </li>
+                                    <li>
+                                        <label th:for="mEmail">Email</label>
+                                        <span th:text="${memberDto.mEmail}"></span>
+                                    </li>
+                                    <li>
+                                        <label th:for="mName">Name</label>
+                                        <span th:text="${memberDto.mName}"></span>
+                                    </li>
+                                    <li>
+                                        <label th:for="mTel">Tel</label>
+                                        <span th:text="${memberDto.mTel}"></span>
+                                    </li>
+                                    <li>
+                                        <label th:for="mZipcode">Address</label>
+                                        <span th:text="${memberDto.mZipcode}"></span>
+                                        <label th:for="mAddr1" hidden></label>
+                                        <span th:text="${memberDto.mAddr1}"></span>
+                                        <label th:for="mAddr2" hidden></label>
+                                        <span th:text="${memberDto.mAddr2}"></span>
+                                    </li>
+                                    <li>
+                                        <label th:for="mRole">Role</label>
+                                        <span th:text="${memberDto.mRole}"></span>
+                                    </li>
+                                    <li>
+                                        <label th:for="mDept">Dept</label>
+                                        <span th:text="${memberDto.mDept}"></span>
+                                    </li>
+                                    <li>
+                                        <label th:for="mPosition">Position</label>
+                                        <span th:text="${memberDto.mPosition}"></span>
+                                    </li>
+                                    <li>
+                                        <a th:href="@{#}">회원수정</a>
+                                        <a th:href="@{#}">회원탈퇴</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

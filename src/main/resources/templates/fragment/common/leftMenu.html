@@ -4,23 +4,20 @@
     <div class="left-menu" th:fragment="leftMenuFragment">
         <div class="left-con">
             <div class="dash-board">
-                <h1 class="title"><a th:href="@{/admin/}">대시보드</a></h1>
+                <h1 class="title">대시보드</a></h1>
                 <div class="menu">
                     <ul>
                         <li>
-                            <a href="#">회원관리</a>
+                            <a href="#">회원정보</a>
                             <ul class="sub">
                                 <li>
-                                    <a href="#">회원가입</a>
+                                    <a th:href="@{/member/detail}">회원상세</a>
                                 </li>
                                 <li>
-                                    <a href="#">회원조회</a>
+                                    <a th:href="@{/member/update}">회원수정</a>
                                 </li>
                                 <li>
-                                    <a href="#">회원수정</a>
-                                </li>
-                                <li>
-                                    <a href="#">회원삭제</a>
+                                    <a href="#">게시글 관리</a>
                                 </li>
                             </ul>
                         </li>

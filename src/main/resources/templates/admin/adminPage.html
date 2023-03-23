@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>footballAdmin</title>
+    <link rel="stylesheet" th:href="@{/css/admin/adminPage.css}">
+</head>
+
+<body>
+    <div th:replace="~{fragment/common/adminHeader :: adminHeaderFragment}"></div>
+    <div id="wrap">
+        <div th:replace="~{fragment/common/leftMenu :: leftMenuFragment}"></div>
+        <div class="right-menu">
+            <h1>DASHBOARD</h1>
+            <div class="right-con">
+                <div class="memberAll">
+                    <h1>회원</h1>
+                    <table>
+                        <tr>
+                            <th>회원번호</th>
+                            <th>회원명</th>
+                            <th>성별</th>
+                            <th>연락처</th>
+                            <th>희망포지션</th>
+                            <th>상세</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>HR</td>
+                            <td>남</td>
+                            <td>010-0000-0000</td>
+                            <td>FW</td>
+                            <td><a href="#">상세보기</a></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="boardAll">
+                    <h1>게시판</h1>
+                    <table>
+                        <tr>
+                            <th>게시글번호</th>
+                            <th>게시글제목</th>
+                            <th>작성자번호</th>
+                            <th>작성시간</th>
+                            <th>상세</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>title2</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td><a href="#">상세보기</a></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="noticeAll">
+                    <h1>공지사항</h1>
+                    <table>
+                        <tr>
+                            <th>공지사항번호</th>
+                            <th>제목</th>
+                            <th>작성자번호</th>
+                            <th>작성시간</th>
+                            <th>상세</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>title3</td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td><a href="#">상세보기</a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

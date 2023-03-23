@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>footballAdmin</title>
+    <link rel="stylesheet" th:href="@{/css/board/adminBoardInsert.css}">
+</head>
+
+<body>
+    <div th:replace="~{fragment/common/adminHeader :: adminHeaderFragment}"></div>
+    <div id="wrap">
+        <div th:replace="~{fragment/common/leftMenu :: leftMenuFragment}"></div>
+        <div class="right-menu">
+            <h1>게시글작성</h1>
+            <div class="right-con">
+                <div class="boardInsert">
+                    <span>게시글추가</span>
+                    <form th:action="@{/admin/boardInsert}" method="post" th:object="${boardDto}" enctype="multipart/form-data">
+                        <ul>
+                            <li class="s2">
+                                <label th:for="boardFile">파일첨부</label> <br>
+                                <input type="file" name="boardFile">
+                            </li>
+                            <li class="s2">
+                                <label th:for="boardTitle">제목</label>
+                                <input type="text" th:field="*{boardTitle}" placeholder="제목을 입력하세요">
+                            </li>
+                            <li class="s2">
+                                <label th:for="boardContent">내용</label>
+                                <textarea name="boardContent" id="boardContent" cols="100" rows="30" style="overflow-y: auto;"></textarea>
+                            </li>
+                            <li class="s3">
+                                <input type="submit" value="게시글작성">
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

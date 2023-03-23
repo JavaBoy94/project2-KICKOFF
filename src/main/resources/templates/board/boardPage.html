@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>footballAdmin</title>
+    <link rel="stylesheet" th:href="@{/css/board/boardPage.css}">
+</head>
+
+<body>
+    <div th:replace="~{fragment/common/adminHeader :: adminHeaderFragment}"></div>
+    <div id="wrap">
+        <div th:replace="~{fragment/common/leftMenu :: leftMenuFragment}"></div>
+        <div class="right-menu">
+            <h1>게시판조회</h1>
+            <div class="right-con">
+                <div class="boardzone">
+                        <span>커뮤니티 게시판</span>
+                    <div class="search">
+                        <form th:action="@{/admin/boardSearch}" method="get">
+                            <select name="type" id="type">
+                                <option value="" selected>::검색기준::</option>
+                                <option value="boardId">게시글번호</option>
+                                <option value="boardTitle">게시글제목</option>
+                                <option value="boardContent">게시글내용</option>
+                            </select>
+                            <input type="text" name="search" id="search">
+                            <input type="submit" value="검색">
+                        </form>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>게시글번호</th>
+                                <th>게시글제목</th>
+                                <th>게시글내용</th>
+                                <th>조회수</th>
+                                <th>등록일</th>
+                                <th>댓글수</th>
+                                 <th>작성자</th>
+                                <th>상세</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="board : ${boardList}">
+                                <td th:text="${board.boardId}"></td>
+                                <td th:text="${board.boardTitle}"></td>
+                                <td th:text="${board.boardContent}"></td>
+                                <td th:text="${board.boardHit}"></td>
+                                <td th:text="${#temporals.format(board.boardCreate, 'yyyy년MM월dd일')}"></td>
+                                <td th:text="${board.boardCmcount}"></td>
+                                <td th:text="${board.memberId}"></td>
+                                <td><a th:href="@{|/admin/boardDetail/${board.boardId}|}">보기</a></td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+                    <div class="nav">
+
+                        <div class="page">
+                            <div class="paging">
+                                <a th:href="${boardList.first} ? '#' : @{/admin/boardList(page=${boardList.number-1})}">이전</a>
+                                <th:block th:each="page : ${#numbers.sequence(startPage,endPage)}">
+                                    <span th:if="${page == nowPage}" th:text="${page}" style="background-color: yellow;"></span>
+                                    <span th:unless="${page == nowPage}">
+                                    <a th:href="@{/admin/boardList(page=${page-1})}" th:text="${page}"></a>
+                                </span>
+                                </th:block>
+                                <a th:href="${boardList.last} ? '#' : @{/admin/boardList(page=${boardList.number+1})}">다음</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

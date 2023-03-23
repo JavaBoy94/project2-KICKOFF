@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>memberUpdate</title>
+    <script th:src="@{/js/telCheck.js}" defer></script>
     <link rel="stylesheet" th:href="@{/css/member/memberUpdate.css}">
 </head>
 
@@ -20,7 +21,7 @@
                             <div class="member">
                                 <div class="img">
                                     <span th:if="${memberDto.mAttach==1}">
-                                        <img th:src="@{|/upload/${memberDto.saveName}|}" style="width: 300px; height: 300px; background: no-repeat 50%/cover;" alt="">
+                                        <img th:src="@{|/upload/${memberDto.saveName}|}" style="width: 300px; height: 300px; object-fit: cover;" alt="">
                                     </span>
                                     <span th:if="${memberDto.mAttach==0}">
                                         <img src="https://via.placeholder.com/300" alt="">
@@ -34,11 +35,17 @@
                                         <ul>
                                             <li>
                                                 <label th:for="mEmail">Email</label>
-                                                <input type="text" name="mEmail" th:value="${memberDto.mEmail}">
+                                                <div class="values">
+                                                    <input type="text" th:field="*{mEmail}" th:value="${memberDto.mEmail}">
+                                                    <p th:if="${#fields.hasErrors('mEmail')}" th:errorclass="error" th:errors="*{mEmail}"></p>
+                                                </div>
                                             </li>
                                             <li>
                                                 <label th:for="mPw">Password</label>
-                                                <input type="password" name="mPw">
+                                                <div class="values">
+                                                    <input type="password" th:field="*{mPw}" placeholder="변경할 비밀번호 입력">
+                                                    <p th:if="${#fields.hasErrors('mPw')}" th:errorclass="error" th:errors="*{mPw}"></p>
+                                                </div>
                                             </li>
                                             <li>
                                                 <label th:for="mName">Name</label>
@@ -46,7 +53,10 @@
                                             </li>
                                             <li>
                                                 <label th:for="mTel">Tel</label>
-                                                <input type="text" name="mTel" th:value="${memberDto.mTel}">
+                                                <div class="values">
+                                                    <input type="text" th:field="*{mTel}" maxlength="13" oninput="autoHyphen(this)" th:value="${memberDto.mTel}">
+                                                    <p th:if="${#fields.hasErrors('mTel')}" th:errorclass="error" th:errors="*{mTel}"></p>
+                                                </div>
                                             </li>
                                             <li>
                                                 <label>Address</label>
@@ -76,11 +86,11 @@
                                                 <label th:for="profileImg">ProfileImage</label>
                                                 <input type="file" name="profileImg">
                                             </li>
-                                            <li>
-                                                <input type="submit" value="수정완료">
-                                                <button><a th:href="@{/member/detail}">돌아가기</a></button>
-                                            </li>
                                         </ul>
+                                        <div class="btn">
+                                            <input type="submit" value="수정완료">
+                                            <button><a th:href="@{/member/detail}">돌아가기</a></button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>

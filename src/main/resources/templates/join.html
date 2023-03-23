@@ -4,43 +4,48 @@
 <head>
     <meta charset="UTF-8">
     <title>join</title>
+    <script th:src="@{/js/telCheck.js}" defer></script>
     <link rel="stylesheet" th:href="@{/css/join.css}">
 </head>
 
 <body>
     <div class="wrap">
         <div class="join">
-            <h1>Sign In</h1>
+            <h1>Sign Up</h1>
             <form th:action="joinOk" method="post" th:object="${memberDto}" enctype="multipart/form-data">
                 <div class="join-form">
                     <ul>
                         <li class="s1">
                             <h4>이메일</h4>
-                            <input type="text" name="mEmail" placeholder="example@gmail.com">
+                            <input type="text" th:field="*{mEmail}" placeholder="example@gmail.com">
+                            <p th:if="${#fields.hasErrors('mEmail')}" th:errorclass="error" th:errors="*{mEmail}"></p>
                         </li>
                         <li class="s1">
                             <h4>비밀번호</h4>
-                            <input type="password" name="mPw" placeholder="비밀번호를 입력해주세요">
+                            <input type="password" th:field="*{mPw}" placeholder="비밀번호를 입력해주세요">
+                            <p th:if="${#fields.hasErrors('mPw')}" th:errorclass="error" th:errors="*{mPw}"></p>
                         </li>
                         <li class="s1">
                             <h4>이름</h4>
-                            <input type="text" name="mName">
+                            <input type="text" th:field="*{mName}">
+                            <p th:if="${#fields.hasErrors('mName')}" th:errorclass="error" th:errors="*{mName}"></p>
                         </li>
                         <li class="s1">
                             <h4>연락처</h4>
-                            <input type="text" name="mTel">
+                            <input type="text" th:field="*{mTel}" maxlength="13" oninput="autoHyphen(this)">
+                            <p th:if="${#fields.hasErrors('mTel')}" th:errorclass="error" th:errors="*{mTel}"></p>
                         </li>
                         <li class="s1">
                             <h4>주소</h4>
-                            <input type="text" name="mZipcode">
-                            <input type="text" name="mAddr1">
+                            <input type="text" th:field="*{mZipcode}">
+                            <input type="text" th:field="*{mAddr1}">
                             <!-- 상세주소(선택) -->
-                            <input type="text" name="mAddr2">
+                            <input type="text" th:field="*{mAddr2}">
                         </li>
                         <li class="s1">
                             <h4>희망포지션</h4>
-                            <select name="mPosition">
-                                <option value="" selected>포지션 선택</option>
+                            <select th:field="*{mPosition}">
+                                <option value="MULTI" selected>포지션 선택</option>
                                 <option value="MULTI">상관없음</option>
                                 <option value="ST">ST</option>
                                 <option value="MF">MF</option>
@@ -50,20 +55,17 @@
                         </li>
                         <li class="s1">
                             <h4>자기소개</h4>
-                            <textarea name="mIntro" cols="30" rows="10" style="resize:none;"></textarea>
+                            <textarea th:field="*{mIntro}" cols="30" rows="10" style="resize:none;"></textarea>
                             <!-- <input type="memo" name="mIntro" > -->
                         </li>
                         <li class="s1">
                             <h4>프로필 이미지</h4>
-                            <input type="file" name="profileImg">
+                            <input type="file" th:field="*{profileImg}">
                         </li>
                         <li class="s2">
                             <input type="submit" value="회원가입">
+                            <button><a th:href="@{/login}">로그인</a></button>
                         </li>
-                        
-                        <div class="side-Menu">
-                            <a th:href="@{/login}">로그인</a>
-                        </div>
                     </ul>
                 </div>
             </form>

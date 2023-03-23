@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>문서작성</title>
+    <link rel="stylesheet" th:href="@{/css/approval/write.css}">
+</head>
+<body>
+    <div th:replace="~{fragment/common/adminHeader :: adminHeaderFragment}"></div>
+    <div class="container">
+        <div th:replace="~{fragment/common/leftMenu :: leftMenuFragment}"></div>
+        <div class="approvalWrite">
+        <h2>문서작성</h2>
+        <form th:action="@{/approval/write}" method="POST" th:object="${ApprovalDto}" enctype="multipart/form-data">
+            <ul>
+                <li class="division">
+                    <label th:for="appDivision">구분</label>
+                    <input type="radio" th:field="*{appDivision}" value="expend">지출결의서
+                    <input type="radio" th:field="*{appDivision}" value="draft">기안서
+                </li>
+                
+                <li class="title">
+                    <label th:for="appTitle">제목</label>
+                    <input type="text" th:field="*{appTitle}" placeholder="제목을 입력하세요.">
+                </li>
+
+                <li class="content">
+                    <label th:for="appContent">내용</label> <br>
+                    <textarea name="appContent" id="appContent" cols="70" rows="10" placeholder="내용을 입력하세요."></textarea>
+                </li>
+
+                <li class="file">
+                    <label th:for="appContainer">첨부파일</label>
+                    <input type="file" name="appContainer">
+                </li>
+
+                <li class="submit">
+                    <input type="submit" value="문서 작성">
+                    <a href="@{/}">HOME</a>
+                </li>
+
+            </ul>
+        </form>
+    </div>
+</div>
+</body>
+</html>

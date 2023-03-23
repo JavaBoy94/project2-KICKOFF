@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insert</title>
+    <link rel="stylesheet" th:href="@{/css/account/accountInsert.css}">
+</head>
+
+<body>
+    <div th:replace="~{fragment/common/adminHeader :: adminHeaderFragment}"></div>
+    <div id="wrap" th:object="${accountDto}">
+        <div th:replace="~{fragment/common/leftMenu :: leftMenuFragment}"></div>
+        <div class="right-menu">
+            <div class="container"><!-- container -->
+                <h2>게시글 작성</h2>
+                <div class="right-con">
+                    <div class="account-list">
+                        <form th:action="@{/account/insertOk}" method="post" th:object="${accountDto}">
+                            <!-- 제목, 이월금 -->
+                            <div class="title-zone">
+                                <li>
+                                    <input type="text" th:field="*{acTitle}" placeholder="제목을 입력하세요">
+                                </li>
+
+                                <li>
+                                    <div class="line"></div>
+                                </li>
+
+                                <li>
+                                    <h4>이월금</h4>
+                                    <input type="text" th:field="*{acSurplus}" placeholder="이월금">
+                                </li>
+                            </div><!-- title-zone 끝 -->
+
+                            <li class="li1">
+                                <span>◆ 수입 지출 내역</span>
+                            </li>
+
+                            <div class="income-expend">
+                                <table border="1">
+                                    <tr>
+                                        <th width="60%">내역</th>
+                                        <th width="15%">수입</th>
+                                        <th width="15%">지출</th>
+                                        <th width="10%"></th>
+                                    </tr>
+
+                                    <tr>
+                                        <td width="60%"><input type="text" th:field="*{acContent}"></td>
+                                        <td width="15%"><input type="text" th:field="*{acIncome}"></td>
+                                        <td width="15%"><input type="text" th:field="*{acExpend}"></td>
+                                        <th width="10%">+</th>
+                                    </tr>
+                                </table>
+                            </div><!-- inncome-expend 끝 -->
+
+                            <li class="li1">
+                                <span>◆ 결산 내역</span>
+                            </li>
+
+                            <div class="income-expend-sum">
+                                <li>
+                                    <h5>수입 총액</h5>
+                                    <input type="text" placeholder="원" readonly>
+                                </li>
+
+                                <li>
+                                    <div class="line"></div>
+                                </li>
+
+                                <li>
+                                    <h5>지출 총액</h5>
+                                    <input type="text" placeholder="원" readonly>
+                                </li>
+                            </div><!-- income-expend-sum 끝 -->
+
+                            <div class="sum">
+                                <li>
+                                    <h5>총 잔액</h5>
+                                    <input type="text" placeholder="총 금액" readonly>
+                                </li>
+                            </div><!-- sum 끝 -->
+
+                            <div class="btnZone">
+                                <input type="submit" value="작성" class="insertBtn">
+                                <a th:href="@{/account/list}" class="backBtn">뒤로</a>
+                            </div><!-- list 끝 -->
+                        </form>
+
+                    </div><!-- account-list끝 -->
+                </div><!-- right-con끝 -->
+            </div><!-- container끝 -->
+        </div><!-- right-menu끝 -->
+    </div><!-- wrap끝 -->
+</body>
+
+</html>

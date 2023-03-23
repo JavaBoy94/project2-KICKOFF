@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>login</title>
+    <!-- <script th:src="@{/js/login.js}" defer></script> -->
     <link rel="stylesheet" th:href="@{/css/login.css}">
 </head>
 <body>
@@ -12,23 +13,25 @@
             <form th:action="loginOk" method="post" >
                 <div class="login-form">
                     <ul>
-                        <li class="s1">
+                        <li>
                             <h4>이메일</h4>
-                            <input type="text" name="mEmail" placeholder="example@gmail.com">
+                            <input type="text" class="mEmail" name="mEmail" placeholder="example@gmail.com">
                         </li>
                         <li class="s1">
                             <h4>비밀번호</h4>
-                            <input type="password" name="mPw" placeholder="비밀번호를 입력해주세요">
+                            <input type="password" class="mPw" name="mPw" placeholder="비밀번호를 입력해주세요">
                         </li>
-                        <li class="s2">
-                            <input type="submit" value="로그인">
-                        </li>
-                        
-                        <div class="side-Menu">
-                            <a th:href="@{/join}">회원가입</a>
-                            <a th:href="@{#}">이메일찾기</a>
-                        </div>
                     </ul>
+                    <input class="submit" type="submit" value="로그인" onclick="loginCheck">
+                </div>
+                <div class="side-Menu">
+                    <button><a th:href="@{/join}">회원가입</a></button>
+                    <button><a th:href="@{#}">이메일찾기</a></button>
+                </div>
+                <div class="oauth">
+                    <a th:href="@{/oauth2/authorization/google}"><img th:src=@{/img/google.png} alt="google" class="google-img" style="border-radius: 20px;"></a>
+                    <a th:href="@{/oauth2/authorization/naver}"><img th:src=@{/img/naver.png} alt="naver" class="naver-img"></a>
+                    <a th:href="@{/oauth2/authorization/kakao}"><img th:src=@{/img/kakao.png} alt="kakao" class="kakao-img"></a>
                 </div>
             </form>
         </div>

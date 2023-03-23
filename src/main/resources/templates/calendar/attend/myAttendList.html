@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/calendar/attend/myAttendList.css}">
+
+</head>
+<body>
+<div th:replace="~{fragment/common/adminHeader :: adminHeaderFragment}"></div>
+<div id="wrap">
+    <div th:replace="~{fragment/common/leftMenu :: leftMenuFragment}"></div>
+<div class="right-menu">
+    <div class="con">
+        <h2>index</h2>
+    <div class="right-con">
+
+        <div class="MyAttendance">
+
+            <table border="1" class="listTable">
+                <tr class="tHeader">
+
+                    <th>근태아이디</th>
+                    <th>출근시간</th>
+                    <th>퇴근시간</th>
+                    <th>자세히보기</th>
+
+                </tr>
+                <tr th:each="attendDto:${attendDtoList}" class="tBody">
+                    <form th:action="@{/attend/attendanceDetail}" method="post" th:object="${attendDto}">
+                        <input type="text" id="attendId" name="attendId" th:value="${attendDto.attendId}" hidden="hidden">
+                        <td th:text="${attendDto.attendId}"></td>
+                        <td th:text="${#temporals.format(attendDto.attendStart, 'yyyy-MM-dd HH:mm:ss')}" ></td>
+                        <td th:text="${#temporals.format(attendDto.attendEnd, 'yyyy-MM-dd HH:mm:ss')}" ></td>
+                        <td><input type="submit" value="자세히보기"></td>
+                    </form>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+</div>
+</div>
+</body>
+</html>

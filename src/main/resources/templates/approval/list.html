@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>결재 리스트</title>
+    <link rel="stylesheet" th:href="@{/css/approval/list.css}">
+</head>
+
+<body>
+    <div th:replace="~{fragment/common/adminHeader :: adminHeaderFragment}"></div>
+    <div class="container">
+        <div th:replace="~{fragment/common/leftMenu :: leftMenuFragment}"></div>
+        <div class="approvalListGrid">
+            <h2>결재문서</h2>
+            <div class="approvalList">
+                <!-- ul 클릭시에 디테일 페이지로 이동하게 끔 -->
+                <ul th:each="approval: ${approvalDtoList}">
+                    <li class="division">
+                        <!-- <span>구분 :</span> -->
+                        <span th:text="${approval.appDivision}"></span>
+                    </li>
+                    <li>
+                        <a th:href="@{|/approval/listDetail/${approval.appId}|}"><span class="title" th:text="${approval.appTitle}"></span></a>
+                        <span class="time" th:text="*{#temporals.format(approval.appCreate, 'yyyy.MM.dd')}"></span>
+                    </li>
+                    
+                    <!-- 나중에 member와 조인시에 기안자 나타낼 예정 -->
+                    <!-- <li>
+                        <span>작성자 :</span>
+                        <span th:text="${member.mId}"></span>
+                    </li> -->
+
+                    <li>
+<!--                         <a th:href="@{|/approval/listDetail/${approval.appId}|}">상세보기</a>-->
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

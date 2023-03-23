@@ -1,6 +1,7 @@
 package org.project2.omwp2.entity;
 
 import lombok.*;
+import org.project2.omwp2.dto.MemberScheduleDto;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -41,6 +42,17 @@ public class MemberScheduleEntity {
     @JoinColumn(name = "m_id")
     private MemberEntity memberEntity;
 
+    public static MemberScheduleEntity toMemberScheduleEntity(MemberScheduleDto memberScheduleDto){
 
+        MemberScheduleEntity memberScheduleEntity = new MemberScheduleEntity();
+
+        memberScheduleEntity.setScheduleId(memberScheduleDto.getScheduleId());
+        memberScheduleEntity.setScheduleBoard(memberScheduleDto.getScheduleBoard());
+        memberScheduleEntity.setScheduleStart(memberScheduleDto.getScheduleStart());
+        memberScheduleEntity.setScheduleEnd(memberScheduleDto.getScheduleEnd());
+        memberScheduleEntity.setScheduleDone(memberScheduleDto.getScheduleDone());
+
+        return memberScheduleEntity;
+    }
 
 }

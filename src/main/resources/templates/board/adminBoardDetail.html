@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>footballAdmin</title>
+    <link rel="stylesheet" th:href="@{/css/board/adminBoardDetail.css}">
+</head>
+
+<body>
+    <div th:replace="~{fragment/common/adminHeader :: adminHeaderFragment}"></div>
+    <div id="wrap">
+        <div th:replace="~{fragment/common/leftMenu :: leftMenuFragment}"></div>
+        <div class="right-menu">
+            <h1>게시글</h1>
+            <div class="right-con">
+                <div class="boardUpdate">
+                    <span>게시글내역</span>
+                    <form th:action="@{admin/boardUpdate}" method="post" th:object="${boardDto}">
+                        <ul>
+                            <li class="s2">
+                                <label th:for="boardFile">파일</label>
+                                <div class="s4" th:if="${board.boardAttach==1}">
+                                    <a th:href="@{|/admin/download/${board.bfileId}|}" th:text="${board.bfileNewName}"></a>
+                                </div>
+                                <div class="s4" th:unless="${board.boardAttach==1}">
+                                    <span>없음</span>
+                                </div>
+                            </li>
+                            <li class="s2">
+                                <label th:for="boardTitle">제목</label>
+                                <span th:text="${board.boardTitle}"></span>
+                            </li>
+                            <li class="s2">
+                                <label th:for="boardHit">조회수</label>
+                                <span th:text="${board.boardHit}"></span>
+                            <li class="s2">
+                                <label th:for="boardCmcount">댓글수</label>
+                                <span th:text="${board.boardCmcount}"></span>
+                            <li class="s2">
+                                <label th:for="boardContent">내용</label>
+                                <textarea th:text="${board.boardContent}" readonly ></textarea>
+                            </li>
+                            <li class="s3">
+                                <a th:href="@{|/admin/boardUpdate/${board.boardId}|}">게시글수정</a>
+                                <a th:href="@{|/admin/boardDelete/${board.boardId}|}">게시글삭제</a>
+                                <a th:href="@{/admin/boardList}" class="s3sub">게시글조회</a>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+                <span>댓글</span>
+                <div class="comment">
+                    <table>
+                        <tr>
+                            <th>번호</th>
+                            <th>작성자번호</th>
+                            <th>내용</th>
+                            <th>작성시간</th>
+                        </tr>
+                        <tr th:each="comment: ${commentDtoList}">
+                            <td th:text="${comment.commentId}"></td>
+<!--                            <td th:text="${comment.mId}"></td>-->
+                            <td th:text="${comment.commentContent}"></td>
+                            <td th:text="${#temporals.format(comment.commentCreate, 'yyyy:MM-dd HH:mm:ss')}"></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="comment-write">
+                    <form th:action="@{/comment/commentWrite}" method="POST">
+
+                        <input type="hidden" readonly name="boardId" th:value="${board.boardId}">
+                        <ul>
+                            <li>
+                                <textarea style="line-height:20px; padding:10px; box-sizing: border-box;"
+                                        name="commentContent" id="commentContent" cols="30" rows="10"></textarea>
+                            </li>
+                            <li>
+                                <input type="submit" value="댓글작성">
+
+                            </li>
+                            <li>
+                                <a th:href="@{/admin/boardList}">전체목록</a>
+                            </li>
+                        </ul>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

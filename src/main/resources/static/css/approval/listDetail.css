@@ -1,0 +1,198 @@
+@import url(../common/reset.css);
+@import url(../common/adminHeader.css);
+@import url(../common/leftMenu.css);
+
+.container{
+  width: 100%;
+  /* border: 5px solid #000000; */
+  padding-top: 50px;
+  box-sizing: border-box;
+  /* display: flex; */
+  /* justify-content:center; */
+  /* gap: 5px; */
+
+
+  margin-left: 320px
+}
+
+.container .approvalList {
+  width: 600px;
+  gap: 20px;
+  padding: 10px 10px;
+
+  border: 1px solid #4d4d4d3a;
+}
+
+.container .approvalList h2{
+  display: flex;
+  justify-content: left;
+
+  background-color: #000000;
+  color: #ffffff;
+
+  padding: 30px 20px;
+  margin: 20px 20px;
+}
+
+/*결재선*/
+.container .approvalList .conform h3{
+  font-size: 18px;
+ margin: 10px 10px;
+}
+
+/*위에 박스*/
+.container .approvalList .conform .conformMain{
+  border: 1px solid #4d4d4d3a;
+
+  display: flex;
+  justify-content: left;
+
+  height: 150px;
+  position: relative;
+}
+
+.container .approvalList .conform .conformMain .sub1{
+  border: 1px solid #4d4d4d3a;
+
+  width: 100px;
+
+  text-align: center;
+  padding: 65px 0px;
+
+  background-color: #a3a3a344;
+  font-weight: bold;
+}
+
+.container .approvalList .conform .conformMain .sub2{
+  border: 1px solid #4d4d4d3a;
+
+  width: 200px;
+
+  text-align: center;
+}
+
+.container .approvalList .conform .conformMain .sub2 .sub2-1{
+background-color: #a3a3a344;
+border-bottom: 1px solid #4d4d4d3a;
+font-weight: bold;
+padding: 5px 0px;
+}
+
+.container .approvalList .conform .conformMain .sub2 .sub2-2{
+  padding: 22px 0px;
+
+  border-bottom: 1px solid #4d4d4d3a;
+}
+
+.container .approvalList .conform .conformMain .sub2 .sub2-3{
+  padding: 12px 0px;
+}
+
+.container .approvalList .conform .conformMain .sub3{
+  border: 1px solid #4d4d4d3a;
+
+  width: 300px;
+
+  text-align: left;
+}
+
+.container .approvalList .conform .conformMain .sub3 .sub3-1{
+  background-color: #a3a3a344;
+  border-bottom: 1px solid #4d4d4d3a;
+  font-weight: bold;
+  padding: 5px 2px;
+
+  height: 15%;
+}
+
+.container .approvalList .conform .conformMain .sub3 .sub3-3{
+  text-align: center;
+  font-weight: bold;
+}
+
+
+/* 밑에 박스 */
+.container .approvalListDetail{
+  width: 100%;
+  padding-top: 20px;
+  
+  /* border: 1px solid #4d4d4d3a; */
+  box-sizing: border-box;
+}
+
+.container .approvalListDetail >ul{
+  width: 100%;
+
+  border: 1px solid #4d4d4d3a;
+  box-sizing: border-box;
+
+  /* box-shadow: 1px 1px 5px #4d4d4d; */
+}
+
+.container .approvalListDetail >ul >li{
+  width: 100%;
+  /* border: 1px solid #eeff00; */
+  box-sizing: border-box;
+
+  padding: 10px 10px;
+}
+
+.container .approvalListDetail ul li.division {
+
+}
+
+.container .approvalListDetail ul li.title {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+
+.container .approvalListDetail ul .sub1 {
+  display: flex;
+  justify-content: left;
+
+  padding: 10px 10px;
+}
+
+.container .approvalListDetail ul .line {
+  border-bottom: 1px solid #4d4d4d3a;
+  width: 80%;
+
+}
+
+.container .approvalListDetail ul .sub1 li.id {
+
+}
+
+.container .approvalListDetail ul .sub1 li.time {
+  margin: 0px 20px;
+}
+
+.container .approvalListDetail ul li.content {
+  margin: 10px 0px;
+}
+
+.container .approvalListDetail ul li.content .sub1{
+  margin: 0px 10px;
+}
+
+.container .approvalListDetail ul .fileparents li.file{
+  display: flex;
+  justify-content: left;
+
+  padding: 10px 10px;
+  margin: 10px 0px;
+}
+
+.container .approvalListDetail ul .fileparents li.file .filesub{
+  margin: 0px 10px;
+}
+
+.container .approvalListDetail ul li.file a{
+  color:#4a65ff
+}
+
+.container .approvalListDetail ul .move{
+  text-align: right;
+  margin: 10px 10px;
+}

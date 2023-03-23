@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>adminMemberDelete</title>
+    <link rel="stylesheet" th:href="@{/css/member/adminMemberDelete.css}">
+</head>
+
+<body>
+    <div th:replace="~{fragment/common/adminHeader :: adminHeaderFragment}"></div>
+    <div id="wrap">
+        <div th:replace="~{fragment/common/leftMenu :: leftMenuFragment}"></div>
+        <div class="right-menu">
+            <div class="con">
+                <h2>회원삭제</h2>
+                <div class="right-con">
+                    <div class="memberDelete">
+                        <div class="con2">
+                            <div class="member">
+                                <div class="img">
+                                    <span th:if="${memberDto.mAttach==1}">
+                                        <img th:src="@{|/upload/${memberDto.saveName}|}" style="width: 300px; height: 300px;" alt="">
+                                    </span>
+                                    <span th:unless="${memberDto.mAttach==1}">
+                                        <img src="https://via.placeholder.com/300" alt="">
+                                    </span>
+                                </div>
+                                <div class="info">
+                                    <ul>
+                                        <li>
+                                            <span>정말 회원을 삭제하시겠습니까?</span>
+                                        </li>
+                                        <li>
+                                            <button><a th:href="@{|/member/adminMemberDeleteOk/${memberDto.mId}|}">회원삭제</a></button>
+                                            <button><a th:href="@{|/member/adminMemberDetail/${memberDto.mId}|}">취소</a></button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,6 +1,7 @@
 package org.project2.omwp2.entity;
 
 import lombok.*;
+import org.project2.omwp2.dto.AttendDto;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -34,7 +35,16 @@ public class AttendEntity {
     @JoinColumn(name = "m_id")
     private MemberEntity memberEntity;
 
+    public static AttendEntity toAttendEntity(AttendDto attendDto){
 
+        AttendEntity attendEntity = new AttendEntity();
+
+        attendEntity.setAttendId(attendDto.getAttendId());
+        attendEntity.setAttendStart(attendDto.getAttendStart());
+        attendEntity.setAttendEnd(attendDto.getAttendEnd());
+
+        return attendEntity;
+    }
 
 
 }

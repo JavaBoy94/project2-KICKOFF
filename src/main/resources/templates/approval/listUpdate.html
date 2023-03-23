@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>결재문서 수정</title>
+    <link rel="stylesheet" th:href="@{/css/approval/listUpdate.css}">
+</head>
+
+<body>
+    <div th:replace="~{fragment/common/adminHeader :: adminHeaderFragment}"></div>
+    <div class="container">
+        <div th:replace="~{fragment/common/leftMenu :: leftMenuFragment}"></div>
+        <div class="approvalUpdate">
+            <h2>결재문서 수정</h2>
+            <form th:action="@{/approval/listUpdate}" method="POST" th:object="${approvalDto}" enctype="multipart/form-data">
+                <ul>
+                    <li class="division">
+                        <label th:for="appDivision">구분</label>
+                        <select name="appDivision" id="appDivision">
+                        <option value="expend">지출결의서</option>
+                        <option value="draft">기안서</option>
+                        </select>
+                    </li>
+
+                    <li class="title">
+                        <label th:for="appTitle">제목</label>
+                        <input type="text" name="appTitle" th:value="${approval.appTitle}">
+                        <input type="hidden" name="appId" th:value="${approval.appId}">
+                    </li>
+
+                    <li class="content">
+                        <label th:for="appContent">내용</label> <br>
+<!--                        <input type="text" name="appContent" th:value="${approval.appContent}">-->
+                        <textarea name="appContent" id="appContent" th:text="${approval.appContent}" th:value="${approval.appContent}" cols="70" rows="10" ></textarea>
+                    </li>
+
+                    <li class="file">
+                        <label th:for="appContainer">첨부파일</label>
+                        <input type="file" name="appContainer" th:value="${approval.appContainer}">
+                    </li>
+
+                    <li class="submit">
+                        <input type="submit" value="문서 수정">
+                        <a th:href="@{|/approval/listDetail/${approval.appId}|}">이전</a>
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

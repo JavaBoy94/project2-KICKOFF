@@ -31,7 +31,7 @@ public class WebSecurityConfig{
         http.authorizeHttpRequests()
                 .antMatchers("/login","/join").permitAll()  // 모든 유저 접근 가능
                 .antMatchers("/css/**", "/js/**", "/img/**").permitAll()
-                .antMatchers("/","index").hasAnyRole("ADMIN","MEMBER")
+                .antMatchers("/","/index").hasAnyRole("ADMIN","MEMBER")
                 .antMatchers("/admin/**").hasAnyRole("ADMIN")
                 .antMatchers("/member/**").hasAnyRole("ADMIN","MEMBER")
                 .antMatchers("/wish/**").hasAnyRole("ADMIN","MEMBER")
@@ -49,9 +49,9 @@ public class WebSecurityConfig{
 //              .failureForwardUrl("/login?login_error=1")    // 실패시 로그인페이지로 다시 이동
               .failureUrl("/login")
                 .defaultSuccessUrl("/index", true)   // 성공시 URL
-//                .and()
-//                .oauth2Login()
-//                .loginPage("/login")
+                .and()
+                .oauth2Login()
+                .loginPage("/login")
         ;
 
 

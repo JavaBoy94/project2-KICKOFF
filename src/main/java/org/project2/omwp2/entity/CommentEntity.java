@@ -3,6 +3,7 @@ package org.project2.omwp2.entity;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.project2.omwp2.dto.CommentDto;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -48,6 +49,17 @@ public class CommentEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "m_id")
     private MemberEntity memberEntity;
+
+    public static CommentEntity toInsertEntity(CommentDto commentDto, MemberEntity memberEntity , BoardEntity boardEntity) {
+
+        CommentEntity commentEntity = new CommentEntity();
+
+        commentEntity.setCommentContent(commentDto.getCommentContent());
+        commentEntity.setBoardEntity(boardEntity);
+        commentEntity.setMemberEntity(memberEntity);
+
+        return commentEntity;
+    }
 
 
 }

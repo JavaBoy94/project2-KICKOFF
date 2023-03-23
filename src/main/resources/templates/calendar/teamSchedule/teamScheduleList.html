@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/calendar/teamSchedule/teamScheduleList.css}">
+
+</head>
+<body>
+<div th:replace="~{fragment/common/adminHeader :: adminHeaderFragment}"></div>
+<div id="wrap">
+    <div th:replace="~{fragment/common/leftMenu :: leftMenuFragment}"></div>
+<div class="right-menu">
+    <div class="con">
+        <h2>index</h2>
+
+    <div class="right-con">
+
+        <div class="MyAttendance">
+
+            <table>
+                <thead>
+<!--                 변경가능 -->
+<!--                <tr class="search">-->
+<!--                    <th colspan="5">-->
+<!--                        <form th:action="@{/memberSchedule/myScheduleList}" method="get">-->
+<!--                            <input type="text" name="search" id="search">-->
+<!--                            <input type="submit" value="검색">-->
+<!--                        </form>-->
+<!--                    </th>-->
+<!--                </tr>-->
+                <tr class="title">
+                    <th colspan="3">회원목록</th>
+                </tr>
+                <!-- 변경가능 -->
+                <tr>
+                    <th>스케줄 아이디</th>
+                    <th>일정 내용</th>
+                    <!--              <th>비빌번호</th>-->
+                    <th>출석 날짜</th>
+                    <th>퇴근 날짜</th>
+                    <th>완료 여부</th>
+                    <th>회원 아이디</th>
+                    <th>내용 확인</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <!--memberList th.each-->
+                <tr th:each="teamScheduleDto: ${teamScheduleDtoPage}">
+                    <form th:action="@{/teamSchedule/myScheduleViewDetail}" method="post" th:object="${teamScheduleDto}">
+                        <input type="text" id="scheduleId" name="scheduleId" th:value="${teamScheduleDto.scheduleId}" hidden="hidden">
+                    <td th:text="${teamScheduleDto.scheduleId}"></td>
+                    <td th:text="${teamScheduleDto.scheduleBoard}"></td>
+                    <td th:text="${#temporals.format(teamScheduleDto.scheduleStart, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                    <td th:text="${#temporals.format(teamScheduleDto.scheduleEnd, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                    <td th:text="${teamScheduleDto.scheduleDone}"></td>
+                    <td th:text="${teamScheduleDto.mId}"></td>
+                        <td><input type="submit" value="자세히보기"></td>
+                    <!--<td><a th:href="@{/member/detail(id=${member.id}}">보기</a></td>-->
+                    </form>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="paging">
+                <ul>
+                    <li>
+                        <span th:if="${1 == teamScheduleDtoPage.pageable.pageNumber+1}"  style="color:#a2e413">START</span>
+                        <a th:unless="${1 == teamScheduleDtoPage.pageable.pageNumber+1}"
+                           style="color:#e61d8b" th:href="@{/teamSchedule/myScheduleList(page=0)}">처음</a>
+                    </li>
+
+                    <li>
+                        <span th:if="${1 == teamScheduleDtoPage.pageable.pageNumber+1}"  style="color:#a2e413">이전</span>
+                        <a th:unless="${1 == teamScheduleDtoPage.pageable.pageNumber+1}"   style="color:#e61d8b"
+                           th:href="@{/teamSchedule/myScheduleList(page=${ teamScheduleDtoPage.pageable.pageNumber - 1})}">이전</a>
+                    </li>
+
+
+                    <!-- 페이지 번호 -->
+                    <li th:each="i: ${#numbers.sequence(startPage, endPage)}">
+                        <span th:if="${i == teamScheduleDtoPage.pageable.pageNumber+1}"  style="color:#a2e413" th:text="${i}"></span>
+                        <a th:unless="${i == teamScheduleDtoPage.pageable.pageNumber+1}" style="color:#e61d8b"
+                           th:href="@{/teamSchedule/myScheduleList(page=${ i - 1})}" th:text="${i}"></a>
+                    </li>
+                    <li>
+                        <span th:if="${teamScheduleDtoPage.totalPages == teamScheduleDtoPage.pageable.pageNumber+1}"  style="color:#a2e413">다음</span>
+                        <a th:unless="${teamScheduleDtoPage.totalPages == teamScheduleDtoPage.pageable.pageNumber+1}"  style="color:#e61d8b"
+                           th:href="@{/teamSchedule/myScheduleList(page=${ teamScheduleDtoPage.pageable.pageNumber + 1})}">다음</a>
+                    </li>
+
+                    <li>
+                        <span th:if="${teamScheduleDtoPage.totalPages == teamScheduleDtoPage.pageable.pageNumber+1}"  style="color:#a2e413">END</span>
+                        <a th:unless="${teamScheduleDtoPage.totalPages == teamScheduleDtoPage.pageable.pageNumber+1}"
+                           style="color:#e61d8b" th:href="@{/teamSchedule/myScheduleList(page=${teamScheduleDtoPage.totalPages-1})}">END</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</div>
+</div>
+
+</body>
+</html>

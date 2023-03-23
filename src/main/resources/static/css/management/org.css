@@ -1,0 +1,50 @@
+@import url(../common/reset.css);
+@import url(../common/header.css);
+@import url(../common/footer.css);
+/*조직관리*/
+
+.container{
+  padding-top: 80px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* member_view_right의 스타일 */
+.member_view_right {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  padding: 20px;
+}
+
+/* 각 구성원의 정보를 보여주는 리스트의 스타일 */
+.member_view_right ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* 회원 정보 항목의 스타일 */
+.member_view_right li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+/* 회원 정보 항목의 레이블 스타일 */
+.member_view_right li span:first-child {
+  font-weight: bold;
+}
+
+/* 회원 정보 항목의 값 스타일 */
+.member_view_right li span:last-child {
+  flex-grow: 1;
+  margin-left: 10px;
+  color: #555;
+}

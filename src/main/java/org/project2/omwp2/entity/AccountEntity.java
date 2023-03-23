@@ -3,6 +3,7 @@ package org.project2.omwp2.entity;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.project2.omwp2.dto.AccountDto;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -13,7 +14,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-//@Builder
+@Builder
 @ToString
 @Entity
 @Table(name="account")
@@ -64,4 +65,20 @@ public class AccountEntity {
 //    첨부파일
     @OneToMany(mappedBy = "accountEntity",cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<DocumentEntity> documentEntities = new ArrayList<>();
+
+
+    public static AccountEntity toAccountEntity(AccountDto accountDto){
+        AccountEntity accountEntity = new AccountEntity();
+
+        accountEntity.setAcId(accountDto.getAcId());
+        accountEntity.setAcTitle(accountDto.getAcTitle());
+        accountEntity.setAcContent(accountDto.getAcContent());
+        accountEntity.setAcIncome(accountDto.getAcIncome());
+        accountEntity.setAcExpend(accountDto.getAcExpend());
+        accountEntity.setAcSurplus(accountDto.getAcSurplus());
+        accountEntity.setAcCreate(accountDto.getAcCreate());
+        accountEntity.setAcUpdate(accountDto.getAcUpdate());
+
+        return accountEntity;
+    }
 }

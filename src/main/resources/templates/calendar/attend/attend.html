@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/calendar/attend/attend.css}">
+
+</head>
+<body>
+<div th:replace="~{fragment/common/adminHeader :: adminHeaderFragment}"></div>
+<div id="wrap">
+    <div th:replace="~{fragment/common/leftMenu :: leftMenuFragment}"></div>
+
+    <div class="right-menu">
+        <div class="con">
+            <h2>index</h2>
+        <div class="right-con">
+
+    <div th:if="${check==1}" class="attendance"><a href="/attend/goWork">출근</a></div>
+<div th:unless="${check==1}" class="attendance"><a href="/attend/goHome">퇴근</a></div>
+<div class="attendance"><a href="/attend/myAttendanceList">내 참석 여부</a></div>
+<div class="attendance"><a href="/attend/myAttendancePaging">내 참석 여부 페이징</a></div>
+
+        </div>
+    </div>
+
+</div>
+</div>
+</body>
+</html>

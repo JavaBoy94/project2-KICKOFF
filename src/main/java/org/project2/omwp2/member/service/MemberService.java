@@ -6,6 +6,8 @@ import org.project2.omwp2.entity.MemberEntity;
 import org.project2.omwp2.entity.ProfileEntity;
 import org.project2.omwp2.member.repository.MemberRepository;
 import org.project2.omwp2.member.repository.ProfileRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -85,8 +87,9 @@ public class MemberService {
 
         if(memberDto.getProfileImg().isEmpty()) {
 //            수정할 파일이 없을 때 => 기존 이미지 사용
-            Long id =
-                    memberRepository.save(MemberEntity.toMemberEntity2(memberDto,passwordEncoder)).getMId();
+
+            memberRepository.save(MemberEntity.toMemberEntity2(memberDto,passwordEncoder));
+
         } else {
 //            수정할 파일이 있을 때 => 기존 파일 삭제 후, 수정할 파일 저장
 //            1. 기존 파일 삭제
@@ -126,6 +129,41 @@ public class MemberService {
 
         MemberEntity memberEntity =
                 memberRepository.findBymEmail(mEmail).get();
+
+        memberRepository.delete(memberEntity);
+
+        if(memberRepository.findById(memberEntity.getMId()).isEmpty()){
+            System.out.println("member delete Success !");
+            return 1;
+        } else {
+            System.out.println("member delete fail !");
+            return 0;
+        }
+    }
+
+    public Page<MemberDto> getMemberList(Pageable pageable) {
+
+        Page<MemberEntity> memberEntityPage = memberRepository.findAll(pageable);
+
+        return memberEntityPage.map(MemberDto::toMemberDto);
+
+    }
+
+    public MemberDto getMemberDetail2(Long id) {
+
+       if(memberRepository.findById(id).isEmpty()){
+//           해당 회원정보가 없으면 null
+           return null;
+       }
+
+       return MemberDto.toMemberDto(memberRepository.findById(id).get());
+
+    }
+
+    public int memberDeleteDo2(Long id) {
+
+        MemberEntity memberEntity =
+                memberRepository.findById(id).get();
 
         memberRepository.delete(memberEntity);
 

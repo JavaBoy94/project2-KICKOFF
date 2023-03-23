@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/calendar/memberSchedule/memberScheduleCheck.css}">
+</head>
+<body>
+<div th:replace="~{fragment/common/adminHeader :: adminHeaderFragment}"></div>
+<div id="wrap">
+    <div th:replace="~{fragment/common/leftMenu :: leftMenuFragment}"></div>
+
+<div class="right-menu">
+    <div class="con">
+        <h2>index</h2>
+    <div class="right-con">
+
+        <div class="MySchedule">
+
+            <table border="1" class="listTable">
+                <tr class="tHeader">
+
+                    <th>스케줄아이디</th>
+                    <th>스케줄내용</th>
+                    <th>일정시작</th>
+                    <th>일정끝</th>
+                    <th>완료여부</th>
+                    <th>나의아이디</th>
+                    <th>일정 변경</th>
+                    <th>스케줄삭제</th>
+
+                </tr>
+                <tr th:each="memberScheduleDto:${memberScheduleDtoList}" class="tBody">
+                    <form th:action="@{/memberSchedule/myScheduleChange}" method="post" th:object="${memberScheduleDto}">
+                        <input type="text" id="scheduleId" name="scheduleId" th:value="${memberScheduleDto.scheduleId}" hidden="hidden">
+                        <input type="text" id="mId" name="mId" th:value="${memberScheduleDto.mId}" hidden="hidden">
+                        <td th:text="${memberScheduleDto.scheduleId}"></td>
+                        <td th:text="${memberScheduleDto.scheduleBoard}"></td>
+                        <td th:text="${#temporals.format(memberScheduleDto.scheduleStart, 'yyyy-MM-dd HH:mm:ss')}" ></td>
+                        <td th:text="${#temporals.format(memberScheduleDto.scheduleEnd, 'yyyy-MM-dd HH:mm:ss')}" ></td>
+                        <td th:text="${memberScheduleDto.scheduleDone}"></td>
+                        <td th:text="${memberScheduleDto.mId}"></td>
+                        <td><input type="submit" value="일정 변경"></td>
+                        <td><button><a th:href="@{|/memberSchedule/deleteMemberSchedule/${memberScheduleDto.scheduleId}|}">일정 삭제</a></button></td>
+                    </form>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

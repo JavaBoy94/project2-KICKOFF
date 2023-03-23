@@ -1,0 +1,232 @@
+@import url(/css/common/reset.css);
+@import url(/css/common/adminHeader.css);
+@import url(/css/common/leftMenu.css);
+
+#wrap{
+    width: 100%;
+    /* border: 5px solid #000000; */
+    padding-top: 50px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    /* gap: 5px; */
+  }
+
+.right-menu{
+    flex: 1;
+    height: auto;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    border-top: 1px solid #dedede;
+    /* border: 1px solid #ffff00; */
+    padding: 30px;
+    padding-left: 330px;
+}
+
+.right-menu .container{
+    border: 1px solid #dedede;
+    box-sizing: border-box;
+    height: auto;
+}
+
+.right-menu .container h2{
+    background-color: #000000;
+    color: #ffffff;
+    padding: 5px;
+}
+
+.right-menu .right-con{
+    height: auto;
+    padding: 70px;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+#wrap .right-menu .container .right-con .account-list{
+    width: 80%;
+}
+
+/* 등록 영역 */
+#wrap .right-menu .container .right-con .account-list .btnZone{
+    border-bottom: 4px solid #878784;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: right;
+    padding-bottom: 10px;
+    gap: 10px;
+}
+
+/* 수정버튼 */
+.updateBtn{
+    border: 1px solid #000000;
+    width: 50px;
+    box-sizing: border-box;
+    height: 26px;
+    background-color: white;
+    text-align: center;
+    line-height: 26px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* 삭제버튼 */
+.deleteBtn{
+    border: 1px solid #000000;
+    width: 50px;
+    text-align: center;
+    box-sizing: border-box;
+    height: 26px;
+    background-color: white;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* 제목, 이월금 */
+#wrap .right-menu .container .right-con .account-list .title-zone{
+    display: flex;
+    justify-content: left;
+    padding: 15px 0;
+    box-sizing: border-box;
+    border-bottom: 2px solid #cacaca;
+}
+
+#wrap .right-menu .container .right-con .account-list .title-zone li:nth-child(1){
+    flex: 7;
+}
+
+#wrap .right-menu .container .right-con .account-list .title-zone li:nth-child(1) input{
+    text-align: center;
+    width: 500px;
+    height: 45px;
+    outline: none;
+    box-sizing: border-box;
+    font-size: 30px;
+    border: 1px;
+}
+
+#wrap .right-menu .container .right-con .account-list .title-zone li:nth-child(2){
+    flex: 1;
+}
+
+/* 세로 라인 */
+.line{
+    margin: auto 0.75rem;
+    width: 0.1rem;
+    height: 2.75rem;
+    background-color: #e1e1e1;
+}
+
+#wrap .right-menu .container .right-con .account-list .title-zone li:nth-child(3){
+    flex: 2;
+}
+
+#wrap .right-menu .container .right-con .account-list .title-zone li:nth-child(3) input{
+    text-align: center;
+    width: 100px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+/* 사용 내역 */
+
+#wrap .right-menu .container .right-con .account-list .income-expend{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    border-bottom: 2px solid #cacaca;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+
+#wrap .right-menu .container .right-con .account-list .income-expend table tr{
+    display: flex;
+    justify-content: left;
+}
+
+/* 수입 지출 내역 테이블 */
+table{
+    width: 80%;
+    border-collapse : collapse;
+}
+
+table tr:nth-child(1){
+    background-color: #d2d2d2;
+    height: 30px;
+    line-height: 30px;
+}
+
+table tr:nth-child(2){
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+
+
+
+/* 수입,지출 총액 */
+#wrap .right-menu .container .right-con .account-list .income-expend-sum{
+    display: flex;
+    justify-content: left;
+    padding: 25px 0;
+    box-sizing: border-box;
+    width: 80%;
+}
+
+#wrap .right-menu .container .right-con .account-list .income-expend-sum li:nth-child(1){
+    flex: 6;
+}
+
+#wrap .right-menu .container .right-con .account-list .income-expend-sum li:nth-child(1) input{
+    width: 100px;
+}
+
+#wrap .right-menu .container .right-con .account-list .income-expend-sum li:nth-child(2){
+    flex: 1;
+}
+
+#wrap .right-menu .container .right-con .account-list .income-expend-sum li:nth-child(3) input{
+    width: 100px;
+}
+
+/* 총액 */
+#wrap .right-menu .container .right-con .account-list .sum{
+    display: flex;
+    justify-content: left;
+    padding: 20px 0;
+    box-sizing: border-box;
+    width: 80%;
+}
+
+#wrap .right-menu .container .right-con .account-list .sum li input{
+    width: 100px;
+}
+
+/* 목록버튼 */
+#wrap .right-menu .container .right-con .account-list .list{
+    display: flex;
+    justify-content: right;
+    padding-top: 25px;
+    box-sizing: border-box;
+}
+
+#wrap .right-menu .container .right-con .account-list .list a{
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    width: 100px;
+    height: 25px;
+    text-align: center;
+}
+
+/* 소제목 */
+span{
+    color: #ff0000;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.li1{
+    padding-top: 20px;
+    box-sizing: border-box;
+}

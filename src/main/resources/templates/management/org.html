@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>조직 관리</title>
+    <link rel="stylesheet" href="@{/css/management/org.css}">
+</head>
+<body>
+  <div class="container">
+    <div class="contents">
+      <div class="contents_head">
+        <ul class="tree">
+          <il class="item"><a href="#">메인</a></il>
+          <il class="item"><a href="#">구성원</a></il>
+        </ul>
+        <div class="title">
+          <h3>구성원</h3>
+        </div>
+      </div>
+      <div class="contents_body">
+        <div class="member_view">
+          <section class="member_view_left">
+            <ul class="org_tree">
+              
+              <span class="org_name">000축구단</span>
+
+              <li>
+                <a href="#">운영진</a>
+                <ul class="org_dep">
+                  <li class="dep"><a href="#">회장</a></li>
+                  <li class="dep"><a href="#">총무</a></li>
+                  <li class="dep"><a href="#">매니저</a></li>
+                </ul>
+              </li>
+
+              <li>
+                <a href="#">감독</a>
+                <ul class="org_dep">
+                  <li class="dep"><a href="#">감독</a></li>
+                  <li class="dep"><a href="#">부감독</a></li>
+                </ul>
+              </li>
+
+              <li>
+                <a href="#">코치진</a>
+                <ul class="org_dep">
+                  <li class="dep"><a href="#">기술코치</a></li>
+                </ul>
+              </li>
+
+              <li>
+                <a href="#">선수</a>
+                <ul class="org_dep">
+                  <li class="dep"><a href="#">공격수</a></li>
+                  <li class="dep"><a href="#">미드필더</a></li>
+                  <li class="dep"><a href="#">수비수</a></li>
+                  <li class="dep"><a href="#">골키퍼</a></li>
+                </ul>
+              </li>
+
+            </ul>
+          </section>
+
+          <section class="member_view_right">
+            <div class="list_title"><h2>조직 현황</h2></div>
+            <ul>
+              <li>
+                <span>회원 ID :</span>
+                <span text=""> </span>
+              </li>
+
+              <li>
+                <span>이메일 :</span>
+                <span text=""> </span>
+              </li>
+
+              <li>
+                <span>우편번호 :</span>
+                <span text=""> </span>
+              </li>
+
+              <li>
+                <span>주소 :</span>
+                <span text=""> </span>
+              </li>
+
+              <li>
+                <span>상세주소 :</span>
+                <span text=""> </span>
+              </li>
+
+              <li>
+                <span>이름 :</span>
+                <span text=""> </span>
+              </li>
+
+              <li>
+                <span>전화번호 :</span>
+                <span text=""> </span>
+              </li>
+
+              <li>
+                <span>자기소개 :</span>
+                <span text=""> </span>
+              </li>
+
+              <li>
+                <span>가입일 :</span>
+                <span text=""> </span>
+              </li>
+
+            </ul>
+
+          </section>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>

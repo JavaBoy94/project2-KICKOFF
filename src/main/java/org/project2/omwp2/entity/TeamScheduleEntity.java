@@ -1,6 +1,7 @@
 package org.project2.omwp2.entity;
 
 import lombok.*;
+import org.project2.omwp2.dto.TeamScheduleDto;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -42,5 +43,19 @@ public class TeamScheduleEntity {
     private MemberEntity memberEntity;
 
 
+    public static TeamScheduleEntity toTeamScheduleEntity(TeamScheduleDto teamScheduleDto){
+
+        TeamScheduleEntity teamScheduleEntity = new TeamScheduleEntity();
+
+        teamScheduleEntity.setScheduleId(teamScheduleDto.getScheduleId());
+        teamScheduleEntity.setScheduleBoard(teamScheduleDto.getScheduleBoard());
+        teamScheduleEntity.setScheduleStart(teamScheduleDto.getScheduleStart());
+        teamScheduleEntity.setScheduleEnd(teamScheduleDto.getScheduleEnd());
+        teamScheduleEntity.setScheduleDone(teamScheduleDto.getScheduleDone());
+
+        return teamScheduleEntity;
+
+
+    }
 
 }

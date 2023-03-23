@@ -27,7 +27,7 @@ public class MemberEntity {
     private Long mId;
 
 //    이메일
-    @Column(name = "m_email",nullable = false)
+    @Column(name = "m_email",nullable = false, unique = true)
     private String mEmail;
 
 //    비밀번호
@@ -118,7 +118,7 @@ public class MemberEntity {
         memberEntity.mAddr2 = memberDto.getMAddr2();
         memberEntity.mTel = memberDto.getMTel();
         memberEntity.mIntro = memberDto.getMIntro();
-        memberEntity.mRole = Role.GUEST;
+        memberEntity.mRole = Role.MEMBER;
         memberEntity.mDept = "MEMBER";
         memberEntity.mPosition = memberDto.getMPosition();
         if(memberDto.getProfileImg().isEmpty()){
@@ -148,12 +148,7 @@ public static MemberEntity toMemberEntity2(MemberDto memberDto, PasswordEncoder 
     memberEntity.mDept = memberDto.getMDept();
     memberEntity.mCreate = memberDto.getMCreate();
     memberEntity.mPosition = memberDto.getMPosition();
-    memberEntity.mAttach = memberDto.getMAttach();
-    if(memberDto.getProfileImg().isEmpty()){
-        memberEntity.mAttach = 0;
-    } else {
-        memberEntity.mAttach = 1;
-    }
+    memberEntity.mAttach = 1;
 
     return memberEntity;
 }

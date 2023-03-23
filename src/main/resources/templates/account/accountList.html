@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List</title>
+    <link rel="stylesheet" th:href="@{/css/account/accountList.css}">
+</head>
+<body>
+    <div th:replace="~{fragment/common/adminHeader :: adminHeaderFragment}"></div>
+    <div id="wrap">
+        <div th:replace="~{fragment/common/leftMenu :: leftMenuFragment}"></div>
+        <div class="right-menu">
+            <div class="container"><!-- container -->
+                <h2>목록</h2>
+                <div class="right-con">
+                    <div class="account-list">
+                        <!-- 등록 (관리자만 가능) -->
+                        <div class="btnZone">
+                            <a th:href="@{/account/insert}" class="insertBtn" sec:authorize="hasRole('ADMIN')">등록</a>
+                        </div>
+            
+                        <!-- 지출, 수입 작성 글 리스트 -->
+                        <div class="account-form">
+                            <table style="border-collapse:collapse">
+                                <tr>
+                                    <th width="5%">NO</th>
+                                    <th width="50%">제목</th>
+                                    <th width="15%">수입 총액</th>
+                                    <th width="15%">지출 총액</th>
+                                    <th width="15%">현재 잔액</th>
+                                </tr>
+            
+                                <tr th:each="list: ${accountDtoList}">
+                                    <td th:text="${list.acId}"></td>
+                                    <td>
+                                        <a th:href="@{|/account/detail/${list.acId}|}" th:text="${list.acTitle}"></a>
+                                    </td>
+                                    <td th:text="${list.acIncome}"></td>
+                                    <td th:text="${list.acExpend}"></td>
+                                    <td>0</td>
+                                </tr>
+                            </table>
+                        </div><!-- account-form -->
+                        
+                        <!-- 페이징 영역 -->
+                        <div class="account-page">
+                            <span><</span>
+                            <span>1</span>
+                            <span>></span>
+                        </div><!-- account-page -->
+                    </div><!-- right-con -->
+                </div><!-- account-list" -->
+            </div><!-- container -->
+        </div>
+    </div>
+    <!-- Account Main -->
+
+</body>
+</html>

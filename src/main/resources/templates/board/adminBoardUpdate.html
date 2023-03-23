@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>footballAdmin</title>
+    <link rel="stylesheet" th:href="@{/css/board/adminBoardUpdate.css}">
+</head>
+
+<body>
+    <div th:replace="~{fragment/common/adminHeader :: adminHeaderFragment}"></div>
+    <div id="wrap">
+        <div th:replace="~{fragment/common/leftMenu :: leftMenuFragment}"></div>
+        <div class="right-menu">
+            <h1>게시글수정</h1>
+            <div class="right-con">
+                <div class="boardUpdate">
+                    <span>게시글수정</span>
+                    <form th:action="@{admin/boardUpdate}" method="post" enctype="multipart/form-data">
+                        <ul>
+                            <li class="s2">
+                                <label th:for="boardFile">파일</label> <br>
+                                <input type="text" name="bfileNewName" th:value="${board.bfileNewName}" readonly> <br>
+                                <input type="file" name="boardFile">
+                            </li>
+                            <li class="s2">
+                                <label th:for="boardTitle">제목</label>
+                                <input type="text" name="boardTitle" th:value="${board.boardTitle}">
+                            </li>
+                            <li class="s2">
+                                <label th:for="boardContent">내용</label>
+                                <textarea name="boardContent" th:value="${board.boardContent}" cols="100" rows="10"></textarea>
+                            </li>
+                            <li class="s3">
+                                <input type="submit" value="게시글수정">
+                                <a th:href="@{/admin/boardList}" class="s3sub">게시글조회</a>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

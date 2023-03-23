@@ -3,6 +3,7 @@ package org.project2.omwp2.entity;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.project2.omwp2.dto.ApprovalDto;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -68,11 +69,58 @@ public class ApprovalEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "approver_id")
     private MemberEntity memberEntity2;
-//    첨부파일
+
+    // 첨부파일
     @OneToMany(mappedBy = "approvalEntity",cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<DocumentEntity> documentEntities  =new ArrayList<>();
 
+    // ↓
+    // 결재문서 작성
+    public static ApprovalEntity toNoApprovalEntity(ApprovalDto approvalDto){
+        ApprovalEntity approvalEntity = new ApprovalEntity();
+        approvalEntity.setAppDivision(approvalDto.getAppDivision());
+        approvalEntity.setAppTitle(approvalDto.getAppTitle());
+        approvalEntity.setAppContent(approvalDto.getAppContent());
+        approvalEntity.setAppStatus(approvalDto.getAppStatus());
+        approvalEntity.setAppReason(approvalDto.getAppReason());
+        approvalEntity.setAppAttach(0); //첨부 파일 없을 때
+        return approvalEntity;
+    }
 
+    public static ApprovalEntity toYesApprovalEntity(ApprovalDto approvalDto){
+        ApprovalEntity approvalEntity = new ApprovalEntity();
+        approvalEntity.setAppDivision(approvalDto.getAppDivision());
+        approvalEntity.setAppTitle(approvalDto.getAppTitle());
+        approvalEntity.setAppContent(approvalDto.getAppContent());
+        approvalEntity.setAppStatus(approvalDto.getAppStatus());
+        approvalEntity.setAppReason(approvalDto.getAppReason());
+        approvalEntity.setAppAttach(1); //첨부 파일 있을 때
+        return approvalEntity;
+    }
 
+    // ↓
+    // 결재문서 수정
+    public static ApprovalEntity toNoUpdateApprovalEntity(ApprovalDto approvalDto){
+        ApprovalEntity approvalEntity = new ApprovalEntity();
+        approvalEntity.setAppId(approvalDto.getAppId());
+        approvalEntity.setAppDivision(approvalDto.getAppDivision());
+        approvalEntity.setAppTitle(approvalDto.getAppTitle());
+        approvalEntity.setAppContent(approvalDto.getAppContent());
+        approvalEntity.setAppStatus(approvalDto.getAppStatus());
+        approvalEntity.setAppReason(approvalDto.getAppReason());
+        approvalEntity.setAppAttach(0); //첨부 파일 없을 때
+        return approvalEntity;
+    }
 
+    public static ApprovalEntity toYesUpdateApprovalEntity(ApprovalDto approvalDto){
+        ApprovalEntity approvalEntity = new ApprovalEntity();
+        approvalEntity.setAppId(approvalDto.getAppId());
+        approvalEntity.setAppDivision(approvalDto.getAppDivision());
+        approvalEntity.setAppTitle(approvalDto.getAppTitle());
+        approvalEntity.setAppContent(approvalDto.getAppContent());
+        approvalEntity.setAppStatus(approvalDto.getAppStatus());
+        approvalEntity.setAppReason(approvalDto.getAppReason());
+        approvalEntity.setAppAttach(1); //첨부 파일 있을 때
+        return approvalEntity;
+    }
 }

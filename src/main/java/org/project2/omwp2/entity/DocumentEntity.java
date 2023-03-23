@@ -27,13 +27,22 @@ public class DocumentEntity {
     @Column(name = "doc_save",nullable = false)
     public String docSave;
 
-//    회계내역
+    // 회계내역
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ac_id")
     private AccountEntity accountEntity;
-//     결재
+
+    // 결재
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "app_id")
     private ApprovalEntity approvalEntity;
+
+    public static DocumentEntity toDocumentEntity(ApprovalEntity approvalEntity,String docOrigin,String docSave){
+        DocumentEntity documentEntity = new DocumentEntity();
+        documentEntity.setApprovalEntity(approvalEntity);
+        documentEntity.setDocOrigin(docOrigin);
+        documentEntity.setDocSave(docSave);
+        return documentEntity;
+    }
 
 }

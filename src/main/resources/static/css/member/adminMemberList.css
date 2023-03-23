@@ -1,0 +1,106 @@
+@import url(/css/common/reset.css);
+@import url(/css/common/adminHeader.css);
+@import url(/css/common/leftMenu.css);
+
+#wrap{
+  width: 100%;
+  /* border: 5px solid #000000; */
+  padding-top: 50px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  /* gap: 5px; */
+}
+
+.right-menu{
+  flex: 1;
+  height: auto;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  /* border-top: 1px solid #000000; */
+  /* border: 1px solid #ffff00; */
+  padding: 30px;
+  padding-left: 330px;
+}
+
+.right-menu .con{
+  box-shadow: 5px 5px 5px 1px grey;
+}
+
+h2{
+  background-color: #000000;
+  color: #ffffff;
+  padding: 5px;
+}
+
+.right-menu .right-con{
+  height: auto;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* 회원목록 */
+
+.right-menu .right-con .adminMemberList{
+  display: grid;
+  grid-template-columns: 300px 300px 300px 300px;
+  grid-template-rows: auto;
+  grid-auto-rows: minmax(auto,auto);
+  gap: 10px 10px;
+
+}
+
+.right-menu .right-con .adminMemberList .memberInfo{
+  border: 1px solid #b9b9b9;
+  padding: 5px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 5px 5px 5px 1px grey;
+}
+
+.right-menu .right-con .adminMemberList .memberInfo .top-menu{
+  width: inherit;
+  height: 280px;
+}
+
+.right-menu .right-con .adminMemberList .memberInfo .top-menu img{
+  width: 100%;
+  height: 100%; 
+}
+
+.right-menu .right-con .adminMemberList .memberInfo .bottom-menu>ul>li{
+  padding: 3px 0;
+}
+
+.right-menu .right-con .adminMemberList .memberInfo label{
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  padding: 0 3px;
+}
+
+/* 검색 및 페이징 */
+
+.tools{
+  width: 1230px;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid red;
+}
+
+.tools .page{
+  padding: 5px 10px;
+  box-sizing: border-box;
+}
+
+.tools .page>ul{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+

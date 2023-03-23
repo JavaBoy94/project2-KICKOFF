@@ -9,6 +9,8 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
 
 @Getter
@@ -20,13 +22,26 @@ import java.time.LocalDateTime;
 public class MemberDto {
 
     private Long mId;
+
+    @NotBlank(message = "이메일은 필수 입력 사항입니다.")
+    @Pattern(regexp = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,6}$", message = "이메일 형식이 맞지 않습니다." )
     private String mEmail;
+
+    @NotBlank(message = "비밀번호는 필수 입력 사항입니다.")
     private String mPw;
+
     private String mZipcode;
     private String mAddr1;
     private String mAddr2;
+
+    @NotBlank(message = "닉네임은 필수 입력 사항입니다.")
+    @Pattern(regexp = "[A-Za-z0-9가-힣]{2,}", message = "닉네임 형식이 올바르지 않습니다.")
     private String mName;
+
+    @NotBlank(message = "전화번호는 필수 입력 사항입니다")
+    @Pattern(regexp = "[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}", message = "전화번호 형식이 맞지 않습니다.")
     private String mTel;
+
     private String mIntro;
     private LocalDateTime mCreate;
     private Role mRole;

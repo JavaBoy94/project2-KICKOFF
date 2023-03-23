@@ -1,0 +1,40 @@
+@import url(../common/reset.css);
+@import url(../common/adminHeader.css);
+@import url(../common/leftMenu.css);
+
+
+#wrap{
+  width: 100%;
+  /* border: 5px solid #000000; */
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 50px;
+  /* gap: 5px; */
+}
+
+.right-menu{
+      flex: 1;
+      height: auto;
+      box-sizing: border-box;
+      background-color: #ffffff;
+      border-top: 1px solid #000000;
+      /* border: 1px solid #ffff00; */
+      padding: 30px;
+      padding-left: 330px;
+
+}
+.right-menu h1{
+  padding-bottom: 35px;
+  background-color: #000000;
+  color: #ffffff;
+  font-size: 25px;
+  padding: 5px;
+  /* border: 1px solid #000000; */
+}
+.right-menu .right-con{
+  /* border: 1px solid purple; */
+  height: 800px;
+  padding: 100px 100px;
+  display: block;
+}

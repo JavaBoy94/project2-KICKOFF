@@ -4,6 +4,7 @@ package org.project2.omwp2.entity;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.project2.omwp2.dto.BoardDto;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -41,10 +42,10 @@ public class BoardEntity {
     @Column(name = "board_content", nullable = false)
     private String boardContent;
 //    조회수
-    @Column(name = "board_hit")
+    @Column(nullable = false, columnDefinition = "integer default 0")
     private int boardHit;
 //    댓글수
-    @Column(name = "board_cmcount")
+    @Column(name = "board_cmcount", nullable = true, columnDefinition = "int default 0")
     private int boardCmcount;
 
     // 파일 유무
@@ -64,4 +65,43 @@ public class BoardEntity {
     @OneToMany(mappedBy = "boardEntity",cascade = CascadeType.REMOVE,orphanRemoval = true)
     private List<CommentEntity> commentEntities = new ArrayList<>();
 
+    //파일 없을 때
+    public static BoardEntity toBoardEntity(BoardDto boardDto, MemberEntity memberEntity) {
+        BoardEntity boardEntity = new BoardEntity();
+        System.out.println(boardDto.getBoardTitle()+" <<");
+
+        boardEntity.setBoardTitle(boardDto.getBoardTitle());
+        boardEntity.setBoardContent(boardDto.getBoardContent());
+        boardEntity.setBoardAttach(0); // 파일 여부
+        boardEntity.setBoardHit(boardDto.getBoardHit());
+        boardEntity.setBoardCmcount(boardDto.getBoardCmcount());
+        boardEntity.setMemberEntity(memberEntity);
+
+        System.out.println("111111");
+
+        return boardEntity;
+
+    }
+
+    //파일 있을 때
+    public  static BoardEntity toBoardEntityFileInclude(BoardDto boardDto, MemberEntity memberEntity){
+        BoardEntity boardEntity = new BoardEntity();
+        System.out.println(boardDto.getBoardTitle()+" <<");
+
+        boardEntity.setBoardTitle(boardDto.getBoardTitle());
+        boardEntity.setBoardContent(boardDto.getBoardContent());
+        boardEntity.setBoardCmcount(boardDto.getBoardCmcount());
+        boardEntity.setBoardHit(boardDto.getBoardHit());
+        boardEntity.setBoardAttach(1);
+        boardEntity.setMemberEntity(memberEntity);
+
+        System.out.println("File include");
+
+        return boardEntity;
+    }
+
+
+
 }
+
+

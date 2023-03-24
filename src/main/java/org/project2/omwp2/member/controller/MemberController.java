@@ -200,6 +200,32 @@ public class MemberController {
 
         return "redirect:/member/memberList";
     }
-    
+
+    //    조직관리 - 팀조회
+    @GetMapping("/management")
+    public String management(Model model, @PageableDefault(page = 0, size = 8, sort = "mId", direction = Sort.Direction.DESC)
+    Pageable pageable) {
+
+        Page<MemberDto> memberList = memberService.getMemberList(pageable);
+
+        int totalPage = memberList.getTotalPages();  // 총 페이지 수
+        int blockNum = 3;                            // 화면에 표시할 페이지 수 => 2페이지씩 표시
+        int nowPage = memberList.getNumber();        // 현재페이지
+        int startPage = (int)((Math.floor(nowPage/blockNum)*blockNum)+1 <= totalPage ? (Math.floor(nowPage/blockNum)*blockNum)+1 : totalPage);
+        // 블록의 첫페지이지
+        // 블록이 3일 경우     123 -> 1, 456  -> 4 , 789 -> 7
+        // Math.floor -> 올림
+
+        int endPage = (startPage + blockNum-1 < totalPage ? startPage + blockNum-1 : totalPage);
+        // 블록의 마지막 페이지
+        // 블록이 3일 경우      123 -> 3, 456  -> 5 , 789 -> 9
+        // 시작페이지+블록-1> 전체 페이지 -> 마지막페이지숫자(시작페이지+블록-1)
+
+        model.addAttribute("memberList", memberList);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+
+        return "member/management";
+    }
     
 }

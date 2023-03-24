@@ -46,8 +46,12 @@ public class IndexService {
         }
 
 //        5개까지만 담음
-        for(int i=0; i<5; i++){
-            boardDtoList.add(BoardDto.toBoardDto(boardEntityList.get(i)));
+        for(BoardEntity boardEntity : boardEntityList){
+            boardDtoList.add(BoardDto.toBoardDto(boardEntity));
+            if(boardDtoList.size()==5) {
+//               길이가 5가 되면 반복문 종료
+                return boardDtoList;
+            }
         }
 
         return boardDtoList;
@@ -65,17 +69,22 @@ public class IndexService {
             return noticeDtoList;
         }
 
-        for (int i=0; i<5; i++){
+        for (NoticeEntity noticeEntity : noticeEntityList){
             noticeDtoList.add(NoticeDto.builder()
-                    .noticeId(noticeEntityList.get(i).getNoticeId())
-                    .noticeCreate(noticeEntityList.get(i).getNoticeCreate())
-                    .noticeUpdate(noticeEntityList.get(i).getNoticeUpdate())
-                    .noticeTitle(noticeEntityList.get(i).getNoticeTitle())
-                    .noticeContent(noticeEntityList.get(i).getNoticeContent())
-                    .noticeHit(noticeEntityList.get(i).getNoticeHit())
+                    .noticeId(noticeEntity.getNoticeId())
+                    .noticeCreate(noticeEntity.getNoticeCreate())
+                    .noticeUpdate(noticeEntity.getNoticeUpdate())
+                    .noticeTitle(noticeEntity.getNoticeTitle())
+                    .noticeContent(noticeEntity.getNoticeContent())
+                    .noticeHit(noticeEntity.getNoticeHit())
                     .build());
+
+            if(noticeDtoList.size()==5) {
+//               길이가 5가 되면 반복문 종료
+                return noticeDtoList;
+            }
         }
 
-        return noticeDtoList;
+            return noticeDtoList;
     }
 }

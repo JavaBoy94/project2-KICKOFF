@@ -12,29 +12,30 @@
 
 <div class="right-menu">
 
-  <div class="right-con">
       <div class="con">
-          <h2>index</h2>
-
-    <div class="MyAttendance">
+          <h2>My team Schedule</h2>
+  <div class="right-con">
+          <div class="notice">
+              <h2>자세히보기</h2>
+    <div class="con2">
 
       <table border="1" class="listTable">
         <tr class="tHeader">
 
           <th>근태아이디</th>
           <th>일정 내용</th>
-          <th>완료 여부</th>
           <th>출근 시간</th>
           <th>퇴근 시간</th>
+          <th>완료 여부</th>
           <th>회원 아이디</th>
 
         </tr>
         <tr class="tBody">
             <td th:text="${teamScheduleDto.scheduleId}"></td>
-            <td th:text="${teamScheduleDto.scheduleBoard}"></td>
+            <td th:text="${teamScheduleDto.content}"></td>
+            <td th:text="${#temporals.format(teamScheduleDto.start, 'yyyy-MM-dd HH:mm:ss')}" ></td>
+            <td th:text="${#temporals.format(teamScheduleDto.end, 'yyyy-MM-dd HH:mm:ss')}" ></td>
             <td th:text="${teamScheduleDto.scheduleDone}"></td>
-            <td th:text="${#temporals.format(teamScheduleDto.scheduleStart, 'yyyy-MM-dd HH:mm:ss')}" ></td>
-            <td th:text="${#temporals.format(teamScheduleDto.scheduleEnd, 'yyyy-MM-dd HH:mm:ss')}" ></td>
             <td th:text="${teamScheduleDto.mId}"></td>
         </tr>
 
@@ -43,7 +44,7 @@
     </div>
 
   </div>
-
+  </div>
 </div>
 
 </div>

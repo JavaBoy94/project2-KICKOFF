@@ -12,11 +12,12 @@
 
 <div class="right-menu">
     <div class="con">
-        <h2>index</h2>
+        <h2>My team Schedule</h2>
 
     <div class="right-con">
-
-        <div class="MySchedule">
+        <div class="notice">
+            <h2>팀 일정</h2>
+        <div class="con2">
 
             <table border="1" class="listTable">
                 <tr class="tHeader">
@@ -36,9 +37,9 @@
                         <input type="text" id="scheduleId" name="scheduleId" th:value="${teamScheduleDto.scheduleId}" hidden="hidden">
                         <input type="text" id="mId" name="mId" th:value="${teamScheduleDto.mId}" hidden="hidden">
                         <td th:text="${teamScheduleDto.scheduleId}"></td>
-                        <td th:text="${teamScheduleDto.scheduleBoard}"></td>
-                        <td th:text="${#temporals.format(teamScheduleDto.scheduleStart, 'yyyy-MM-dd HH:mm:ss')}" ></td>
-                        <td th:text="${#temporals.format(teamScheduleDto.scheduleEnd, 'yyyy-MM-dd HH:mm:ss')}" ></td>
+                        <td th:text="${teamScheduleDto.content}"></td>
+                        <td th:text="${#temporals.format(teamScheduleDto.start, 'yyyy-MM-dd HH:mm:ss')}" ></td>
+                        <td th:text="${#temporals.format(teamScheduleDto.end, 'yyyy-MM-dd HH:mm:ss')}" ></td>
                         <td th:text="${teamScheduleDto.scheduleDone}"></td>
                         <td th:text="${teamScheduleDto.mId}"></td>
                         <td><input type="submit" value="일정 변경"></td>
@@ -54,7 +55,7 @@
 
 </div>
 </div>
-
+</div>
 
 
 

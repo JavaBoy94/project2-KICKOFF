@@ -23,5 +23,4 @@ public interface AttendRepository extends JpaRepository<AttendEntity, Long> {
     @Query(value = "select * from attend where m_id=:id", nativeQuery = true)
     Page<AttendEntity> findByMMId(@Param("id") Long id, Pageable pageable);
 
-
 }

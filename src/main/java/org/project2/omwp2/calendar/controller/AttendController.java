@@ -33,17 +33,29 @@ public class AttendController {
     @GetMapping("/attend")
     public String attend(Principal principal, Model model){
 
-        // 수정
-
         String name = principal.getName();
 
-        int check = attendService.CheckAttend(name);
+        Long id = attendService.bringLongid(name);
+
+        int asdf = attendService.diva(id);
+
+        if (asdf==1){
+
+            return "/calendar/attend/newAttend";
+
+        } else {
+
+            int check = attendService.CheckAttend(name);
 
 
-        //1이면 출근보이기, 0이면 퇴근 보이기
-        model.addAttribute("check", check);
+            //1이면 출근보이기, 0이면 퇴근 보이기
+            model.addAttribute("check", check);
 
-        return "/calendar/attend/attend";
+            return "/calendar/attend/attend";
+        }
+        // 수정
+
+
         
     }
 
@@ -135,6 +147,33 @@ public class AttendController {
 
     }
 
+    // 전체 회원 근태 조회 페이징
+    @GetMapping("/allAttendancePaging")
+    public String allAttendancePaging(@PageableDefault(page = 0,size = 4,sort = "attendId",
+            direction = Sort.Direction.DESC)Pageable pageable, Model model, Principal principal ) {
+
+        //수정
+
+        Page<AttendDto> attendDtoPage = attendService.attendListPaging(pageable);
+
+
+        int totalPage = attendDtoPage.getTotalPages();
+
+        int blockNum = 2;
+
+        int nowPage = attendDtoPage.getNumber();
+
+        int startPage = (int)((Math.floor(nowPage/blockNum)*blockNum)+1 <= totalPage ? (Math.floor(nowPage/blockNum)*blockNum)+1 : totalPage);
+
+        int endPage = (startPage + blockNum -1 < totalPage ? startPage + blockNum -1 : totalPage);
+
+        model.addAttribute("attendDtoPage", attendDtoPage);
+        model.addAttribute("startPage",startPage);
+        model.addAttribute("endPage",endPage);
+
+        return "/calendar/attend/allAttendPaging";
+
+    }
 
     // 근태 디테일
     @PostMapping("/attendanceDetail")

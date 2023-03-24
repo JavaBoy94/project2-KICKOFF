@@ -124,6 +124,35 @@ public class AttendService {
         return attendDtoPage;
     }
 
+    // 근태 내역이 있는지 체크
+    public int diva(Long id) {
+
+        List<AttendEntity> attendEntityList = attendRepository.findAllByMId(id);
+
+        if(attendEntityList.isEmpty()){
+
+        return 1;
+        } else {
+
+            return 2;
+        }
+
+    }
+
+    // 전체 회원 근태 조회 페이징
+    public Page<AttendDto> attendListPaging(Pageable pageable) {
+
+        System.out.println("===========================");
+
+        Page<AttendEntity> attendEntityPage = attendRepository.findAll(pageable);
+
+
+        Page<AttendDto> attendDtoPage = attendEntityPage.map(AttendDto::toAttendDto);
+
+        return attendDtoPage;
+
+    }
+
 
 
 }

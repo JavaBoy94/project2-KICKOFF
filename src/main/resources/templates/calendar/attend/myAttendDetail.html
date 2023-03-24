@@ -13,10 +13,11 @@
 
 <div class="right-menu">
     <div class="con">
-        <h2>index</h2>
+        <h2>출석 관리</h2>
   <div class="right-con">
-
-    <div class="MyAttendance">
+      <div class="notice">
+          <h2>상세 보기</h2>
+    <div class="con2">
 
       <table border="1" class="listTable">
         <tr class="tHeader">
@@ -24,12 +25,14 @@
           <th>근태아이디</th>
           <th>출근시간</th>
           <th>퇴근시간</th>
+          <th>회원 아이디</th>
 
         </tr>
         <tr th:each="attendDto:${attendDto}" class="tBody">
             <td th:text="${attendDto.attendId}"></td>
             <td th:text="${#temporals.format(attendDto.attendStart, 'yyyy-MM-dd HH:mm:ss')}" ></td>
             <td th:text="${#temporals.format(attendDto.attendEnd, 'yyyy-MM-dd HH:mm:ss')}" ></td>
+            <td th:text="${attendDto.mId}"></td>
         </tr>
 
       </table>

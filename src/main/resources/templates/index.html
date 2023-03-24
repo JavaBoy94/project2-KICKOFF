@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>index</title>
     <link rel="stylesheet" th:href="@{/css/index.css}">
+
 </head>
 
 <body>
@@ -30,24 +31,29 @@
                                 <h2>공지사항</h2>
                                 <a th:href="@{#}">
                                     <div class="con2">
-                                        <table>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>제목</th>
-                                                <th>내용</th>
-                                                <th>조회수</th>
-                                                <th>작성일</th>
-                                            </tr>
-                                            <th:block th:each="notice : ${noticeList}">
+                                        <th:block th:if="${noticeList.size() == 0}">
+                                            <h1 style="color: red;">작성된 게시물이 없습니다!</h1>
+                                        </th:block>
+                                        <th:block th:unless="${noticeList.size() == 0}">
+                                            <table>
                                                 <tr>
-                                                    <td th:text="${notice.noticeId}"></td>
-                                                    <td th:text="${notice.noticeTitle}"></td>
-                                                    <td th:text="${notice.noticeContent}"></td>
-                                                    <td th:text="${notice.noticeHit}"></td>
-                                                    <td th:text="${#temporals.format(notice.noticeCreate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                                                    <th>No</th>
+                                                    <th>제목</th>
+                                                    <th>내용</th>
+                                                    <th>조회수</th>
+                                                    <th>작성일</th>
                                                 </tr>
-                                            </th:block>
-                                        </table>
+                                                <th:block th:each="notice : ${noticeList}">
+                                                    <tr>
+                                                        <td th:text="${notice.noticeId}"></td>
+                                                        <td th:text="${notice.noticeTitle}"></td>
+                                                        <td th:text="${notice.noticeContent}"></td>
+                                                        <td th:text="${notice.noticeHit}"></td>
+                                                        <td th:text="${#temporals.format(notice.noticeCreate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                                                    </tr>
+                                                </th:block>
+                                            </table>
+                                        </th:block>
                                     </div>
                                 </a>
                             </div>
@@ -55,24 +61,29 @@
                                 <h2>게시판</h2>
                                 <a th:href="@{/admin/boardList}">
                                     <div class="con2">
-                                        <table>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>제목</th>
-                                                <th>내용</th>
-                                                <th>조회수</th>
-                                                <th>작성일</th>
-                                            </tr>
-                                            <th:block th:each="board : ${boardList}">
+                                        <th:block th:if="${boardList.size() == 0}">
+                                            <h1 style="color: red;">작성된 게시물이 없습니다!</h1>
+                                        </th:block>
+                                        <th:block th:unless="${boardList.size() == 0}">
+                                            <table>
                                                 <tr>
-                                                    <td th:text="${board.boardId}"></td>
-                                                    <td th:text="${board.boardTitle}"></td>
-                                                    <td th:text="${board.boardContent}"></td>
-                                                    <td th:text="${board.boardHit}"></td>
-                                                    <td th:text="${#temporals.format(board.boardCreate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                                                    <th>No</th>
+                                                    <th>제목</th>
+                                                    <th>내용</th>
+                                                    <th>조회수</th>
+                                                    <th>작성일</th>
                                                 </tr>
-                                            </th:block>
-                                        </table>
+                                                <th:block th:each="board : ${boardList}">
+                                                    <tr>
+                                                        <td th:text="${board.boardId}"></td>
+                                                        <td th:text="${board.boardTitle}"></td>
+                                                        <td th:text="${board.boardContent}"></td>
+                                                        <td th:text="${board.boardHit}"></td>
+                                                        <td th:text="${#temporals.format(board.boardCreate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                                                    </tr>
+                                                </th:block>
+                                            </table>
+                                        </th:block>
                                     </div>
                                 </a>
                             </div>

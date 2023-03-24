@@ -76,7 +76,8 @@ public class ApprovalEntity {
 
     // ↓
     // 결재문서 작성
-    public static ApprovalEntity toNoApprovalEntity(ApprovalDto approvalDto){
+    public static ApprovalEntity toNoApprovalEntity(ApprovalDto approvalDto,
+                                                    MemberEntity memberEntity1, MemberEntity memberEntity2){
         ApprovalEntity approvalEntity = new ApprovalEntity();
         approvalEntity.setAppDivision(approvalDto.getAppDivision());
         approvalEntity.setAppTitle(approvalDto.getAppTitle());
@@ -84,10 +85,13 @@ public class ApprovalEntity {
         approvalEntity.setAppStatus(approvalDto.getAppStatus());
         approvalEntity.setAppReason(approvalDto.getAppReason());
         approvalEntity.setAppAttach(0); //첨부 파일 없을 때
+        approvalEntity.setMemberEntity1(memberEntity1);  // 작성자(기안자)
+        approvalEntity.setMemberEntity2(memberEntity2);  // 결재자
         return approvalEntity;
     }
 
-    public static ApprovalEntity toYesApprovalEntity(ApprovalDto approvalDto){
+    public static ApprovalEntity toYesApprovalEntity(ApprovalDto approvalDto,
+                                                     MemberEntity memberEntity1, MemberEntity memberEntity2){
         ApprovalEntity approvalEntity = new ApprovalEntity();
         approvalEntity.setAppDivision(approvalDto.getAppDivision());
         approvalEntity.setAppTitle(approvalDto.getAppTitle());
@@ -95,6 +99,8 @@ public class ApprovalEntity {
         approvalEntity.setAppStatus(approvalDto.getAppStatus());
         approvalEntity.setAppReason(approvalDto.getAppReason());
         approvalEntity.setAppAttach(1); //첨부 파일 있을 때
+        approvalEntity.setMemberEntity1(memberEntity1);  // 작성자(기안자)
+        approvalEntity.setMemberEntity2(memberEntity2);  // 결재자
         return approvalEntity;
     }
 

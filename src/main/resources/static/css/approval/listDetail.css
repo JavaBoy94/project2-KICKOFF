@@ -79,13 +79,12 @@ padding: 5px 0px;
 }
 
 .container .approvalList .conform .conformMain .sub2 .sub2-2{
-  padding: 22px 0px;
-
+  width: 100%;
+  height: 90px;
   border-bottom: 1px solid #4d4d4d3a;
 }
 
 .container .approvalList .conform .conformMain .sub2 .sub2-3{
-  padding: 12px 0px;
 }
 
 .container .approvalList .conform .conformMain .sub3{
@@ -174,6 +173,11 @@ padding: 5px 0px;
 
 .container .approvalListDetail ul li.content .sub1{
   margin: 0px 10px;
+}
+
+span.drafter{
+  color: blue;
+  font-weight: bold;
 }
 
 .container .approvalListDetail ul .fileparents li.file{

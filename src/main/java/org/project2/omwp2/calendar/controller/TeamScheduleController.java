@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -22,6 +21,14 @@ public class TeamScheduleController {
     private final TeamScheduleService teamScheduleService;
 
 
+    //공식 일정
+    @GetMapping("/officialList")
+    public String officialList(){
+
+        return "/calendar/teamSchedule/officialList";
+    }
+
+
     //팀 일정 추가
     @GetMapping("/teamSchedulePlus")
     public String teamSchedulePlus(Principal principal){
@@ -30,8 +37,8 @@ public class TeamScheduleController {
         //풀캘린더 api로 받아오기
 
         String scheduleBoard = "내용1";
-        LocalDateTime scheduleStart = LocalDateTime.now();
-        LocalDateTime scheduleEnd = LocalDateTime.now();
+//        LocalDateTime scheduleStart = LocalDateTime.now();
+//        LocalDateTime scheduleEnd = LocalDateTime.now();
         String scheduleDone = "미완료";
 
         String name = principal.getName();
@@ -40,9 +47,9 @@ public class TeamScheduleController {
 
         TeamScheduleDto teamScheduleDto = new TeamScheduleDto();
 
-        teamScheduleDto.setScheduleBoard(scheduleBoard);
-        teamScheduleDto.setScheduleStart(scheduleStart);
-        teamScheduleDto.setScheduleEnd(scheduleEnd);
+        teamScheduleDto.setContent(scheduleBoard);
+//        teamScheduleDto.setStart(scheduleStart);
+//        teamScheduleDto.setEnd(scheduleEnd);
         teamScheduleDto.setScheduleDone(scheduleDone);
 
         teamScheduleService.insertTeamSchedule(teamScheduleDto,id);
@@ -79,16 +86,16 @@ public class TeamScheduleController {
 
         //풀캘린더 api로 가져오기
         String scheduleBoard = "내용2";
-        LocalDateTime scheduleStart = LocalDateTime.now();
-        LocalDateTime scheduleEnd = LocalDateTime.now();
+//        LocalDateTime scheduleStart = LocalDateTime.now();
+//        LocalDateTime scheduleEnd = LocalDateTime.now();
         String scheduleDone = "완료";
 
         TeamScheduleDto teamScheduleDto1 = new TeamScheduleDto();
 
         teamScheduleDto1.setScheduleId(scheduleId);
-        teamScheduleDto1.setScheduleBoard(scheduleBoard);
-        teamScheduleDto1.setScheduleStart(scheduleStart);
-        teamScheduleDto1.setScheduleEnd(scheduleEnd);
+        teamScheduleDto1.setContent(scheduleBoard);
+//        teamScheduleDto1.setStart(scheduleStart);
+//        teamScheduleDto1.setEnd(scheduleEnd);
         teamScheduleDto1.setScheduleDone(scheduleDone);
         teamScheduleDto1.setMId(userId);
 
@@ -150,7 +157,11 @@ public class TeamScheduleController {
         return "/calendar/teamSchedule/teamScheduleView";
 
     }
-    
-    
+
+//    @GetMapping("/teamCalendar")
+//    public String memberCalendar(){
+//
+//        return "/calendar/teamSchedule/teamSchedule";
+//    }
 
 }

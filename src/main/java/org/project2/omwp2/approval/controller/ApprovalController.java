@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -28,10 +29,11 @@ public class ApprovalController {
     }
 
     @PostMapping("/write")
-    public String writePost(@RequestParam("appContainer")MultipartFile files, ApprovalDto approvalDto)throws IOException{
+    public String writePost(@RequestParam("appContainer")MultipartFile files,
+                            ApprovalDto approvalDto, Principal principal)throws IOException{
 
-
-        approvalService.insertApproval(approvalDto);
+//        기안서 작성시 현재 로그인한 회원정보 추가
+        approvalService.insertApproval(approvalDto,principal);
         return "redirect:/approval/list";
 
     }
@@ -46,14 +48,16 @@ public class ApprovalController {
         return "approval/list";
     }
 
+//    결재문서 상세
     @GetMapping("/listDetail/{id}")
-    public String listDetail(@PathVariable("id") Long addId, Model model){
+    public String listDetail(@PathVariable("id") Long addId, Principal principal, Model model){
 
+        String mEmail = principal.getName();
         ApprovalDto approval = approvalService.findByApproval(addId);
 
         if (approval !=null) {
             model.addAttribute("approval", approval);
-
+            model.addAttribute("mEmail",mEmail);
             return "approval/listDetail";
         }else{
             return "redirect:/approval/list";
@@ -82,5 +86,31 @@ public class ApprovalController {
     public String listDelete(@PathVariable(value = "id") Long appId){
         approvalService.deleteApproval(appId);
         return "redirect:/approval/list";
+    }
+
+//    결재문서 승인
+    @GetMapping("/approve/{appId}")
+    public String approveDo(@PathVariable(value = "appId") Long appId, Model model) {
+
+        ApprovalDto approvalDto = approvalService.approveDo(appId);
+
+        model.addAttribute("approval",approvalDto);
+
+        return "redirect:/approval/listDetail/"+appId;
+
+    }
+
+
+//    결재문서 반려
+    @GetMapping("/reject/{appId}")
+    public String rejectDo(@PathVariable(value = "appId") Long appId,
+                           @RequestParam(value = "appReason") String reason,
+                           Model model) {
+
+        ApprovalDto approvalDto = approvalService.rejectDo(appId, reason);
+
+        model.addAttribute("approval", approvalDto);
+
+        return "redirect:/approval/listDetail/"+appId;
     }
 }

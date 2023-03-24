@@ -6,12 +6,15 @@ import org.project2.omwp2.document.repository.DocumentRepository;
 import org.project2.omwp2.dto.ApprovalDto;
 import org.project2.omwp2.entity.ApprovalEntity;
 import org.project2.omwp2.entity.DocumentEntity;
+import org.project2.omwp2.entity.MemberEntity;
+import org.project2.omwp2.member.repository.MemberRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +26,7 @@ public class ApprovalService {
 
     // 결재문서 작성시
     private final ApprovalRepository approvalRepository;
+    private final MemberRepository memberRepository;  // 작성자 id 조회용
 
     // 결재문서 파일 업로드시
     private final DocumentRepository documentRepository;
@@ -31,12 +35,19 @@ public class ApprovalService {
 
     // 결재문서 작성
     @Transactional
-    public void insertApproval(ApprovalDto approvalDto) throws IOException{
+    public void insertApproval(ApprovalDto approvalDto, Principal principal) throws IOException{
+
+//        작성자(기안자) 정보
+        String mEmail = principal.getName();
+        MemberEntity memberEntity1 = memberRepository.findBymEmail(mEmail).get();
+//        결재자 정보
+        String mEmail2 = approvalDto.getApproverEmail();
+        MemberEntity memberEntity2 = memberRepository.findBymEmail(mEmail2).get();
 
         // 파일 없을 때
         if (approvalDto.getAppContainer().isEmpty()){
 
-            ApprovalEntity approvalEntity = ApprovalEntity.toNoApprovalEntity(approvalDto);
+            ApprovalEntity approvalEntity = ApprovalEntity.toNoApprovalEntity(approvalDto, memberEntity1, memberEntity2);
             approvalRepository.save(approvalEntity);
         }
         // 파일 있을 때
@@ -57,7 +68,7 @@ public class ApprovalService {
             // 파일 경로 탐색
             multipartFile.transferTo(new File(filePath));
 
-            ApprovalEntity approvalEntity = ApprovalEntity.toYesApprovalEntity(approvalDto);
+            ApprovalEntity approvalEntity = ApprovalEntity.toYesApprovalEntity(approvalDto, memberEntity1, memberEntity2);
             Long appId = approvalRepository.save(approvalEntity).getAppId();
 
             Optional<ApprovalEntity> approvalEntity1 = approvalRepository.findById(appId);
@@ -111,4 +122,27 @@ public class ApprovalService {
     public void deleteApproval(Long appId){ approvalRepository.deleteById(appId);
     }
 
+//    반려처리
+    public ApprovalDto rejectDo(Long appId, String reason) {
+        ApprovalEntity approvalEntity = approvalRepository.findById(appId).get();
+
+        approvalEntity.setAppStatus(2);  // 승인상태 : 2 (반려)
+        approvalEntity.setAppReason(reason);  // 결재자 의견
+
+        approvalRepository.save(approvalEntity);
+
+        return ApprovalDto.toApprovalDto(approvalEntity);
+    }
+
+//    승인처리
+    public ApprovalDto approveDo(Long appId) {
+
+        ApprovalEntity approvalEntity = approvalRepository.findById(appId).get();
+
+        approvalEntity.setAppStatus(1);  // 승인상태 : 1 (승인)
+
+        approvalRepository.save(approvalEntity);
+
+        return ApprovalDto.toApprovalDto(approvalEntity);
+    }
 }

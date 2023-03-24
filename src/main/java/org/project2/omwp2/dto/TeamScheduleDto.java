@@ -2,9 +2,11 @@ package org.project2.omwp2.dto;
 
 import lombok.*;
 import org.project2.omwp2.entity.TeamScheduleEntity;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -15,9 +17,14 @@ import java.time.LocalDateTime;
 public class TeamScheduleDto {
 
     private Long ScheduleId;
-    private String ScheduleBoard;
-    private LocalDateTime ScheduleStart;
-    private LocalDateTime ScheduleEnd;
+    private String content;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private Date start;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private Date end;
+
     private String scheduleDone;
 
     private Long mId;
@@ -28,9 +35,9 @@ public class TeamScheduleDto {
         TeamScheduleDto teamScheduleDto = new TeamScheduleDto();
 
         teamScheduleDto.setScheduleId(teamScheduleEntity.getScheduleId());
-        teamScheduleDto.setScheduleBoard(teamScheduleEntity.getScheduleBoard());
-        teamScheduleDto.setScheduleStart(teamScheduleEntity.getScheduleStart());
-        teamScheduleDto.setScheduleEnd(teamScheduleEntity.getScheduleEnd());
+        teamScheduleDto.setContent(teamScheduleEntity.getContent());
+        teamScheduleDto.setStart(teamScheduleEntity.getStart());
+        teamScheduleDto.setEnd(teamScheduleEntity.getEnd());
         teamScheduleDto.setScheduleDone(teamScheduleEntity.getScheduleDone());
         teamScheduleDto.setMId(teamScheduleEntity.getMemberEntity().getMId());
 

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/calendar/attend/newAttend.css}">
+
+</head>
+<body>
+<div th:replace="~{fragment/common/adminHeader :: adminHeaderFragment}"></div>
+<div id="wrap">
+    <div th:replace="~{fragment/common/leftMenu :: leftMenuFragment}"></div>
+
+    <div class="right-menu">
+        <div class="con">
+            <h2>출석 관리</h2>
+        <div class="right-con">
+
+            <div th:replace="~{fragment/common/leftMenu :: leftMenuFragment}"></div>
+            <div class="notice">
+                <h2>첫 출석!</h2>
+                <div class="con2">
+
+            첫 참석이시네요!
+            <div class="attendance"><a href="/attend/goWork" style="color: red"> 『참석』 </a></div>을 눌러주세요
+                </div>
+            </div>
+<!--<div class="attendance"><a href="/attend/allAttendancePaging">어드민 출퇴근 전체확인 (권한 admin일떄 보이기)</a></div>-->
+
+        </div>
+    </div>
+
+</div>
+</div>
+</body>
+</html>

@@ -30,8 +30,12 @@
 
                     <li class="content">
                         <label th:for="appContent">내용</label> <br>
-<!--                        <input type="text" name="appContent" th:value="${approval.appContent}">-->
                         <textarea name="appContent" id="appContent" th:text="${approval.appContent}" th:value="${approval.appContent}" cols="70" rows="10" ></textarea>
+                    </li>
+
+                    <li class="approver">
+                        <label th:for="approverEmail">결재자 입력(이메일)</label>
+                        <input type="email" th:text="${approval.approverEmail}" placeholder="이메일을 입력하세요.">
                     </li>
 
                     <li class="file">

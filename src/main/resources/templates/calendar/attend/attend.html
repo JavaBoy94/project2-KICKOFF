@@ -13,17 +13,28 @@
 
     <div class="right-menu">
         <div class="con">
-            <h2>index</h2>
+            <h2>출석 관리</h2>
         <div class="right-con">
 
-    <div th:if="${check==1}" class="attendance"><a href="/attend/goWork">출근</a></div>
-<div th:unless="${check==1}" class="attendance"><a href="/attend/goHome">퇴근</a></div>
-<div class="attendance"><a href="/attend/myAttendanceList">내 참석 여부</a></div>
-<div class="attendance"><a href="/attend/myAttendancePaging">내 참석 여부 페이징</a></div>
+            <div class="notice">
+                <h2>출퇴근 찍기</h2>
+                <div class="con2">
+<a th:if="${check==1}" href="/attend/goWork" class="attendButtonA">참석</a>
+<a th:unless="${check==1}" href="/attend/goHome" class="attendButtonB">퇴근</a>
+                </div>
+                </div>
 
+            <div class="notice">
+                <h2>출석 내역</h2>
+            <div class="con2">
+<a href="/attend/myAttendanceList" class="attendButtonC">내 참석 여부(삭제예정)</a> <br>
+<a href="/attend/myAttendancePaging" class="attendButtonC">참석 현황</a> <br>
+<a href="/attend/allAttendancePaging" class="attendButtonC">어드민 출퇴근 전체확인 (권한 admin일떄 보이기)</a>
+            </div>
         </div>
     </div>
 
+</div>
 </div>
 </div>
 </body>

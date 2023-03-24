@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" th:href="@{/css/calendar/attend/myAttendPaging.css}">
+    <link rel="stylesheet" th:href="@{/css/calendar/attend/allAttendPaging.css}">
 
 </head>
 <body>
@@ -14,8 +14,10 @@
     <div class="con">
         <h2>출석 관리</h2>
     <div class="right-con">
+
         <div class="notice">
-            <h2>내 출석 내역</h2>
+        <h2>회원 참석 내역</h2>
+
         <div class="con2">
 
             <table>
@@ -23,7 +25,7 @@
                 <!-- 변경가능 -->
 <!--                <tr class="search">-->
 <!--                    <th colspan="5">-->
-<!--                        <form th:action="@{/attend/myAttendancePaging}" method="get">-->
+<!--                        <form th:action="@{/attend/allAttendancePaging}" method="get">-->
 <!--                            <input type="text" name="search" id="search">-->
 <!--                            <input type="submit" value="검색">-->
 <!--                        </form>-->
@@ -61,13 +63,13 @@
                     <li>
                         <span th:if="${1 == attendDtoPage.pageable.pageNumber+1}"  style="color:#a2e413">START</span>
                         <a th:unless="${1 == attendDtoPage.pageable.pageNumber+1}"
-                           style="color:#e61d8b" th:href="@{/attend/myAttendancePaging(page=0)}">처음</a>
+                           style="color:#e61d8b" th:href="@{/attend/allAttendancePaging(page=0)}">처음</a>
                     </li>
 
                     <li>
                         <span th:if="${1 == attendDtoPage.pageable.pageNumber+1}"  style="color:#a2e413">이전</span>
                         <a th:unless="${1 == attendDtoPage.pageable.pageNumber+1}"   style="color:#e61d8b"
-                           th:href="@{/attend/myAttendancePaging(page=${ attendDtoPage.pageable.pageNumber - 1})}">이전</a>
+                           th:href="@{/attend/allAttendancePaging(page=${ attendDtoPage.pageable.pageNumber - 1})}">이전</a>
                     </li>
 
 
@@ -75,18 +77,18 @@
                     <li th:each="i: ${#numbers.sequence(startPage, endPage)}">
                         <span th:if="${i == attendDtoPage.pageable.pageNumber+1}"  style="color:#a2e413" th:text="${i}"></span>
                         <a th:unless="${i == attendDtoPage.pageable.pageNumber+1}" style="color:#e61d8b"
-                           th:href="@{/attend/myAttendancePaging(page=${ i - 1})}" th:text="${i}"></a>
+                           th:href="@{/attend/allAttendancePaging(page=${ i - 1})}" th:text="${i}"></a>
                     </li>
                     <li>
                         <span th:if="${attendDtoPage.totalPages == attendDtoPage.pageable.pageNumber+1}"  style="color:#a2e413">다음</span>
                         <a th:unless="${attendDtoPage.totalPages == attendDtoPage.pageable.pageNumber+1}"  style="color:#e61d8b"
-                           th:href="@{/attend/myAttendancePaging(page=${ attendDtoPage.pageable.pageNumber + 1})}">다음</a>
+                           th:href="@{/attend/allAttendancePaging(page=${ attendDtoPage.pageable.pageNumber + 1})}">다음</a>
                     </li>
 
                     <li>
                         <span th:if="${attendDtoPage.totalPages == attendDtoPage.pageable.pageNumber+1}"  style="color:#a2e413">END</span>
                         <a th:unless="${attendDtoPage.totalPages == attendDtoPage.pageable.pageNumber+1}"
-                           style="color:#e61d8b" th:href="@{/attend/myAttendancePaging(page=${attendDtoPage.totalPages-1})}">END</a>
+                           style="color:#e61d8b" th:href="@{/attend/allAttendancePaging(page=${attendDtoPage.totalPages-1})}">END</a>
                     </li>
                 </ul>
             </div>
@@ -96,6 +98,7 @@
 
 </div>
 
+</div>
 </div>
 </div>
 </body>

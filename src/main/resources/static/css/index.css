@@ -42,6 +42,9 @@
   padding: 10px;
   border: 1px solid black;
   box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .right-menu .con .right-con .con2 table{
@@ -76,20 +79,30 @@ h2{
   height: 300px;
 }
 
-.right-menu .con .right-con .con-box .board .notice{
 
+/* fullCalender */
+
+#content {
+  width: 80vw;
+  text-align: center;
+  margin: 0 auto
 }
 
-.right-menu .con .right-con .con-box .board .notice .con2{
-
+h1.title {
+  text-align: center;
+  background-color: #3788d8;
+  color: #ffffff;
+  padding: 10px 0;
 }
 
-.right-menu .con .right-con .con-box .board .community{
+#calendar {
+  width: 80vw;
+  height: 80vh;
+  margin: 0 auto
 }
 
-.right-menu .con .right-con .con-box .board .community .con2{
-
+#calendarBox {
+  width: 70%;
+  padding-left: 15%;
 }
-
-
 

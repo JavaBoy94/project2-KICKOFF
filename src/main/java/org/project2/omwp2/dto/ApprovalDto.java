@@ -4,6 +4,7 @@ import lombok.*;
 import org.project2.omwp2.entity.ApprovalEntity;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 
 @Getter
@@ -51,6 +52,18 @@ public class ApprovalDto {
     private int appAttach;
 //    private String appNewName;
 
+//    작성자(기안자) 이름
+    private String drafterName;
+
+//    작성자(기안자) 이메일
+    private String drafterEmail;
+
+//    결재자 이름
+    private String approverName;
+
+//    결재자 이메일
+    private String approverEmail;
+
 
     public static ApprovalDto toApprovalDto(ApprovalEntity approvalEntity) {
         ApprovalDto approvalDto = new ApprovalDto();
@@ -62,6 +75,17 @@ public class ApprovalDto {
         approvalDto.setAppUpdate(approvalEntity.getAppUpdate());
         approvalDto.setAppStatus(approvalEntity.getAppStatus());
         approvalDto.setAppReason(approvalEntity.getAppReason());
+        if (approvalEntity.getMemberEntity1()!=null){
+//        작성자(기안자) 정보
+        approvalDto.setDrafterName(approvalEntity.getMemberEntity1().getMName());
+        approvalDto.setDrafterEmail(approvalEntity.getMemberEntity1().getMEmail());
+        }
+
+        if (approvalEntity.getMemberEntity2()!=null){
+//        결재자 정보
+        approvalDto.setApproverName(approvalEntity.getMemberEntity2().getMName());
+        approvalDto.setApproverEmail(approvalEntity.getMemberEntity2().getMEmail());
+        }
 
         if (approvalEntity.getAppAttach() == 0) {
 

@@ -118,4 +118,32 @@ public class TeamScheduleService {
     }
 
 
+    public List<TeamScheduleDto> teamEventListAll() {
+
+        List<TeamScheduleDto> teamScheduleDtoList = new ArrayList<>();
+
+        List<TeamScheduleEntity> teamScheduleEntityList = teamScheduleRepository.findAll();
+
+        for(TeamScheduleEntity teamScheduleEntity : teamScheduleEntityList){
+
+            teamScheduleDtoList.add(TeamScheduleDto.toTeamScheduleDto(teamScheduleEntity));
+
+        }
+
+        return teamScheduleDtoList;
+    }
+
+    public void setCalendar(TeamScheduleDto teamScheduleDto, Long id) {
+
+        TeamScheduleEntity teamScheduleEntity = TeamScheduleEntity.toTeamScheduleEntity(teamScheduleDto);
+
+        MemberEntity memberEntity = new MemberEntity();
+
+        memberEntity.setMId(id);
+
+        teamScheduleEntity.setScheduleDone("N");
+        teamScheduleEntity.setMemberEntity(memberEntity);
+
+        teamScheduleRepository.save(teamScheduleEntity);
+    }
 }

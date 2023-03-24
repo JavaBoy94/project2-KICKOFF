@@ -25,16 +25,13 @@
                             <a href="#">일정관리</a>
                             <ul class="sub">
                                 <li>
-                                    <a href="#">일정추가</a>
+                                    <a th:href="@{/attend/attend}">근태 관리</a>
                                 </li>
                                 <li>
-                                    <a th:href="@{/attend}">일정조회</a>
+                                    <a th:href="@{/teamSchedule/officialList}">공식 일정</a>
                                 </li>
                                 <li>
-                                    <a href="#">일정수정</a>
-                                </li>
-                                <li>
-                                    <a href="#">일정삭제</a>
+                                    <a th:href="@{/memberSchedule/officialList}">개인 일정</a>
                                 </li>
                             </ul>
                         </li>
@@ -56,10 +53,7 @@
                             <a href="#">조직관리</a>
                             <ul class="sub">
                                 <li>
-                                    <a href="#">팀추가</a>
-                                </li>
-                                <li>
-                                    <a href="#">팀조회</a>
+                                    <a th:href="@{/member/management}">팀조회</a>
                                 </li>
                                 <li>
                                     <a href="#">팀수정</a>

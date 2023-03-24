@@ -21,6 +21,13 @@ public class MemberScheduleController {
 
     private final MemberScheduleService memberScheduleService;
 
+    //개인 일정
+    @GetMapping("/officialList")
+    public String officialList(){
+
+        return "/calendar/memberSchedule/officialList";
+    }
+
     //개인 일정 추가
     @GetMapping("/mySchedulePlus")
     public String mySchedulePlus(Principal principal){
@@ -171,6 +178,12 @@ public class MemberScheduleController {
         model.addAttribute("endPage",endPage);
 
         return "/calendar/memberSchedule/memberScheduleList";
+    }
+
+    @GetMapping("/memberCalendar")
+    public String memberCalendar(){
+
+        return "/calendar/memberSchedule/memberCalendar";
     }
     
     

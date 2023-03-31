@@ -45,6 +45,18 @@ public class AccountEntity {
     @Column(name = "ac_surplus")
     private int acSurplus;
 
+    // 총 수입 금액
+    @Column(name = "ac_total_income")
+    private int acTotalIncome;
+
+    // 총 지출 금액
+    @Column(name = "ac_total_expend")
+    private int  acTotalExpend;
+
+    // 총액
+    @Column(name = "ac_total_pay")
+    private int acTotalPay;
+
     // 게시글 등록일
     @CreationTimestamp
     @Column(name = "ac_create", updatable = false)
@@ -67,15 +79,19 @@ public class AccountEntity {
     private List<DocumentEntity> documentEntities = new ArrayList<>();
 
 
-    public static AccountEntity toAccountEntity(AccountDto accountDto){
+    public static AccountEntity toAccountEntity(AccountDto accountDto, MemberEntity memberEntity){
         AccountEntity accountEntity = new AccountEntity();
 
+        accountEntity.setMemberEntity(memberEntity);
         accountEntity.setAcId(accountDto.getAcId());
         accountEntity.setAcTitle(accountDto.getAcTitle());
         accountEntity.setAcContent(accountDto.getAcContent());
         accountEntity.setAcIncome(accountDto.getAcIncome());
         accountEntity.setAcExpend(accountDto.getAcExpend());
         accountEntity.setAcSurplus(accountDto.getAcSurplus());
+        accountEntity.setAcTotalIncome(accountDto.getAcTotalIncome());
+        accountEntity.setAcTotalExpend(accountDto.getAcTotalExpend());
+        accountEntity.setAcTotalPay(accountDto.getAcTotalPay());
         accountEntity.setAcCreate(accountDto.getAcCreate());
         accountEntity.setAcUpdate(accountDto.getAcUpdate());
 

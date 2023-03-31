@@ -146,4 +146,56 @@ public class TeamScheduleService {
 
         teamScheduleRepository.save(teamScheduleEntity);
     }
+
+    //있는 내용인지 확인
+    public int findContentName(TeamScheduleDto teamScheduleDto) {
+
+        List<TeamScheduleEntity> teamScheduleEntityList = teamScheduleRepository.findByContentCount(teamScheduleDto.getContent());
+
+            if(teamScheduleEntityList.size()<1){
+                return 0;
+            } else {
+                return 1;
+            }
+
+    }
+
+    //팀 일정 수정
+    public void updateEvent(TeamScheduleDto teamScheduleDto) {
+
+        TeamScheduleEntity teamScheduleEntity = TeamScheduleEntity.toTeamScheduleEntity(teamScheduleDto);
+
+        //여기문제
+        Optional<TeamScheduleEntity> optionalTeamScheduleEntity = teamScheduleRepository.findByContentId(teamScheduleEntity.getContent());
+
+        TeamScheduleEntity teamScheduleEntity1 = optionalTeamScheduleEntity.get();
+        
+
+        teamScheduleEntity1.setStart(teamScheduleDto.getStart());
+        teamScheduleEntity1.setEnd(teamScheduleDto.getEnd());
+
+
+
+        teamScheduleRepository.save(teamScheduleEntity1);
+
+    }
+    
+    //팀 스케줄 삭제
+
+    public void findContentAndDelete(TeamScheduleDto teamScheduleDto) {
+
+
+        Optional<TeamScheduleEntity> optionalTeamScheduleEntity = teamScheduleRepository.findByContentId(teamScheduleDto.getContent());
+
+        TeamScheduleEntity teamScheduleEntity = optionalTeamScheduleEntity.get();
+
+        teamScheduleRepository.delete(teamScheduleEntity);
+
+
+    }
+
+
+
+
+
 }

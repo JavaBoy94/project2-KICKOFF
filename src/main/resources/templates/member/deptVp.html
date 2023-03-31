@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>조직 관리</title>
+  <link rel="stylesheet" th:href="@{/css/member/deptCp.css}">
+</head>
+
+<body>
+<div th:replace="~{fragment/common/adminHeader :: adminHeaderFragment}"></div>
+<div id="wrap">
+  <div th:replace="~{fragment/common/leftMenu :: leftMenuFragment}"></div>
+  <div class="right-menu">
+    <h2>조직관리</h2>
+    <div class="container">
+      <div class="contents">
+        <div class="contents_head">
+          <ul class="tree">
+            <li class="item"><a href="#">메인 ▷ </a></li>
+            <li class="item"><a th:href="@{/member/management}">구성원</a></li>
+          </ul>
+          <div class="title">
+            <h2>구성원</h2>
+          </div>
+        </div>
+        <div class="contents_body">
+          <div class="member_view">
+            <section class="member_view_left">
+              <ul class="org_tree">
+
+                <span class="org_name">000축구단</span>
+
+                <li>
+                  <a href="#">운영진</a>
+                  <ul class="org_dep">
+                    <li class="dep"><a th:href="@{/member/dept(mDept=CP)}">회장</a></li>
+                    <li class="dep"><a th:href="@{/member/dept(mDept=VP)}">부회장</a></li>
+                    <li class="dep"><a th:href="@{/member/dept(mDept=GA)}">총무</a></li>
+                    <li class="dep"><a th:href="@{/member/dept(mDept=MANAGER)}">매니저</a></li>
+                    <!--                    <li class="dep"><a th:href="@{/member/dept(mDept=MEMBER)}">일반회원</a></li>-->
+                  </ul>
+                </li>
+
+                <li>
+                  <a href="#">감독</a>
+                  <ul class="org_dep">
+                    <li class="dep"><a href="#">감독</a></li>
+                    <li class="dep"><a href="#">부감독</a></li>
+                  </ul>
+                </li>
+
+                <li>
+                  <a href="#">코치진</a>
+                  <ul class="org_dep">
+                    <li class="dep"><a href="#">수석코치</a></li>
+                    <li class="dep"><a href="#">기술코치</a></li>
+                    <li class="dep"><a href="#">전술코치</a></li>
+                  </ul>
+                </li>
+
+                <li>
+                  <a href="#">선수</a>
+                  <ul class="org_dep">
+                    <li class="dep"><a th:href="@{/member/position(mPosition=MULTI)}">상관없음</a></li>
+                    <li class="dep"><a th:href="@{/member/position(mPosition=ST)}">ST</a></li>
+                    <li class="dep"><a th:href="@{/member/position(mPosition=MF)}">MF</a></li>
+                    <li class="dep"><a th:href="@{/member/position(mPosition=DF)}">DF</a></li>
+                    <li class="dep"><a th:href="@{/member/position(mPosition=GK)}">GK</a></li>
+                  </ul>
+                </li>
+
+              </ul>
+            </section>
+
+            <section class="member_view_right">
+              <div class="list_title">
+                <h2>조직 현황</h2>
+              </div>
+              <th:block th:each="member : ${memberList}">
+                <ul class="grid">
+                  <li>
+                    <th:block th:if="${member.mAttach==1}">
+                      <img th:src="@{|/upload/${member.saveName}|}" alt="">
+                    </th:block>
+                    <th:block th:unless="${member.mAttach==1}">
+                      <img src="https://via.placeholder.com/300" alt="">
+                    </th:block>
+                  </li>
+
+
+                  <!-- <li>
+                <span>회원 ID :</span>
+                <span th:text="${member.mId}"> </span>
+                </li> -->
+
+                  <li class="mDept">
+                    <span class="sub">회원구분</span>
+                    <span th:text="${member.mDept}"> </span>
+                  </li>
+
+                  <li class="mPosition">
+                    <span class="sub">포지션</span>
+                    <span th:text="${member.mPosition}"> </span>
+                  </li>
+
+                  <!--                <li>-->
+                  <!--                  <span>이메일 :</span>-->
+                  <!--                  <span th:text="${member.mEmail}"> </span>-->
+                  <!--                </li>-->
+
+                  <!--                <li>-->
+                  <!--                  <span>우편번호 :</span>-->
+                  <!--                  <span th:text="${member.mZipcode}"> </span>-->
+                  <!--                </li>-->
+
+                  <li class="mEmail">
+                    <span class="sub">주소</span>
+                    <span th:text="${member.mEmail}"> </span>
+                  </li>
+
+                  <li class="mName">
+                    <!--                  <span>이름 :</span>-->
+                    <span th:text="${member.mName}"> </span>
+                  </li>
+
+                  <!--                <li>-->
+                  <!--                  <span>상세주소 :</span>-->
+                  <!--                  <span th:text="${member.mAddr2}"> </span>-->
+                  <!--                </li>-->
+
+
+                  <li class="mTel">
+                    <span class="sub">연락처</span>
+                    <span th:text="${member.mTel}"> </span>
+                  </li>
+
+                  <!--                <li>-->
+                  <!--                  <span>자기소개 :</span>-->
+                  <!--                  <span th:text="${member.mIntro}"> </span>-->
+                  <!--                </li>-->
+
+                  <!-- <li>
+               <span>가입일 :</span>
+               <span th:text="${member.mCreate}"> </span>
+                </li> -->
+
+                </ul>
+              </th:block>
+              <div class="page">
+                <ul>
+                  <li>
+                      <span th:if="${1 == memberList.pageable.pageNumber+1}" style="color:#a2e413">
+                        START
+                      </span>
+                    <a th:unless="${1 == memberList.pageable.pageNumber+1}" style="color:#e61d8b"
+                       th:href="@{/member/management(page=0)}">처음</a>
+                  </li>
+
+                  <li>
+                    <span th:if="${1 == memberList.pageable.pageNumber+1}" style="color:#a2e413">이전</span>
+                    <a th:unless="${1 == memberList.pageable.pageNumber+1}" style="color:#e61d8b"
+                       th:href="@{/member/management(page=${ memberList.pageable.pageNumber - 1})}">이전</a>
+                  </li>
+
+
+                  <!-- 페이지 번호 -->
+                  <li th:each="i: ${#numbers.sequence(startPage, endPage)}">
+                      <span th:if="${i == memberList.pageable.pageNumber+1}" style="color:#a2e413"
+                            th:text="${i}"></span>
+                    <a th:unless="${i == memberList.pageable.pageNumber+1}" style="color:#e61d8b"
+                       th:href="@{/member/management(page=${ i - 1})}" th:text="${i}"></a>
+                  </li>
+                  <li>
+                      <span th:if="${memberList.totalPages == memberList.pageable.pageNumber+1}"
+                            style="color:#a2e413">다음</span>
+                    <a th:unless="${memberList.totalPages == memberList.pageable.pageNumber+1}" style="color:#e61d8b"
+                       th:href="@{/member/management(page=${ memberList.pageable.pageNumber + 1})}">다음</a>
+                  </li>
+
+                  <li>
+                      <span th:if="${memberList.totalPages == memberList.pageable.pageNumber+1}"
+                            style="color:#a2e413">END</span>
+                    <a th:unless="${memberList.totalPages == memberList.pageable.pageNumber+1}" style="color:#e61d8b"
+                       th:href="@{/member/management(page=${memberList.totalPages-1})}">END</a>
+                  </li>
+                </ul>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+
+</html>

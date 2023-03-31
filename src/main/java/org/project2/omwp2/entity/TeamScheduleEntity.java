@@ -4,7 +4,6 @@ import lombok.*;
 import org.project2.omwp2.dto.TeamScheduleDto;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Getter
@@ -24,7 +23,7 @@ public class TeamScheduleEntity {
     private Long ScheduleId;
 
     //스케줄 내용
-    @Column(nullable = false)
+    @Column(nullable = false,unique = true)
     private String content;
 
     //스케줄 시작일

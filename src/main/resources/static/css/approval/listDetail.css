@@ -7,19 +7,36 @@
   /* border: 5px solid #000000; */
   padding-top: 50px;
   box-sizing: border-box;
-  /* display: flex; */
-  /* justify-content:center; */
-  /* gap: 5px; */
-
-
-  margin-left: 320px
+  display: flex;
+  justify-content: space-between;
 }
 
 .container .approvalList {
-  width: 600px;
-  gap: 20px;
-  padding: 10px 10px;
+  flex: 1;
+  height: auto;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  /* border-top: 1px solid #000000; */
+  /* border: 1px solid #ffff00; */
+  padding: 30px;
+  padding-left: 330px;
+}
 
+.container .approvalList .con{
+  box-shadow: 5px 5px 5px 1px grey;
+}
+
+.container .approvalList .con .con2{
+  height: auto;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+}
+
+.container .approvalList .con .con2 .con3{
   border: 1px solid #4d4d4d3a;
 }
 
@@ -30,8 +47,7 @@
   background-color: #000000;
   color: #ffffff;
 
-  padding: 30px 20px;
-  margin: 20px 20px;
+  padding: 5px ;
 }
 
 /*결재선*/
@@ -49,6 +65,8 @@
 
   height: 150px;
   position: relative;
+
+  margin: 5px 5px;
 }
 
 .container .approvalList .conform .conformMain .sub1{
@@ -112,11 +130,13 @@ padding: 5px 0px;
 
 /* 밑에 박스 */
 .container .approvalListDetail{
-  width: 100%;
+  /* width: 100%; */
   padding-top: 20px;
   
   /* border: 1px solid #4d4d4d3a; */
   box-sizing: border-box;
+
+  margin: 5px 5px;
 }
 
 .container .approvalListDetail >ul{

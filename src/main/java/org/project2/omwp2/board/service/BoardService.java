@@ -16,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -85,7 +84,7 @@ public class BoardService {
 
 
         Page<BoardEntity> boardEntityPage = boardReposistory.findByBoardId(boardId,pageable);
-        Page<BoardDto> boardDtoPage = boardEntityPage.map(BoardDto::toBoardDto);
+        Page<BoardDto> boardDtoPage = boardEntityPage.map(boardEntity -> BoardDto.toBoardDto(boardEntity));
 
 
         return  boardDtoPage;
@@ -94,14 +93,14 @@ public class BoardService {
 
     public Page<BoardDto> optionboardTitleSearchPaging(String search, Pageable pageable) {
         Page<BoardEntity> boardEntityPage = boardReposistory.findByBoardTitleContaining(search, pageable);
-        Page<BoardDto> boardDtoPage = boardEntityPage.map(BoardDto::toBoardDto);
+        Page<BoardDto> boardDtoPage = boardEntityPage.map(boardEntity -> BoardDto.toBoardDto(boardEntity));
 
         return boardDtoPage;
     }
 
     public Page<BoardDto> optionboardContentSearchPaging(String search, Pageable pageable) {
         Page<BoardEntity> boardEntityPage = boardReposistory.findByBoardContentContaining(search, pageable);
-        Page<BoardDto> boardDtoPage = boardEntityPage.map(BoardDto::toBoardDto);
+        Page<BoardDto> boardDtoPage = boardEntityPage.map(boardEntity -> BoardDto.toBoardDto(boardEntity));
 
         return boardDtoPage;
 
@@ -112,16 +111,10 @@ public class BoardService {
     public Page<BoardDto> BoardAllPagingList(Pageable pageable) {
 
         Page<BoardEntity> boardEntityPage = boardReposistory.findAll(pageable);
-        Page<BoardDto> boardDtoPage = boardEntityPage.map(BoardDto::toBoardDto);
+        Page<BoardDto> boardDtoPage = boardEntityPage.map(boardEntity -> BoardDto.toBoardDto(boardEntity));
 
         return boardDtoPage;
     }
-
-//    public int upcount(Long boardId) {
-//
-//        return boardReposistory.Count(boardId);
-//
-//    }
 
     @Transactional
     public void upHit(Long boardId) {
@@ -133,21 +126,40 @@ public class BoardService {
         boardReposistory.upCmcountCount1(boardId);
     }
 
-//    public void commentCountUp() {
-//
-//        boardReposistory.upCount();
-//
-//    }
+    @Transactional
+    public void boardUpdateDo(BoardDto boardDto, String mEmail) {
+        Optional<MemberEntity> optionalMemberEntity =
+                memberRepository.findBymEmail(mEmail);
 
-//    @Transactional
-//    public void commentCountUp(Long boardId) {
-//
-//        System.out.println(boardId+" <<  boardId");
-//        boardReposistory.upCount1(boardId);
-//    }
+        MemberEntity memberEntity = optionalMemberEntity.get();
+
+        if (boardDto.getBfileOldName().isEmpty()) {
+            BoardEntity boardEntity = BoardEntity.toBoardUpdateEntity(boardDto, memberEntity);
+            boardReposistory.save(boardEntity);
+        }else {
+            BoardEntity boardEntity = BoardEntity.toBoardUpdateEntity2(boardDto, memberEntity);
+            boardReposistory.save(boardEntity);
+
+        }
+
+    }
+
+    @Transactional
+    public void boardDeleteDo(Long productId) {
+        boardReposistory.deleteById(productId);
+    }
+
+    public Page<BoardDto> myBoardListDo(Long mId, Pageable pageable) {
+
+        Page<BoardEntity> boardEntityPage = boardReposistory.findAllBymId(mId,pageable);
+        Page<BoardDto> boardDtoPage = boardEntityPage.map(boardEntity -> BoardDto.toBoardDto(boardEntity));
+
+        return boardDtoPage;
+    }
 
 
-
-//    public Optional<BoardEntity> findByBoardId(long l) {
-//    }
+    @Transactional
+    public void downCommentCount(Long boardId) {
+        boardReposistory.downCmcount(boardId);
+    }
 }

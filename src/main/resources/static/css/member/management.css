@@ -3,30 +3,69 @@
 @import url(/css/common/leftMenu.css);
 
 /*조직관리*/
-.container{
-  width: 70%;
-  border: 1px solid #6b6b6b3d;
+#wrap{
+  width: 100%;
+  /* border: 5px solid #000000; */
   padding-top: 50px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  /* gap: 5px; */
+}
+
+.right-menu{
+  flex: 1;
+  height: auto;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  /* border-top: 1px solid #000000; */
+  /* border: 1px solid #ffff00; */
+  padding: 30px;
+  padding-left: 330px;
+}
+
+.right-menu h2{
+  background-color: #000000;
+  color: #ffffff;
+  padding: 5px;
+}
+
+.container{
+  /* border: 1px solid #6b6b6b3d; */
+  /* padding-top: 50px; */
   box-sizing: border-box;
   /* justify-content:center; */
   /* gap: 5px; */
-
+  flex: 1;
   height: auto;
 
   display: flex;
-
-  margin-left: 320px
+  box-shadow: 5px 5px 5px 1px grey;
+  /* margin-left: 320px */
 }
 
 .container .contents{
   width: 100%;
+  padding: 30px;
   /* border: 1px solid #ff9900; */
-  box-shadow: 1px 2px 5px #6b6b6b;
+  box-shadow: 5px 5px 5px 1px grey;
 }
 
 .container .contents .contents_head{
   width: 100%;
   /* border: 1px solid #fffb00; */
+}
+
+.container .contents .contents_head .tree{
+  display: flex;
+  justify-content: left;
+  }
+
+.container .contents .contents_head .tree a{
+  background-color: #000000;
+  color: #ffffff;
+
+  font-size: 12px;
 }
 
 .container .contents .title{
@@ -109,7 +148,6 @@
 /* 조직현황 Grid */
 .container .contents .contents_body .member_view .member_view_right{
   width: 80%;
-
   margin: 0px 20px;
 }
 

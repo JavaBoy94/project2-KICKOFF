@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>공지사항</title>
+    <link rel="stylesheet" th:href="@{/css/notice/noticeUpdate.css}">
+</head>
+<body>
+<div th:replace="~{fragment/common/adminHeader :: adminHeaderFragment}"></div>
+<div id="wrap">
+    <div th:replace="~{fragment/common/leftMenu :: leftMenuFragment}"></div>
+    <div class="right-menu">
+        <h1>공지사항수정</h1>
+        <div class="right-con">
+            <div class="noticeUpdate">
+                <h2>공지사항수정</h2>
+              <form th:action="@{/notice/noticeUpdate}" method="post" >
+                <ul>
+                    <input type="hidden" name="noticeId" th:value="${notice.noticeId}" >
+                  <li class="s2">
+                    <label th:for="noticeTitle">제목</label>
+                    <input type="text" name ="noticeTitle" th:value="${notice.noticeTitle}">
+                  </li>
+                  <li class="s2">
+                    <label th:for="noticeContent">내용</label>
+                  </li>
+                    <textarea name="noticeContent" th:text="${notice.noticeContent}" cols="100" rows="30"
+                              style="overflow-y: auto; font-size: large; font-weight: 300;"></textarea>
+                  <li class="s3">
+                    <input type="submit" value="공지사항수정" class="s3sub">
+                    <a th:href="@{|/notice/noticeDeatail/${notice.noticeId}|}" class="s3sub">취소</a>
+                    <a th:href="@{/notice/noticePage}" class="s3sub">목록</a>
+                  </li>
+                </ul>
+              </form>         
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -32,7 +32,7 @@
 .right-menu .container h2{
     background-color: #000000;
     color: #ffffff;
-    padding: 5px;
+    padding: 5px 5px 5px 15px;
 }
 
 .right-menu .right-con{
@@ -50,15 +50,44 @@
     /* border-bottom: 1px solid #878784; */
     box-sizing: border-box;
     display: flex;
-    justify-content: left;
+    justify-content: space-between;
     padding-bottom: 10px;
 }
 
+/* 등록 버튼 */
 .insertBtn{
     border: 1px solid #000000;
     width: 50px;
     text-align: center;
     box-sizing: border-box;
+    border-radius: 2px;
+}
+
+.insertBtn1 {
+    display: flex;
+}
+
+/* 검색 영역 */
+.searchBtn {
+    display: flex;
+    gap: 3px;
+    height: 23.2px;
+}
+
+#search{
+    text-indent: 3px;
+}
+
+/* 검색 버튼 */
+.search_1{
+    background-image :url(../../img/account/search.png);
+    background-repeat: no-repeat;
+    width: 15px;
+    height: 15px;
+    border: none;
+    cursor: pointer;
+    right: 5.6vw;
+    top: 20.5vh;
 }
 
 /* 리스트 영역 */
@@ -81,18 +110,32 @@
 } */
 
 th, td{
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding: 5px 0px 5px 7px;
     box-sizing: border-box;
-    border-bottom: 1px solid #878784;
+    border-bottom: 1px solid #dfdfdf;
     border-top: 1px solid #878784;
+}
+
+.title:hover{
+    text-decoration-line: underline;
+    text-decoration-thickness: 1%;
+    text-underline-offset: 5px;
 }
 
 /* 페이징 영역 */
 #wrap .right-menu .container .right-con .account-list .account-page{
-    display: flex;
-    justify-content: center;
     padding-top: 15px;
     box-sizing: border-box;
+}
+
+#wrap .right-menu .container .right-con .account-list .account-page ul{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.tr1 {
+    background-color: #444444;
+    color: white;
 }
 

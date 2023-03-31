@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>조직 관리</title>
+  <link rel="stylesheet" th:href="@{/css/member/managementPlace.css}">
+</head>
+
+<body>
+  <div th:replace="~{fragment/common/adminHeader :: adminHeaderFragment}"></div>
+  <div id="wrap">
+    <div th:replace="~{fragment/common/leftMenu :: leftMenuFragment}"></div>
+    <div class="right-menu">
+      <h2>조직관리</h2>
+      <div class="container">
+        <div class="contents">
+          <div class="contents_head">
+            <ul class="tree">
+              <li class="item"><a href="#">메인 ▷ </a></li>
+              <li class="item"><a th:href="@{/member/management}">구성원</a></li>
+            </ul>
+            <div class="title">
+              <h2>팀배치</h2>
+            </div>
+          </div>
+          <section class="member_view">
+            <div class="field"><img th:src=@{/img/field.png} alt="field" class="field-img"></div>
+            <ul>
+              <li class="sub1">
+                <select name="member" id="member1">
+                  <option value="">선수선택</option>
+                  <th:block th:each="member : ${memberList}">
+                    <option value="${member.mname}"><span th:text="${member.mName}"></span></option>
+                  </th:block>
+                </select>
+              </li>
+              <li class="sub2">
+                <select name="member" id="member2">
+                  <option value="">선수선택</option>
+                  <th:block th:each="member : ${memberList}">
+                    <option value="${member.mname}"><span th:text="${member.mName}"></span></option>
+                  </th:block>
+                </select>
+              </li>
+              <li class="sub3">
+                <select name="member" id="member3">
+                  <option value="">선수선택</option>
+                  <th:block th:each="member : ${memberList}">
+                    <option value="${member.mname}"><span th:text="${member.mName}"></span></option>
+                  </th:block>
+                </select>
+              </li>
+              <li class="sub4">
+                <select name="member" id="member4">
+                  <option value="">선수선택</option>
+                  <th:block th:each="member : ${memberList}">
+                    <option value="${member.mname}"><span th:text="${member.mName}"></span></option>
+                  </th:block>
+                </select>
+              </li>
+              <li class="sub5">
+                <select name="member" id="member5">
+                  <option value="">선수선택</option>
+                  <th:block th:each="member : ${memberList}">
+                    <option value="${member.mname}"><span th:text="${member.mName}"></span></option>
+                  </th:block>
+                </select>
+              </li>
+              <li class="sub6">
+                <select name="member" id="member6">
+                  <option value="">선수선택</option>
+                  <th:block th:each="member : ${memberList}">
+                    <option value="${member.mname}"><span th:text="${member.mName}"></span></option>
+                  </th:block>
+                </select>
+              </li>
+              <li class="sub7">
+                <select name="member" id="member7">
+                  <option value="">선수선택</option>
+                  <th:block th:each="member : ${memberList}">
+                    <option value="${member.mname}"><span th:text="${member.mName}"></span></option>
+                  </th:block>
+                </select>
+              </li>
+              <li class="sub8">
+                <select name="member" id="member8">
+                  <option value="">선수선택</option>
+                  <th:block th:each="member : ${memberList}">
+                    <option value="${member.mname}"><span th:text="${member.mName}"></span></option>
+                  </th:block>
+                </select>
+              </li>
+              <li class="sub9">
+                <select name="member" id="member9">
+                  <option value="">선수선택</option>
+                  <th:block th:each="member : ${memberList}">
+                    <option value="${member.mname}"><span th:text="${member.mName}"></span></option>
+                  </th:block>
+                </select>
+              </li>
+              <li class="sub10">
+                <select name="member" id="member10">
+                  <option value="">선수선택</option>
+                  <th:block th:each="member : ${memberList}">
+                    <option value="${member.mname}"><span th:text="${member.mName}"></span></option>
+                  </th:block>
+                </select>
+              </li>
+              <li class="sub11">
+                <select name="member" id="member11">
+                  <option value="">선수선택</option>
+                  <th:block th:each="member : ${memberList}">
+                    <option value="${member.mname}"><span th:text="${member.mName}"></span></option>
+                  </th:block>
+                </select>
+              </li>
+            </ul>
+
+
+            <!-- <ul>
+              <li>
+                  <th:block th:if="${member.mAttach==1}">
+                    <img th:src="@{|/upload/${member.saveName}|}" alt="">
+                  </th:block>
+                  <th:block th:unless="${member.mAttach==1}">
+                    <img src="https://via.placeholder.com/300" alt="">
+                  </th:block>
+                </li>
+
+              <li class="mPosition">
+                  <span class="sub">포지션</span>
+                  <span th:text="${member.mPosition}"> </span>
+                </li>
+
+              <li class="mName">
+                  <span>이름 :</span>
+                  <span th:text="${member.mName}"> </span>
+                </li>
+
+            </ul> -->
+            <!-- <div class="page">
+              <ul>
+                <li>
+                  <span th:if="${1 == memberList.pageable.pageNumber+1}" style="color:#a2e413">
+                    START
+                  </span>
+                  <a th:unless="${1 == memberList.pageable.pageNumber+1}" style="color:#e61d8b"
+                    th:href="@{/member/management(page=0)}">처음</a>
+                </li>
+
+                <li>
+                  <span th:if="${1 == memberList.pageable.pageNumber+1}" style="color:#a2e413">이전</span>
+                  <a th:unless="${1 == memberList.pageable.pageNumber+1}" style="color:#e61d8b"
+                    th:href="@{/member/management(page=${ memberList.pageable.pageNumber - 1})}">이전</a>
+                </li>
+
+
+                페이지 번호
+                <li th:each="i: ${#numbers.sequence(startPage, endPage)}">
+                  <span th:if="${i == memberList.pageable.pageNumber+1}" style="color:#a2e413" th:text="${i}"></span>
+                  <a th:unless="${i == memberList.pageable.pageNumber+1}" style="color:#e61d8b"
+                    th:href="@{/member/management(page=${ i - 1})}" th:text="${i}"></a>
+                </li>
+                <li>
+                  <span th:if="${memberList.totalPages == memberList.pageable.pageNumber+1}"
+                    style="color:#a2e413">다음</span>
+                  <a th:unless="${memberList.totalPages == memberList.pageable.pageNumber+1}" style="color:#e61d8b"
+                    th:href="@{/member/management(page=${ memberList.pageable.pageNumber + 1})}">다음</a>
+                </li>
+
+                <li>
+                  <span th:if="${memberList.totalPages == memberList.pageable.pageNumber+1}"
+                    style="color:#a2e413">END</span>
+                  <a th:unless="${memberList.totalPages == memberList.pageable.pageNumber+1}" style="color:#e61d8b"
+                    th:href="@{/member/management(page=${memberList.totalPages-1})}">END</a>
+                </li>
+              </ul>
+            </div> -->
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+</body>
+
+</html>

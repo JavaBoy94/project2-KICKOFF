@@ -1,0 +1,138 @@
+@import url(/css/common/reset.css);
+@import url(/css/common/adminHeader.css);
+@import url(/css/common/leftMenu.css);
+
+/*조직관리*/
+#wrap{
+  width: 100%;
+  /* border: 5px solid #000000; */
+  padding-top: 50px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  /* gap: 5px; */
+}
+
+.right-menu{
+  flex: 1;
+  height: auto;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  /* border-top: 1px solid #000000; */
+  /* border: 1px solid #ffff00; */
+  padding: 30px;
+  padding-left: 330px;
+}
+
+.right-menu h2{
+  background-color: #000000;
+  color: #ffffff;
+  padding: 5px;
+}
+
+.container{
+  /* border: 1px solid #6b6b6b3d; */
+  /* padding-top: 50px; */
+  box-sizing: border-box;
+  /* justify-content:center; */
+  /* gap: 5px; */
+  flex: 1;
+  height: auto;
+
+  display: flex;
+  box-shadow: 5px 5px 5px 1px grey;
+  /* margin-left: 320px */
+}
+
+.container .contents{
+  width: 100%;
+  padding: 30px;
+  /* border: 1px solid #ff9900; */
+  box-shadow: 5px 5px 5px 1px grey;
+}
+
+.container .contents .contents_head{
+  width: 100%;
+  /* border: 1px solid #fffb00; */
+}
+
+/* 소메뉴 */
+.container .contents .contents_head .tree{
+  display: flex;
+  justify-content: left;
+  }
+
+.container .contents .contents_head .tree a{
+  background-color: #000000;
+  color: #ffffff;
+
+  font-size: 12px;
+}
+
+.container .contents .member_view .list_title h3{
+  
+
+}
+
+.container .contents .member_view .field{
+  text-align: center;
+}
+
+.container .contents .member_view ul li.sub1{
+  position: absolute;
+  top: 550px;
+  left: 1400px;
+}
+.container .contents .member_view ul li.sub2{
+  position: absolute;
+  top: 350px;
+  left: 1300px;
+}
+.container .contents .member_view ul li.sub3{
+  position: absolute;
+  top: 470px;
+  left: 1300px;
+}
+.container .contents .member_view ul li.sub4{
+  position: absolute;
+  top: 630px;
+  left: 1300px;
+}
+.container .contents .member_view ul li.sub5{
+  position: absolute;
+  top: 750px;
+  left: 1300px;
+}
+.container .contents .member_view ul li.sub6{
+  position: absolute;
+  top: 350px;
+  left: 1200px;
+}
+.container .contents .member_view ul li.sub7{
+  position: absolute;
+  top: 470px;
+  left: 1200px;
+}
+.container .contents .member_view ul li.sub8{
+  position: absolute;
+  top: 630px;
+  left: 1200px;
+}
+.container .contents .member_view ul li.sub9{
+  position: absolute;
+  top: 750px;
+  left: 1200px;
+}
+.container .contents .member_view ul li.sub10{
+  position: absolute;
+  top: 470px;
+  left: 1100px;
+}
+.container .contents .member_view ul li.sub11{
+  position: absolute;
+  top: 630px;
+  left: 1100px;
+}
+
+
+

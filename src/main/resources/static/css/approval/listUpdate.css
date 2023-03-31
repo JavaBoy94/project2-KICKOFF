@@ -8,29 +8,45 @@
   padding-top: 50px;
   box-sizing: border-box;
   display: flex;
-  /* justify-content:center; */
-  /* gap: 5px; */
-
-  margin-left: 310px
+  justify-content: space-between;
 }
 
 .container .approvalUpdate h2{
-  width: 500px;
-
-  text-align: left;
-  padding: 30px 20px;
-
-  background-color: black;
+  display: flex;
+  justify-content: left;
+  background-color: #000000;
   color: #ffffff;
+  padding: 5px;
 }
 
 .container .approvalUpdate{
-  /* border: 1px solid #ffff00; */
-  padding: 20px;
+  flex: 1;
+  height: auto;
+  box-sizing: border-box;
+  background-color: #ffffff;
 
-  margin: 10px 10px;
-  box-shadow: 2px 2px 5px #4d4d4d;
+  padding: 30px;
+  padding-left: 330px;
+
   color: #525252;
+}
+
+.container .approvalUpdate .con{
+  box-shadow: 5px 5px 5px 1px grey;
+}
+
+.container .approvalUpdate .con .con2{
+  height: auto;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+}
+
+.container .approvalUpdate .con .con2 .con3{
+  border: 1px solid #4d4d4d3a;
 }
 
 .container .approvalUpdate ul{
@@ -40,9 +56,8 @@
 }
 
 .container .approvalUpdate ul li{
-  /* border: 1px solid #00ff00; */
   padding: 10px 10px;
-  border-bottom: 1px solid #222;
+  /* border-bottom: 1px solid #222; */
 }
 
 .container .approvalUpdate ul li label{

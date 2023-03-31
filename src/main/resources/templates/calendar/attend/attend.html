@@ -27,9 +27,8 @@
             <div class="notice">
                 <h2>출석 내역</h2>
             <div class="con2">
-<a href="/attend/myAttendanceList" class="attendButtonC">내 참석 여부(삭제예정)</a> <br>
 <a href="/attend/myAttendancePaging" class="attendButtonC">참석 현황</a> <br>
-<a href="/attend/allAttendancePaging" class="attendButtonC">어드민 출퇴근 전체확인 (권한 admin일떄 보이기)</a>
+<a href="/attend/allAttendancePaging" class="attendButtonC" sec:authorize="hasRole('ADMIN')">팀 출퇴근 내역</a>
             </div>
         </div>
     </div>

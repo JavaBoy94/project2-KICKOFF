@@ -3,6 +3,7 @@ package org.project2.omwp2.entity;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.project2.omwp2.dto.NoticeDto;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -44,12 +45,35 @@ public class NoticeEntity {
     private String noticeContent;
 
     //공지사항 조회 수
-    @Column(name = "notice_hit")
+    @Column(name = "notice_hit", columnDefinition = "integer default 0")
     private int noticeHit;
 
     //    작성자 ID >> 관리자만
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "m_id")
     private MemberEntity memberEntity;
+
+    public static NoticeEntity toNoticeInsertEntity(NoticeDto noticeDto, MemberEntity memberEntity) {
+        NoticeEntity noticeEntity = new NoticeEntity();
+
+        noticeEntity.setNoticeTitle(noticeDto.getNoticeTitle());
+        noticeEntity.setNoticeContent(noticeDto.getNoticeContent());
+        noticeEntity.setMemberEntity(memberEntity);
+
+        return noticeEntity;
+    }
+
+    public static NoticeEntity toNoticeUpdateEntity(NoticeDto noticeDto, MemberEntity memberEntity) {
+        NoticeEntity noticeEntity = new NoticeEntity();
+
+        noticeEntity.setNoticeId(noticeDto.getNoticeId());
+        noticeEntity.setNoticeTitle(noticeDto.getNoticeTitle());
+        noticeEntity.setNoticeContent(noticeDto.getNoticeContent());
+        noticeEntity.setNoticeUpdate(noticeDto.getNoticeUpdate());
+        noticeEntity.setNoticeHit(noticeDto.getNoticeHit());
+        noticeEntity.setMemberEntity(memberEntity);
+
+        return noticeEntity;
+    }
 
 }

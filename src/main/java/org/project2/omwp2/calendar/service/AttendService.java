@@ -153,6 +153,18 @@ public class AttendService {
 
     }
 
+    //퇴근 시간 수정
+    public void attendEndCheck(Long attendId) {
 
+        Optional<AttendEntity> optionalAttendEntity = attendRepository.findById(attendId);
+
+        AttendEntity attendEntity = optionalAttendEntity.get();
+
+        attendEntity.setAttendEnd(LocalDateTime.now());
+
+        attendRepository.save(attendEntity);
+
+
+    }
 
 }

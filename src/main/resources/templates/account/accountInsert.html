@@ -6,19 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insert</title>
+    <script th:src="@{/js/account/accountInsert.js}" defer></script>
     <link rel="stylesheet" th:href="@{/css/account/accountInsert.css}">
 </head>
 
 <body>
     <div th:replace="~{fragment/common/adminHeader :: adminHeaderFragment}"></div>
-    <div id="wrap" th:object="${accountDto}">
+    <div id="wrap">
         <div th:replace="~{fragment/common/leftMenu :: leftMenuFragment}"></div>
         <div class="right-menu">
             <div class="container"><!-- container -->
-                <h2>게시글 작성</h2>
+                <h2>게시글 수정</h2>
                 <div class="right-con">
                     <div class="account-list">
-                        <form th:action="@{/account/insertOk}" method="post" th:object="${accountDto}">
+                        <form th:action="@{/account/insertOk}" method="post" th:object="${accountDto}"
+                            id="acInsertForm">
                             <!-- 제목, 이월금 -->
                             <div class="title-zone">
                                 <li>
@@ -31,7 +33,7 @@
 
                                 <li>
                                     <h4>이월금</h4>
-                                    <input type="text" th:field="*{acSurplus}" placeholder="이월금">
+                                    <input type="text" th:field="*{acSurplus}" class = "acSurplus" placeholder="이월금" onchange="total()">
                                 </li>
                             </div><!-- title-zone 끝 -->
 
@@ -41,19 +43,25 @@
 
                             <div class="income-expend">
                                 <table border="1">
-                                    <tr>
+                                    <tr class="tr1">
                                         <th width="60%">내역</th>
                                         <th width="15%">수입</th>
                                         <th width="15%">지출</th>
-                                        <th width="10%"></th>
+                                        <th width="10%">
+                                            <input type="button" value="+" class="plusBtn">
+                                        </th>
                                     </tr>
 
                                     <tr>
-                                        <td width="60%"><input type="text" th:field="*{acContent}"></td>
-                                        <td width="15%"><input type="text" th:field="*{acIncome}"></td>
-                                        <td width="15%"><input type="text" th:field="*{acExpend}"></td>
-                                        <th width="10%">+</th>
+                                        <td width="60%"><input type="text" th:field="*{acContent}" class="acContent" placeholder="내역을 입력하세요">
+                                        </td>
+                                        <td width="15%"><input type="text" th:field="*{acIncome}" class="acIncome" onchange="total()"></td>
+                                        <td width="15%"><input type="text" th:field="*{acExpend}" class="acExpend" onchange="total()"></td>
+                                        <td width="10%">
+                                            <input type="button" value="-" class="minusBtn">
+                                        </td>
                                     </tr>
+
                                 </table>
                             </div><!-- inncome-expend 끝 -->
 
@@ -64,7 +72,7 @@
                             <div class="income-expend-sum">
                                 <li>
                                     <h5>수입 총액</h5>
-                                    <input type="text" placeholder="원" readonly>
+                                    <input type="text" class="acTotalIncome" th:field="*{acTotalIncome}" readonly>
                                 </li>
 
                                 <li>
@@ -73,14 +81,14 @@
 
                                 <li>
                                     <h5>지출 총액</h5>
-                                    <input type="text" placeholder="원" readonly>
+                                    <input type="text" class="acTotalExpend" th:field="*{acTotalExpend}" readonly>
                                 </li>
                             </div><!-- income-expend-sum 끝 -->
 
                             <div class="sum">
                                 <li>
                                     <h5>총 잔액</h5>
-                                    <input type="text" placeholder="총 금액" readonly>
+                                    <input type="text" placeholder="총 금액" class ="acTotalPay" th:field="*{acTotalPay}" readonly>
                                 </li>
                             </div><!-- sum 끝 -->
 

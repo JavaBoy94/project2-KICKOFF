@@ -75,6 +75,7 @@ public class ApprovalDto {
         approvalDto.setAppUpdate(approvalEntity.getAppUpdate());
         approvalDto.setAppStatus(approvalEntity.getAppStatus());
         approvalDto.setAppReason(approvalEntity.getAppReason());
+
         if (approvalEntity.getMemberEntity1()!=null){
 //        작성자(기안자) 정보
         approvalDto.setDrafterName(approvalEntity.getMemberEntity1().getMName());

@@ -36,4 +36,12 @@ public interface BoardReposistory extends JpaRepository<BoardEntity, Long> {
     void upCmcountCount1(@Param("boardId") Long boardId);
 
 
+    @Query(value = "select * from board " +
+            "where m_id=:mId",nativeQuery = true)
+    Page<BoardEntity> findAllBymId(@Param("mId") Long mId, Pageable pageable);
+
+    @Modifying
+    @Query(value = "update BoardEntity b set b.boardCmcount=b.boardCmcount-1 " +
+            "where b.boardId=:boardId ")
+    void downCmcount(@Param("boardId") Long boardId);
 }

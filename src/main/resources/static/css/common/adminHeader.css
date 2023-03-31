@@ -9,7 +9,7 @@
   top: 0;
   z-index: 999;
   background-color: white;
-  border-bottom: 2px solid;
+  border-bottom: 1px solid;
 }
 .header .logo{
   width: 300px;

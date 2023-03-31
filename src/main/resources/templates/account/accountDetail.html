@@ -19,14 +19,26 @@
                 <h2>상세보기</h2>
                 <div class="right-con">
                     <div class="account-list">
-                        <!-- 등록 (관리자만 가능) -->
-                        <div class="btnZone">
-                            <a th:href="@{|/account/update/${acId}|}" class="updateBtn" sec:authorize="hasRole('ADMIN')">수정</a>
+                        <!-- 수정,삭제 (작성자만 가능) -->
+                        <div class="btnZone" th:if="${accountDto.mId}==${memberDto.mId}">
+                            <a th:href="@{|/account/update/${acId}|}" class="updateBtn">수정</a>
                             <form th:action="@{|/account/delete/${acId}|}" method="post" id="deleteForm">
                                 <input type="hidden" th:field="*{acId}" th:value="${acId}">
-                                <input type="submit" value="삭제" class="deleteBtn" sec:authorize="hasRole('ADMIN')">
+                                <input type="submit" value="삭제" class="deleteBtn">
                             </form>
                         </div> <!-- btnZone 끝 -->
+
+                        <div class="time">
+                            <li>
+                                <th:block th:if="${accountDto.acUpdate}==null">
+                                    <span th:text="${#temporals.format(accountDto.acCreate, 'yyyy-MM-dd HH:mm:ss')}"></span>
+                                </th:block>
+
+                                <th:block th:unless="${accountDto.acUpdate}==null">
+                                    <span th:text="${#temporals.format(accountDto.acUpdate, 'yyyy-MM-dd HH:mm:ss')}"></span>
+                                </th:block>
+                            </li>
+                        </div><!-- time 끝 -->
 
                         <div class="title-zone">
                             <li>
@@ -38,13 +50,13 @@
                             </li>
 
                             <li>
-                                <h4>이월금</h4>
-                                <input type="text" th:field="*{acSurplus}" placeholder="이월금" readonly>원
+                                <h4>잔여금</h4>
+                                <input type="text" th:field="*{acSurplus}" placeholder="잔여금" readonly>
                             </li>
                         </div><!-- title-zone 끝 -->
-                        
+
                         <li class="li1">
-                            <span>◆ 수입 지출 내역</span>
+                            <span class="title-sub">◆ 수입 지출 내역</span>
                         </li>
 
                         <div class="income-expend">
@@ -54,26 +66,23 @@
                                     <th width="20%">수입</th>
                                     <th width="20%">지출</th>
                                 </tr>
-    
+
                                 <tr>
                                     <td width="60%" th:text="${accountDto.acContent}"></td>
                                     <td width="20%" th:text="${accountDto.acIncome}"></td>
                                     <td width="20%" th:text="${accountDto.acExpend}"></td>
-<!--                                     <td width="70%"><input type="text" th:field="*{acContent}" readonly></td>
-                                    <td width="15%"><input type="text" th:field="*{acIncome}" readonly></td>
-                                    <td width="15%"><input type="text" th:field="*{acExpend}" readonly></td> -->
                                 </tr>
                             </table>
                         </div><!-- inncome-expend 끝 -->
 
                         <li class="li1">
-                            <span>◆ 결산 내역</span>
+                            <span class="title-sub">◆ 결산 내역</span>
                         </li>
 
                         <div class="income-expend-sum">
                             <li>
                                 <h5>수입 총액</h5>
-                                <input type="text" placeholder="원" readonly>
+                                <input type="text" readonly th:value="${accountDto.acTotalIncome}">
                             </li>
 
                             <li>
@@ -82,14 +91,14 @@
 
                             <li>
                                 <h5>지출 총액</h5>
-                                <input type="text" placeholder="원" readonly>
+                                <input type="text" readonly th:value="${accountDto.acTotalExpend}">
                             </li>
                         </div><!-- income-expend-sum 끝 -->
 
                         <div class="sum">
                             <li>
                                 <h5>총 잔액</h5>
-                                <input type="text" placeholder="총 금액" readonly>
+                                <input type="text" readonly th:value="${accountDto.acTotalPay}">
                             </li>
                         </div><!-- sum 끝 -->
 

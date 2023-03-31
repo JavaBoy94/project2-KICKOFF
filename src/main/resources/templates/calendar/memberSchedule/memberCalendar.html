@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" th:href="@{/css/calendar/memberSchedule/memberCalendar.css}">
 
   <script>
     //브라우저가 HTML을 전부 읽고 DOM 트리를 완성하는 즉시 발생
@@ -76,13 +77,73 @@
               $("#calendarModal").modal('hide');
             }
           },
+                    //이름이 같은 일정 수정
+                    // 이벤트 구현
+                    UpdateEventButton: {
+            // 오른쪽 텍스트
+            text: "일정 수정",
+            click: function () {
+              $("#calendarModal").modal('show');
+              $("#addCalendar").on("click", function () {
+
+                location.replace(location.href);
+
+                                                   // jQuery라서 val, javascript는 value
+                let content = $("#calendar_content").val();
+                let start_date = $("#calendar_start_date").val();
+                let end_date = $("#calendar_end_date").val();
+
+                if (content == null || content == "") {
+                  alert("내용을 입력하세요.");
+                } else if (start_date == "" || end_date == "") {
+                  alert("날짜를 입력하세요.");
+                } else if (new Date(end_date) - new Date(start_date) < 0) { // date 타입으로 변경 후 확인
+                  alert("종료일이 시작일보다 먼저입니다.");
+                } else {
+                  let obj = {
+                    "content": content,
+                    "start": start_date,
+                    "end": end_date
+                  }
+                  setCalendar(content, start_date, end_date)
+                }
+              });
+              $("#calendarModal").modal('hide');
+            }
+          },
+                    //이름이 같은 일정 삭제
+                    // 이벤트 구현
+                    DeleteEventButton: {
+            // 오른쪽 텍스트
+            text: "일정 삭제",
+            click: function () {
+              $("#calendarModal2").modal('show');
+              $("#deleteCalendar").on("click", function () {
+
+                location.replace(location.href);
+
+                                                   // jQuery라서 val, javascript는 value
+                let content = $("#calendar_content2").val();
+
+                if (content == null || content == "") {
+                  alert("내용을 입력하세요.");
+                } else {
+                  let obj = {
+                    "content": content,
+                  }
+                  deleteCalendar(content)
+                }
+              });
+              $("#calendarModal2").modal('hide');
+            }
+          },
         },
         eventSources: [],
         //   headerToolbar
         headerToolbar: {
           left: 'prev,next today',
           center: 'title',
-          right: 'AddEventButton'
+          right: 'AddEventButton,UpdateEventButton,DeleteEventButton'
         },
         editable: false,
         droppable: true,
@@ -91,7 +152,7 @@
       // DB 데이터 set
       function setCalendar(content, start, end) {
         $.ajax({
-            url: "/api/calendar",
+            url: "/api/myCalendar",
             method: "POST",
             dataType: "json",
             async: false,
@@ -99,6 +160,29 @@
               content: content,
               start: start,
               end: end
+            }
+          })
+          .done(function (data) {               // done(성공하면) getCalendar란 함수 실행
+            getCalendar(calendar.getDate())
+            calendar.render();
+          })
+          .fail(function (xhr, status, errorThrown) {
+            console.log("오류");
+          })
+          .always(function (xhr, status) {
+            console.log("완료");
+          });
+
+      }
+
+      function deleteCalendar(content) {
+        $.ajax({
+            url: "/api/mydeleteCalendar",
+            method: "POST",
+            dataType: "json",
+            async: false,
+            data: {
+              content: content,
             }
           })
           .done(function (data) {               // done(성공하면) getCalendar란 함수 실행
@@ -123,7 +207,7 @@
           month = "0" + month
         }
         $.ajax({
-            url: "/api/calendar",
+            url: "/api/myCalendar",
             dataType: "json",
             async: false
           })
@@ -163,32 +247,41 @@
 
   <style>
     #content {
-      width: 80vw;
+      width: 70vw;
       text-align: center;
       margin: 0 auto
     }
 
     h1.title {
       text-align: center;
-      background-color: #3788d8;
+      background-color: black;
       color: #ffffff;
       padding: 10px 0;
     }
 
     #calendar {
-      width: 80vw;
-      height: 80vh;
+      width: 70vw;
+      height: 70vh;
       margin: 0 auto
     }
 
     #calendarBox {
-      width: 70%;
+      width: 60%;
       padding-left: 15%;
     }
   </style>
 
 </head>
 <body>
+  <div th:replace="~{fragment/common/adminHeader :: adminHeaderFragment}"></div>
+  <div id="wrap">
+      <div th:replace="~{fragment/common/leftMenu :: leftMenuFragment}"></div>
+
+      <div class="right-menu">
+        <div class="con">
+            <h2>개인 일정</h2>
+        <div class="right-con">
+
 <main>
   <!--내용 채우기-->
   <div id="content">
@@ -230,6 +323,35 @@
       </div>
     </div>
   </div>
+  <div class="modal fade" id="calendarModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+<div class="modal-dialog" role="document">
+ <div class="modal-content">
+   <div class="modal-header">
+     <h5 class="modal-title" id="exampleModalLabel">일정을 입력하세요.</h5>
+     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+       <span aria-hidden="true">&times;</span>
+     </button>
+   </div>
+   <div class="modal-body">
+     <div class="form-group">
+       <label for="calendar_content2" class="col-form-label">일정 내용</label>
+       <input type="text" class="form-control" id="calendar_content2" name="content">
+     </div>
+   </div>
+   <div class="modal-footer">
+     <button type="button" class="btn btn-warning" id="deleteCalendar">삭제</button>
+     <button type="button" class="btn btn-secondary" data-dismiss="modal" id="sprintSettingModalClose">취소
+     </button>
+   </div>
+ </div>
+</div>
+</div>
 </main>
+</div>
+
+</div>
+</div>
+</div>
 </body>
 </html>

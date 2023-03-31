@@ -1,0 +1,145 @@
+@import url(/css/common/reset.css);
+@import url(/css/common/adminHeader.css);
+@import url(/css/common/leftMenu.css);
+
+
+#wrap{
+  width: 100%;
+  /* border: 5px solid #000000; */
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 50px;
+  /* gap: 5px; */
+}
+
+.right-menu{
+      flex: 1;
+      height: auto;
+      box-sizing: border-box;
+      background-color: #ffffff;
+      border-top: 1px solid #000000;
+      /* border: 1px solid #ffff00; */
+      padding: 30px;
+      padding-left: 330px;
+}
+.right-menu h1{
+  padding-bottom: 35px;
+  background-color: #000000;
+  color: #ffffff;
+  font-size: 25px;
+  padding: 5px;
+  /* border: 1px solid #000000; */
+}
+.right-menu .right-con{
+  /* border: 1px solid purple; */
+  height: 800px;
+  padding: 100px 100px;
+  display: block;
+}
+
+
+.right-menu .right-con .boardDetail{
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  box-shadow: 5px 5px 5px 1px grey;
+  display: block;
+}
+
+.right-menu .right-con .boardDetail h2{
+  padding-left: 20px;
+  font-size: 40px;
+  font-weight: bolder;
+  color: white;
+  background-color: #000000;
+}
+
+.right-menu .right-con .boardDetail ul{
+  padding: 5px 10px;
+  box-sizing: border-box;
+  /* display: flex; */
+  /* justify-content: space-between; */
+  /* gap: 5px; */
+}
+
+.right-menu .right-con .boardDetail ul li.s2{
+  padding: 5px 10px;
+  box-sizing: border-box;
+  display: flex;
+  /* justify-content: space-between; */
+  gap:5px;
+}
+
+.right-menu .right-con .boardDetail ul li.s2 label{
+  background-color: #000000;
+  color: #ffffff;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  line-height: 10px;
+  width: 150px;
+}
+
+.right-menu .right-con .boardDetail ul li.s2 span{
+
+  flex: 4;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  border: 1px solid #cccccc;
+  line-height: 20px;
+
+}
+.right-menu .right-con .boardDetail ul li.s3{
+  padding: 5px 10px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+.right-menu .right-con .boardDetail ul li.s3 .s3sub{
+  flex: 0 0 250px;
+  text-align: center;
+  border: 0;
+  background-color: #000000;
+  color: #ffffff;
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 20px;
+}
+
+.right-menu .right-con .comment-update h3 {
+  font-size: 25px;
+  font-weight: bolder;
+  color: white;
+  background-color: #000000;
+  padding: 5px;
+}
+
+.right-menu .right-con .comment-update ul{
+  padding: 5px 10px;
+  box-sizing: border-box;
+  /* display: flex; */
+  /* justify-content: space-between; */
+  /* gap: 5px; */
+}
+
+.right-menu .right-con .comment-update ul li.s3{
+  padding: 5px 10px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.right-menu .right-con .comment-update ul li.s3 .s3sub{
+  flex: 0 0 250px;
+  text-align: center;
+  border: 0;
+  background-color: #000000;
+  color: #ffffff;
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 20px;
+}

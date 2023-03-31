@@ -87,11 +87,17 @@ h2{
 /* 검색 및 페이징 */
 
 .tools{
-  width: 1230px;
+  width: 83%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border: 1px solid #b9b9b9;
   box-shadow: 5px 5px 5px 1px grey;
+}
+
+.tools .search{
+  padding: 5px 10px;
+  box-sizing: border-box;
 }
 
 .tools .page{

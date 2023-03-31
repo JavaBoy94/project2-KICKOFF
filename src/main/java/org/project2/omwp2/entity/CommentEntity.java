@@ -61,5 +61,18 @@ public class CommentEntity {
         return commentEntity;
     }
 
+    public static CommentEntity toUpdateEntity(CommentDto commentDto, MemberEntity memberEntity, BoardEntity boardEntity) {
+
+        CommentEntity commentEntity = new CommentEntity();
+
+        commentEntity.setCommentId(commentDto.getCommentId());
+        commentEntity.setCommentContent(commentDto.getCommentContent());
+        commentEntity.setBoardEntity(boardEntity);
+        commentEntity.setMemberEntity(memberEntity);
+
+        return  commentEntity;
+
+
+    }
 
 }

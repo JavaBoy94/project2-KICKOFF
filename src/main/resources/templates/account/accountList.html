@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,48 +8,126 @@
     <title>List</title>
     <link rel="stylesheet" th:href="@{/css/account/accountList.css}">
 </head>
+
 <body>
     <div th:replace="~{fragment/common/adminHeader :: adminHeaderFragment}"></div>
     <div id="wrap">
         <div th:replace="~{fragment/common/leftMenu :: leftMenuFragment}"></div>
         <div class="right-menu">
             <div class="container"><!-- container -->
-                <h2>목록</h2>
+                <h2>회계 목록</h2>
                 <div class="right-con">
                     <div class="account-list">
-                        <!-- 등록 (관리자만 가능) -->
-                        <div class="btnZone">
-                            <a th:href="@{/account/insert}" class="insertBtn" sec:authorize="hasRole('ADMIN')">등록</a>
-                        </div>
-            
+                        <!-- 등록 (관리자만 가능), 검색 영역 -->
+                        <form th:action="@{/account/search}" method="get">
+                            <div class="btnZone">
+                                <div class="insertBtn1">
+                                    <a th:href="@{/account/insert}" class="insertBtn" sec:authorize="hasRole('ADMIN')">등록</a>
+                                </div>
+                                <div class="searchBtn">
+                                    <select name="type" id="type" style="position: relative;">
+                                        <option value="">검색기준</option>
+                                        <option value="acTitle">제목</option>
+                                        <option value="acContent">내용</option>
+                                        <!-- <option value="acTitleAcContent">제목+내용</option> -->
+                                        <input type="text" name="search" id="search">
+                                        <button type="submit" name="search_1" class="search_1" style="position: absolute;"></button>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+
                         <!-- 지출, 수입 작성 글 리스트 -->
                         <div class="account-form">
                             <table style="border-collapse:collapse">
-                                <tr>
-                                    <th width="5%">NO</th>
-                                    <th width="50%">제목</th>
-                                    <th width="15%">수입 총액</th>
-                                    <th width="15%">지출 총액</th>
-                                    <th width="15%">현재 잔액</th>
+                                <tr class="tr1">
+                                    <th width="3%">NO</th>
+                                    <th width="46%">제목</th>
+                                    <th width="12%">작성자</th>
+                                    <th width="9%">수입</th>
+                                    <th width="9%">지출</th>
+                                    <th width="9%">현재 잔액</th>
+                                    <th width="12%">작성일</th>
                                 </tr>
-            
-                                <tr th:each="list: ${accountDtoList}">
+
+                                <tr th:each="list: ${accountList}">
+                                    <!-- 글번호 -->
                                     <td th:text="${list.acId}"></td>
+
+                                    <!-- 글제목, 상세보기 -->
                                     <td>
-                                        <a th:href="@{|/account/detail/${list.acId}|}" th:text="${list.acTitle}"></a>
+                                        <a th:href="@{|/account/detail/${list.acId}|}" th:text="${list.acTitle}"
+                                            class="title"></a>
                                     </td>
+
+                                    <!-- 작성자 -->
+                                    <td th:text="${list.mName}"></td>
+
+
+                                    <!-- 수입금액 -->
                                     <td th:text="${list.acIncome}"></td>
+
+                                    <!-- 지출금액 -->
                                     <td th:text="${list.acExpend}"></td>
-                                    <td>0</td>
+
+                                    <!-- 남은 잔액 -->
+                                    <td th:text="${list.balance}"></td>
+
+                                    <!-- 작성일 -->
+                                    <!-- 등록일 -->
+                                    <th:block th:if="${list.acUpdate}==null">
+                                        <td th:text="${#temporals.format(list.acCreate, 'MM-dd')}"></td>
+                                    </th:block>
+                                    
+                                    <!-- 수정일 -->
+                                    <th:block th:unless="${list.acUpdate}==null">
+                                        <td th:text="${#temporals.format(list.acUpdate, 'MM-dd')}"></td>
+                                    </th:block>
                                 </tr>
                             </table>
                         </div><!-- account-form -->
-                        
+
                         <!-- 페이징 영역 -->
                         <div class="account-page">
-                            <span><</span>
-                            <span>1</span>
-                            <span>></span>
+                            <ul>
+                                <li>
+                                    <span th:if="${1 == accountList.pageable.pageNumber+1}"
+                                        style="color:#a2a2a2">≪</span>
+                                    <a th:unless="${1 == accountList.pageable.pageNumber+1}" style="color:#000000"
+                                        th:href="@{/account/list(page=0)}">≪</a>
+                                </li>
+
+                                <li>
+                                    <span th:if="${1 == accountList.pageable.pageNumber+1}"
+                                        style="color:#a2a2a2">＜</span>
+                                    <a th:unless="${1 == accountList.pageable.pageNumber+1}" style="color:#000000"
+                                        th:href="@{/account/list(page=${ accountList.pageable.pageNumber - 1})}">＜</a>
+                                </li>
+
+
+                                <!-- 페이지 번호 -->
+                                <li th:each="i: ${#numbers.sequence(startPage, endPage)}">
+                                    <span th:if="${i == accountList.pageable.pageNumber+1}" style="color:#a2a2a2"
+                                        th:text="${i}"></span>
+                                    <a th:unless="${i == accountList.pageable.pageNumber+1}" style="color:#000000"
+                                        th:href="@{/account/list(page=${ i - 1})}" th:text="${i}"></a>
+                                </li>
+                                <li>
+                                    <span th:if="${accountList.totalPages == accountList.pageable.pageNumber+1}"
+                                        style="color:#a2a2a2">＞</span>
+                                    <a th:unless="${accountList.totalPages == accountList.pageable.pageNumber+1}"
+                                        style="color:#000000"
+                                        th:href="@{/account/list(page=${ accountList.pageable.pageNumber + 1})}">＞</a>
+                                </li>
+
+                                <li>
+                                    <span th:if="${accountList.totalPages == accountList.pageable.pageNumber+1}"
+                                        style="color:#a2a2a2">≫</span>
+                                    <a th:unless="${accountList.totalPages == accountList.pageable.pageNumber+1}"
+                                        style="color:#000000"
+                                        th:href="@{/account/list(page=${accountList.totalPages-1})}">≫</a>
+                                </li>
+                            </ul>
                         </div><!-- account-page -->
                     </div><!-- right-con -->
                 </div><!-- account-list" -->
@@ -58,4 +137,5 @@
     <!-- Account Main -->
 
 </body>
+
 </html>

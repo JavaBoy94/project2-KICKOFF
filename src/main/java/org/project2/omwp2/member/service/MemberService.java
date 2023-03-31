@@ -15,6 +15,8 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -175,4 +177,194 @@ public class MemberService {
             return 0;
         }
     }
+
+    // 포지션별 페이징
+    public Page<MemberDto> getMemberPositionList(String mPosition, Pageable pageable) {
+
+        Page<MemberEntity> memberEntityList = memberRepository.findAllBymPosition(mPosition,pageable);
+        Page<MemberDto> memberDtoList = memberEntityList.map(MemberDto::toMemberDto);
+
+        return memberDtoList;
+
+    }
+
+
+    // 포지션별 목록가져오기(MULTI)
+    public List<MemberDto> MultiMemberList(String mPosition) {
+
+        List<MemberEntity> MultiMemberEntityList = memberRepository.findBymPositionDesc(mPosition);
+        List<MemberDto> MultiMemberDtoList = new ArrayList<>();
+
+        for(MemberEntity memberEntity : MultiMemberEntityList){
+            MultiMemberDtoList.add(MemberDto.toMemberDto(memberEntity));
+        }
+
+        return MultiMemberDtoList;
+    }
+
+    // 포지션별 목록가져오기(ST)
+    public List<MemberDto> StMemberList(String mPosition) {
+        List<MemberEntity> StMemberEntityList = memberRepository.findBymPositionDesc(mPosition);
+        List<MemberDto> StMemberDtoList = new ArrayList<>();
+
+        for(MemberEntity memberEntity : StMemberEntityList){
+            StMemberDtoList.add(MemberDto.toMemberDto(memberEntity));
+        }
+
+        return StMemberDtoList;
+    }
+
+    // 포지션별 목록가져오기(MF)
+    public List<MemberDto> MfMemberList(String mPosition) {
+        List<MemberEntity> MfMemberEntityList = memberRepository.findBymPositionDesc(mPosition);
+        List<MemberDto> MfMemberDtoList = new ArrayList<>();
+
+        for(MemberEntity memberEntity : MfMemberEntityList){
+            MfMemberDtoList.add(MemberDto.toMemberDto(memberEntity));
+        }
+
+        return MfMemberDtoList;
+    }
+
+    // 포지션별 목록가져오기(DF)
+    public List<MemberDto> DfMemberList(String mPosition) {
+        List<MemberEntity> DfMemberEntityList = memberRepository.findBymPositionDesc(mPosition);
+        List<MemberDto> DfMemberDtoList = new ArrayList<>();
+
+        for(MemberEntity memberEntity : DfMemberEntityList){
+            DfMemberDtoList.add(MemberDto.toMemberDto(memberEntity));
+        }
+
+        return DfMemberDtoList;
+    }
+
+    // 포지션별 목록가져오기(GK)
+    public List<MemberDto> GkMemberList(String mPosition) {
+        List<MemberEntity> GkMemberEntityList = memberRepository.findBymPositionDesc(mPosition);
+        List<MemberDto> GkMemberDtoList = new ArrayList<>();
+
+        for(MemberEntity memberEntity : GkMemberEntityList){
+            GkMemberDtoList.add(MemberDto.toMemberDto(memberEntity));
+        }
+
+        return GkMemberDtoList;
+    }
+
+    // 회원구분별 페이징
+    public Page<MemberDto> getMemberDeptList(String mDept, Pageable pageable) {
+
+        Page<MemberEntity> memberEntityList = memberRepository.findAllBymDept(mDept,pageable);
+        Page<MemberDto> memberDtoList = memberEntityList.map(MemberDto::toMemberDto);
+
+        return memberDtoList;
+    }
+
+    // 회원구분별 목록가져오기(CP) - 회장
+    public List<MemberDto> CpMemberList(String mDept) {
+
+        List<MemberEntity> CpMemberEntityList = memberRepository.findBymDeptDesc(mDept);
+        List<MemberDto> CpMemberDtoList = new ArrayList<>();
+
+        for(MemberEntity memberEntity : CpMemberEntityList){
+            CpMemberDtoList.add(MemberDto.toMemberDto(memberEntity));
+        }
+
+        return CpMemberDtoList;
+    }
+
+    // 회원구분별 목록가져오기(VP) - 부회장
+    public List<MemberDto> VpMemberList(String mDept) {
+
+        List<MemberEntity> VpMemberEntityList = memberRepository.findBymDeptDesc(mDept);
+        List<MemberDto> VpMemberDtoList = new ArrayList<>();
+
+        for(MemberEntity memberEntity : VpMemberEntityList){
+            VpMemberDtoList.add(MemberDto.toMemberDto(memberEntity));
+        }
+
+        return VpMemberDtoList;
+    }
+
+    // 회원구분별 목록가져오기(GA) - 총무
+    public List<MemberDto> GaMemberList(String mDept) {
+
+        List<MemberEntity> GaMemberEntityList = memberRepository.findBymDeptDesc(mDept);
+        List<MemberDto> GaMemberDtoList = new ArrayList<>();
+
+        for(MemberEntity memberEntity : GaMemberEntityList){
+            GaMemberDtoList.add(MemberDto.toMemberDto(memberEntity));
+        }
+
+        return GaMemberDtoList;
+    }
+
+    // 회원구분별 목록가져오기(MANAGER) - 매니저
+    public List<MemberDto> ManagerMemberList(String mDept) {
+
+        List<MemberEntity> ManagerMemberEntityList = memberRepository.findBymDeptDesc(mDept);
+        List<MemberDto> ManagerMemberDtoList = new ArrayList<>();
+
+        for(MemberEntity memberEntity : ManagerMemberEntityList){
+            ManagerMemberDtoList.add(MemberDto.toMemberDto(memberEntity));
+        }
+
+        return ManagerMemberDtoList;
+    }
+
+//    관리자메뉴 내 회원목록 검색 - 이름 기준
+    public Page<MemberDto> findMemberName(String search, Pageable pageable) {
+        
+        Page<MemberEntity> memberEntityPage = memberRepository.findBymNameContaining(search,pageable);
+
+        if (memberEntityPage.isEmpty()){
+            return null;
+        }
+
+        Page<MemberDto> memberDtoPage = memberEntityPage.map(MemberDto::toMemberDto);
+
+        return memberDtoPage;
+    }
+
+    //    관리자메뉴 내 회원목록 검색 - 이메일 기준
+    public Page<MemberDto> findMemberEmail(String search, Pageable pageable) {
+
+        Page<MemberEntity> memberEntityPage = memberRepository.findBymEmailContaining(search,pageable);
+
+        if (memberEntityPage.isEmpty()){
+            return null;
+        }
+
+        Page<MemberDto> memberDtoPage = memberEntityPage.map(MemberDto::toMemberDto);
+
+        return memberDtoPage;
+    }
+
+    //    관리자메뉴 내 회원목록 검색 - 연락처 기준
+    public Page<MemberDto> findMemberTel(String search, Pageable pageable) {
+
+        Page<MemberEntity> memberEntityPage = memberRepository.findBymTelContaining(search,pageable);
+
+        if (memberEntityPage.isEmpty()){
+            return null;
+        }
+
+        Page<MemberDto> memberDtoPage = memberEntityPage.map(MemberDto::toMemberDto);
+
+        return memberDtoPage;
+    }
+
+    // 회원구분별 목록가져오기(MEMBER) - 일반회원, 기본
+//    public List<MemberDto> MemberMemberList(String mDept) {
+//
+//        List<MemberEntity> MemberMemberEntityList = memberRepository.findBymDeptDesc(mDept);
+//        List<MemberDto> MemberMemberDtoList = new ArrayList<>();
+//
+//        for(MemberEntity memberEntity : MemberMemberEntityList){
+//            MemberMemberDtoList.add(MemberDto.toMemberDto(memberEntity));
+//        }
+//
+//        return MemberMemberDtoList;
+//    }
+
+
 }

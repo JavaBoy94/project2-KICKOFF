@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <link rel="stylesheet" href="/static/css/common/adminHeader.css">
 <div class="header" th:fragment="adminHeaderFragment">
+  
   <div style="width: 300px;"></div>
   <div class="logo">
       <a class="logo-img" th:href="@{/}"></a>
@@ -9,7 +10,9 @@
     <div class="gnb">
       <ul>
         <li><a href="#">Menu1</a></li>
-        <li><a href="#">Menu2</a></li>
+        <li>
+          <a href="#">Menu2</a>
+        </li>
         <li><a th:href="@{/logout}" style="color: red;" >Logout</a></li>
       </ul>
     </div>

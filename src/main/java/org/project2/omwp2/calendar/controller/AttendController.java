@@ -175,7 +175,7 @@ public class AttendController {
 
     }
 
-    // 근태 디테일
+    // 근태 수정
     @PostMapping("/attendanceDetail")
     public String attendanceDetail(@ModelAttribute("attendDto")AttendDto attendDto, Model model){
 
@@ -186,6 +186,17 @@ public class AttendController {
         model.addAttribute("attendDto",attendDto1);
 
         return "/calendar/attend/myAttendDetail";
+    }
+
+    //퇴근 시간 수정
+    @PostMapping("/attendUpdate")
+    public String attendUpdate(@ModelAttribute("attendDto")AttendDto attendDto, Model model){
+
+        attendService.attendEndCheck(attendDto.getAttendId());
+
+
+
+        return "/calendar/teamSchedule/teamCalendar";
     }
     
     

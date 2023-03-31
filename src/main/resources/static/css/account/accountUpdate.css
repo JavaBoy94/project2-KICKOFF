@@ -117,19 +117,17 @@ table{
     border-collapse : collapse;
 }
 
-table tr:nth-child(1){
-    background-color: #d2d2d2;
-    height: 30px;
-    line-height: 30px;
-}
-
-table tr:nth-child(2){
+table tr{
     height: 30px;
     line-height: 30px;
     text-align: center;
 }
 
-input#acContent{
+.tr1{
+    background-color: #d2d2d2;
+}
+
+.acContent{
     width: 98%;
     display: flex;
     padding-top: 7px;
@@ -140,7 +138,7 @@ input#acContent{
     text-align: center;
 }
 
-input#acIncome{
+.acIncome{
     width: 90%;
     display: flex;
     padding-top: 7px;
@@ -151,7 +149,7 @@ input#acIncome{
     text-align: center;
 }
 
-input#acExpend{
+.acExpend{
     width: 90%;
     display: flex;
     padding-top: 7px;
@@ -162,7 +160,19 @@ input#acExpend{
     text-align: center;
 }
 
+input.plusBtn {
+    width: 15px;
+    height: 15px;
+    padding-bottom: -7px;
+    box-sizing: border-box;
+}
 
+input.minusBtn {
+    width: 15px;
+    height: 15px;
+    padding-bottom: -7px;
+    box-sizing: border-box;
+}
 
 
 /* 수입,지출 총액 */

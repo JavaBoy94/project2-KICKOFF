@@ -3,7 +3,6 @@ package org.project2.omwp2.dto;
 import lombok.*;
 import org.project2.omwp2.entity.AttendEntity;
 
-import javax.persistence.Column;
 import java.time.LocalDateTime;
 
 @Getter
@@ -19,6 +18,9 @@ public class AttendDto {
     private LocalDateTime attendEnd;
     private Long mId;
 
+    private String email;
+
+
     public static AttendDto toAttendDto(AttendEntity attendEntity){
 
         AttendDto attendDto = new AttendDto();
@@ -27,6 +29,8 @@ public class AttendDto {
         attendDto.setAttendStart(attendEntity.getAttendStart());
         attendDto.setAttendEnd(attendEntity.getAttendEnd());
         attendDto.setMId(attendEntity.getMemberEntity().getMId());
+        attendDto.setEmail(attendEntity.getMemberEntity().getMEmail());
+
 
         return attendDto;
 

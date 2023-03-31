@@ -1,12 +1,9 @@
 package org.project2.omwp2.dto;
 
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 import org.project2.omwp2.entity.BoardEntity;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.Column;
 import java.time.LocalDateTime;
 
 @Getter
@@ -27,6 +24,10 @@ public class BoardDto {
 
 
     private Long memberId;
+
+    private String mEmail;
+
+    private String mName;
     //파일 관련
     private int boardAttach;
 
@@ -48,6 +49,8 @@ public class BoardDto {
         boardDto.setBoardCmcount(boardEntity.getBoardCmcount());
         boardDto.setBoardHit(boardEntity.getBoardHit());
         boardDto.setMemberId(boardEntity.getMemberEntity().getMId());
+        boardDto.setMEmail(boardEntity.getMemberEntity().getMEmail());
+        boardDto.setMName(boardEntity.getMemberEntity().getMName());
         System.out.println("작성자"+boardDto.getMemberId());
 
 
@@ -57,6 +60,7 @@ public class BoardDto {
             boardDto.setBoardAttach(boardEntity.getBoardAttach());
 
 //            boardDto.setBfileId(boardEntity.getBoardFileEntities().get(0).getBfileId());
+            System.out.println("뭐지?");
             boardDto.setBfileOldName(boardEntity.getBoardFileEntities().get(0).getBfileOldName());
             boardDto.setBfileNewName(boardEntity.getBoardFileEntities().get(0).getBfileNewName());
         }

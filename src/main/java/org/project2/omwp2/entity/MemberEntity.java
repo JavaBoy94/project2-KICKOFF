@@ -63,7 +63,7 @@ public class MemberEntity {
     @Column(name = "m_create",updatable = false)
     private LocalDateTime mCreate;
 
-//  권한 - GUEST(승인필요), MEMBER(일반회원), ADMIN(관리자), BLACK(정지된 회원)
+//  권한 - MEMBER(일반회원), ADMIN(관리자), BLACK(정지된 회원)
     @Enumerated(EnumType.STRING)
     private Role mRole;
 
@@ -110,21 +110,21 @@ public class MemberEntity {
 
         MemberEntity memberEntity = new MemberEntity();
 
-        memberEntity.mEmail = memberDto.getMEmail();
-        memberEntity.mPw = passwordEncoder.encode(memberDto.getMPw());
-        memberEntity.mName = memberDto.getMName();
-        memberEntity.mZipcode = memberDto.getMZipcode();
-        memberEntity.mAddr1 = memberDto.getMAddr1();
-        memberEntity.mAddr2 = memberDto.getMAddr2();
-        memberEntity.mTel = memberDto.getMTel();
-        memberEntity.mIntro = memberDto.getMIntro();
-        memberEntity.mRole = Role.MEMBER;
-        memberEntity.mDept = "MEMBER";
-        memberEntity.mPosition = memberDto.getMPosition();
+        memberEntity.setMEmail(memberDto.getMEmail());
+        memberEntity.setMPw(passwordEncoder.encode(memberDto.getMPw()));
+        memberEntity.setMName(memberDto.getMName());
+        memberEntity.setMZipcode(memberDto.getMZipcode());
+        memberEntity.setMAddr1(memberDto.getMAddr1());
+        memberEntity.setMAddr2(memberDto.getMAddr2());
+        memberEntity.setMTel(memberDto.getMTel());
+        memberEntity.setMIntro(memberDto.getMIntro());
+        memberEntity.setMRole(Role.MEMBER);
+        memberEntity.setMDept("MEMBER");
+        memberEntity.setMPosition(memberDto.getMPosition());
         if(memberDto.getProfileImg().isEmpty()){
-            memberEntity.mAttach = 0;
+            memberEntity.setMAttach(0);
         } else {
-            memberEntity.mAttach = 1;
+            memberEntity.setMAttach(1);
         }
 
         return memberEntity;
@@ -135,20 +135,26 @@ public static MemberEntity toMemberEntity2(MemberDto memberDto, PasswordEncoder 
 
     MemberEntity memberEntity = new MemberEntity();
 
-    memberEntity.mId = memberDto.getMId();
-    memberEntity.mEmail = memberDto.getMEmail();
-    memberEntity.mPw = passwordEncoder.encode(memberDto.getMPw());
-    memberEntity.mName = memberDto.getMName();
-    memberEntity.mZipcode = memberDto.getMZipcode();
-    memberEntity.mAddr1 = memberDto.getMAddr1();
-    memberEntity.mAddr2 = memberDto.getMAddr2();
-    memberEntity.mTel = memberDto.getMTel();
-    memberEntity.mIntro = memberDto.getMIntro();
-    memberEntity.mRole = memberDto.getMRole();
-    memberEntity.mDept = memberDto.getMDept();
-    memberEntity.mCreate = memberDto.getMCreate();
-    memberEntity.mPosition = memberDto.getMPosition();
-    memberEntity.mAttach = 1;
+    memberEntity.setMId(memberDto.getMId());
+    memberEntity.setMEmail(memberDto.getMEmail());
+    memberEntity.setMPw(passwordEncoder.encode(memberDto.getMPw()));
+    memberEntity.setMName(memberDto.getMName());
+    memberEntity.setMZipcode(memberDto.getMZipcode());
+    memberEntity.setMAddr1(memberDto.getMAddr1());
+    memberEntity.setMAddr2(memberDto.getMAddr2());
+    memberEntity.setMTel(memberDto.getMTel());
+    memberEntity.setMIntro(memberDto.getMIntro());
+    memberEntity.setMRole(memberDto.getMRole());
+    memberEntity.setMDept(memberDto.getMDept());
+    memberEntity.setMCreate(memberDto.getMCreate());
+    memberEntity.setMPosition(memberDto.getMPosition());
+    memberEntity.setMAttach(1);
+//    memberEntity.setMAttach(memberDto.getMAttach());
+//    if(memberDto.getProfileImg().isEmpty()){
+//        memberEntity.setMAttach(0);
+//    } else {
+//        memberEntity.setMAttach(1);
+//    }
 
     return memberEntity;
 }

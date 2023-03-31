@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>adminNoticeList</title>
+    <link rel="stylesheet" th:href="@{/css/admin/adminNoticeList.css}">
+
+</head>
+
+<body>
+    <div th:replace="~{fragment/common/adminHeader :: adminHeaderFragment}"></div>
+    <div id="wrap">
+        <div th:replace="~{fragment/common/leftMenu :: leftMenuFragment}"></div>
+        <div class="right-menu">
+            <div class="con">
+                <h2>공지사항 관리</h2>
+                <div class="right-con">
+                    <div class="con-box">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>번호</th>
+                                    <th style="width: 30%;">제목</th>
+                                    <th>작성자</th>
+                                    <th>조회수</th>
+                                    <th style="width: 15%;">등록일</th>
+                                    <th style="width: 15%;">수정일</th>
+                                    <th>상세</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="notice : ${noticeList}">
+                                    <td th:text="${notice.noticeId}"></td>
+                                    <td th:text="${notice.noticeTitle}"></td>
+                                    <td th:text="${notice.mName}"></td>
+                                    <td th:text="${notice.noticeHit}"></td>
+                                    <td th:text="${#temporals.format(notice.noticeCreate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                                    <td th:text="${#temporals.format(notice.noticeUpdate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                                    <td><a th:href="@{|/notice/noticeDetail/${notice.noticeId}|}">보기</a></td>
+                                </tr>
+    
+                            </tbody>
+    
+                        </table>
+                        <div class="tools">
+                            <div class="search">
+                                <form th:action="@{/notice/adminNoticeSearch}" method="get">
+                                    <select name="type" id="type">
+                                        <option value="" selected>::검색기준::</option>
+                                        <option value="noticeId">번호</option>
+                                        <option value="noticeTitle">제목</option>
+                                    </select>
+                                    <input type="text" name="search" id="search">
+                                    <input type="submit" value="검색">
+                                </form>
+                            </div>
+                            <div class="page">
+                                <ul>
+                                    <li>
+                                    <span th:if="${1 == noticeList.pageable.pageNumber+1}">≪</span>
+                                    <a th:unless="${1 == noticeList.pageable.pageNumber+1}"
+                                        th:href="@{/board/adminNoticeList(page=0)}">≪</a>
+                                    </li>
+                        
+                                    <li>
+                                    <span th:if="${1 == noticeList.pageable.pageNumber+1}">＜</span>
+                                    <a th:unless="${1 == noticeList.pageable.pageNumber+1}"
+                                        th:href="@{/board/adminNoticeList(page=${ noticeList.pageable.pageNumber - 1})}">＜</a>
+                                    </li>
+                        
+                        
+                                    <!-- 페이지 번호 -->
+                                    <li th:each="i: ${#numbers.sequence(startPage, endPage)}">
+                                    <span th:if="${i == noticeList.pageable.pageNumber+1}" style="color: red; font-weight: bold;" th:text="${i}"></span>
+                                    <a th:unless="${i == noticeList.pageable.pageNumber+1}"
+                                        th:href="@{/board/adminNoticeList(page=${ i - 1})}" th:text="${i}"></a>
+                                    </li>
+                                    <li>
+                                    <span th:if="${noticeList.totalPages == noticeList.pageable.pageNumber+1}">＞</span>
+                                    <a th:unless="${noticeList.totalPages == noticeList.pageable.pageNumber+1}"
+                                        th:href="@{/board/adminNoticeList(page=${ noticeList.pageable.pageNumber + 1})}">＞</a>
+                                    </li>
+                        
+                                    <li>
+                                    <span th:if="${noticeList.totalPages == noticeList.pageable.pageNumber+1}">≫</span>
+                                        <a th:unless="${noticeList.totalPages == noticeList.pageable.pageNumber+1}"
+                                            th:href="@{/board/adminNoticeList(page=${noticeList.totalPages-1})}">≫</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

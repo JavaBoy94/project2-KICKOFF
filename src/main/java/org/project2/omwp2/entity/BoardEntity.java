@@ -100,6 +100,39 @@ public class BoardEntity {
         return boardEntity;
     }
 
+    public static BoardEntity toBoardUpdateEntity(BoardDto boardDto, MemberEntity memberEntity) {
+        BoardEntity boardEntity = new BoardEntity();
+
+        boardEntity.setBoardId(boardDto.getBoardId());
+        boardEntity.setBoardTitle(boardDto.getBoardTitle());
+        boardEntity.setBoardContent(boardDto.getBoardContent());
+        boardEntity.setBoardUpdate(boardDto.getBoardUpdate());
+        boardEntity.setBoardHit(boardDto.getBoardHit());
+        boardEntity.setBoardCmcount(boardDto.getBoardCmcount());
+        boardEntity.setMemberEntity(memberEntity);
+
+        boardEntity.setBoardAttach(0);
+
+        return boardEntity;
+    }
+
+    public static BoardEntity toBoardUpdateEntity2(BoardDto boardDto, MemberEntity memberEntity) {
+        BoardEntity boardEntity = new BoardEntity();
+
+        boardEntity.setBoardId(boardDto.getBoardId());
+        boardEntity.setBoardTitle(boardDto.getBoardTitle());
+        boardEntity.setBoardContent(boardDto.getBoardContent());
+        boardEntity.setBoardHit(boardDto.getBoardHit());
+        boardEntity.setBoardCmcount(boardDto.getBoardCmcount());
+        boardEntity.setBoardUpdate(boardDto.getBoardUpdate());
+        boardEntity.setMemberEntity(memberEntity);
+
+        boardEntity.setBoardAttach(1);
+
+        return boardEntity;
+
+    }
+
 
 
 }

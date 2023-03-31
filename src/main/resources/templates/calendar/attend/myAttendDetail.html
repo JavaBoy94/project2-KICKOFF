@@ -22,17 +22,20 @@
       <table border="1" class="listTable">
         <tr class="tHeader">
 
-          <th>근태아이디</th>
+          <th>내 아이디</th>
           <th>출근시간</th>
           <th>퇴근시간</th>
-          <th>회원 아이디</th>
-
+          <th th:if="${attendDto.attendEnd}==null">퇴근 수정</th>
         </tr>
         <tr th:each="attendDto:${attendDto}" class="tBody">
-            <td th:text="${attendDto.attendId}"></td>
+          <form th:action="@{/attend/attendUpdate}" method="post" th:object="${attendDto}">
+            <input type="text" id="attendId" name="attendId" th:value="${attendDto.attendId}" hidden="hidden">
+            <td th:text="${attendDto.email}"></td>
             <td th:text="${#temporals.format(attendDto.attendStart, 'yyyy-MM-dd HH:mm:ss')}" ></td>
-            <td th:text="${#temporals.format(attendDto.attendEnd, 'yyyy-MM-dd HH:mm:ss')}" ></td>
-            <td th:text="${attendDto.mId}"></td>
+            <td th:if="${attendDto.attendEnd}==null">퇴근을 찍지 않았습니다</td>
+            <td th:unless="${attendDto.attendEnd}==null" th:text="${#temporals.format(attendDto.attendEnd, 'yyyy-MM-dd HH:mm:ss')}" ></td>
+            <td th:if="${attendDto.attendEnd}==null"><input type="submit" value="관리자 퇴근 시간 변경"></td>
+          </form>
         </tr>
 
       </table>

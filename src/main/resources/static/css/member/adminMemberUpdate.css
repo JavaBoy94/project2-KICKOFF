@@ -131,3 +131,49 @@
   flex-direction: column;
 }
 
+/* 주소관련 */
+
+.spanAddr{
+  width: 100%;
+  height: 70px;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.addr{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.zipcode{
+  display: flex;
+  gap: 5px;
+
+}
+
+.zipcode{
+  width: 155px !important;
+}
+
+.zipBtn{
+  width: 90px !important;
+}
+
+/* 자기소개 */
+
+.spanIntro{
+  width: 31%;
+  height: 152px;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

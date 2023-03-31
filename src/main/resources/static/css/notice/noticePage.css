@@ -1,0 +1,116 @@
+@import url(../common/adminHeader.css);
+@import url(../common/leftMenu.css);
+@import url(../common/reset.css);
+
+
+#wrap{
+  width: 100%;
+  /* border: 5px solid #000000; */
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 50px;
+  /* gap: 5px; */
+}
+
+.right-menu{
+      flex: 1;
+      min-height: 120vh;
+      height: auto;
+      box-sizing: border-box;
+      background-color: #ffffff;
+      border-top: 1px solid #000000;
+      padding: 30px;
+      padding-left: 330px;
+}
+
+.right-menu h1{
+  padding-bottom: 35px;
+  background-color: #000000;
+  color: #ffffff;
+  font-size: 25px;
+  padding: 5px;
+  /* border: 1px solid #000000; */
+}
+.right-menu .right-con{
+  /* border: 1px solid purple; */
+  height: 800px;
+  padding: 100px 100px;
+  display: flex;
+}
+
+.right-menu .right-con .noticePage{
+  width: 100%;
+  display: block;
+  text-align: center;
+  /* border: 1px solid; */
+  box-shadow: 5px 5px 5px 1px grey;
+}
+
+.right-menu .right-con .noticePage h2 {
+  padding-left: 20px;
+  font-size: 40px;
+  font-weight: bolder;
+  color: white;
+  background-color: #000000;
+}
+
+.right-menu .right-con .noticePage table{
+  text-align: center;
+  /* padding: 10px; */
+  margin: auto;
+  line-height: 190%;
+  border-bottom: 1px solid black;
+  border-collapse: collapse;
+}
+
+.right-menu .right-con .noticePage table thead th {
+    font-size: 14pt;
+    vertical-align: middle;
+    padding: 5px 22px;
+    background-color: black;
+    color: #FFFFFE;
+}
+
+/* .right-menu .right-con .noticePage table th, td{
+  border-bottom: 1px solid #000000 ;
+} */
+
+.right-menu .right-con .noticePage table td {
+  padding: 6px 3px 6px;
+  /* border-bottom: 1px solid; */
+  border-top: 1px solid #000000;
+  text-align: center;
+  vertical-align: middle;
+  font-size: large;
+}
+
+.right-menu .right-con .noticePage .search .button1 {
+  flex: 0 0 100px;
+  text-align: center;
+  border: 0;
+  padding: 1.3px;
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.right-menu .right-con .noticePage .nav {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 150px;
+  padding-right: 150px;
+}
+
+.right-menu .right-con .noticePage .search select#type {
+  background: gainsboro;
+  color: black;
+  width: 100px;
+  padding: 5px;
+  line-height: 1;
+  border: 0;
+  border-radius: 10px 10px 10px 10px;
+}
+
+.right-menu .right-con .noticePage .page .paging a>span{
+  padding: 5px;
+}

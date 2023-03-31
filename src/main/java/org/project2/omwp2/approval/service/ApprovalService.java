@@ -8,6 +8,8 @@ import org.project2.omwp2.entity.ApprovalEntity;
 import org.project2.omwp2.entity.DocumentEntity;
 import org.project2.omwp2.entity.MemberEntity;
 import org.project2.omwp2.member.repository.MemberRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -81,15 +83,11 @@ public class ApprovalService {
 
 
     // 결재문서 목록
-    public List<ApprovalDto> approvalList(){
+    public Page<ApprovalDto> getApprovalList(Pageable pageable) {
 
-        List<ApprovalEntity> approvalEntityList = approvalRepository.findAll();
-        List<ApprovalDto> approvalDtoList = new ArrayList<>();
+        Page<ApprovalEntity> approvalEntityPage = approvalRepository.findAll(pageable);
 
-        for (ApprovalEntity approvalEntity : approvalEntityList){
-            approvalDtoList.add(ApprovalDto.toApprovalDto(approvalEntity));
-        }
-        return approvalDtoList;
+        return approvalEntityPage.map(ApprovalDto::toApprovalDto);
     }
 
     // 결재문서 상세페이지
@@ -103,16 +101,23 @@ public class ApprovalService {
             return null;
         }
     }
-    
+
     // 결재서류 수정
     @Transactional
-    public void updateApproval(ApprovalDto approvalDto)throws IOException{
+    public void updateApproval(ApprovalDto approvalDto, Principal principal)throws IOException{
+
+        //  작성자(기안자) 정보
+        String mEmail = principal.getName();
+        MemberEntity memberEntity1 = memberRepository.findBymEmail(mEmail).get();
+        //  결재자 정보
+        String mEmail2 = approvalDto.getApproverEmail();
+        MemberEntity memberEntity2 = memberRepository.findBymEmail(mEmail2).get();
 
         if (approvalDto.getAppContainer().isEmpty()){
-            ApprovalEntity approvalEntity = ApprovalEntity.toNoUpdateApprovalEntity(approvalDto);
+            ApprovalEntity approvalEntity = ApprovalEntity.toNoUpdateApprovalEntity(approvalDto, memberEntity1, memberEntity2);
             approvalRepository.save(approvalEntity);
         }else {
-            ApprovalEntity approvalEntity = ApprovalEntity.toYesUpdateApprovalEntity(approvalDto);
+            ApprovalEntity approvalEntity = ApprovalEntity.toYesUpdateApprovalEntity(approvalDto, memberEntity1, memberEntity2);
             approvalRepository.save(approvalEntity);
         }
     }

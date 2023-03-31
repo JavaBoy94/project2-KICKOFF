@@ -14,7 +14,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-public class WebSecurityConfig{
+public class WebSecurityConfig {
 
     @Autowired
     private LoginService loginService;
@@ -35,6 +35,16 @@ public class WebSecurityConfig{
                 .antMatchers("/admin/**").hasAnyRole("ADMIN")
                 .antMatchers("/member/**").hasAnyRole("ADMIN","MEMBER")
                 .antMatchers("/approval/**").hasAnyRole("ADMIN","MEMBER")
+                .antMatchers("/comment/**").hasAnyRole("ADMIN","MEMBER")
+                .antMatchers("/attend/**").authenticated()
+                .antMatchers("/memberSchedule/**").authenticated()
+                .antMatchers("/teamSchedule/**").authenticated()
+                .antMatchers("/account/**").authenticated()
+                .antMatchers("/notice/**").authenticated()
+                .antMatchers("/notice/noticeInsert").hasAnyRole("ADMIN")
+                .antMatchers("/notice/noticeUpdate").hasAnyRole("ADMIN")
+                .antMatchers("/notice/noticeDelete").hasAnyRole("ADMIN")
+
         ;
 
 

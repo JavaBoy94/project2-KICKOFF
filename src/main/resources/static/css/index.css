@@ -53,6 +53,12 @@
   text-align: center;
 }
 
+table th{
+  background-color: #a7c2e54d;
+  font-weight: bold;
+}
+
+
 h2{
   background-color: #000000;
   color: #ffffff;
@@ -61,7 +67,8 @@ h2{
 }
 
 .right-menu .con .right-con .con-box .team-schedule{
-  width: 800px;
+  /* width: 800px; */
+  width: 53%;
 }
 
 .right-menu .con .right-con .con-box .team-schedule .con2{
@@ -69,7 +76,8 @@ h2{
 }
 
 .right-menu .con .right-con .con-box .board{
-  width: 690px;
+  /* width: 690px; */
+  width: 46%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -79,30 +87,90 @@ h2{
   height: 300px;
 }
 
+.board .con2 table{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.board .con2 table tr{
+  border-bottom: 1px solid !important;
+}
+
+.board .con2 table th{
+  padding: 5px 0;
+}
+
+.board .con2 table td{
+  padding: 10px 0;
+}
 
 /* fullCalender */
 
 #content {
-  width: 80vw;
+  width: 100%;
+  height: 100%;
   text-align: center;
   margin: 0 auto
 }
 
 h1.title {
-  text-align: center;
+  display: none;
+  /* text-align: center;
   background-color: #3788d8;
   color: #ffffff;
-  padding: 10px 0;
+  padding: 10px 0; */
 }
 
 #calendar {
-  width: 80vw;
-  height: 80vh;
-  margin: 0 auto
+  width: 100%;
+  height: 100%;
 }
 
-#calendarBox {
-  width: 70%;
-  padding-left: 15%;
+main{
+    width: 100%;
+    height: 100%;
 }
 
+main .content{
+    width: 100%;
+    height: 100%;
+}
+
+table.fc-col-header {
+    width: 100% !important;
+}
+
+table.fc-scrollgrid-sync-table {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.fc-view-harness.fc-view-harness-active{
+    height: 419px !important;
+}
+
+.fc-toolbar-chunk:nth-child(3){
+    display: none;
+}
+
+.fc-scroller{
+    overflow: unset !important;
+}
+
+.fc-scroller.fc-scroller-liquid-absolute{
+    overflow: unset !important;
+}
+
+.fc-daygrid-body.fc-daygrid-body-unbalanced {
+    width: 100% !important;
+}
+
+h2#fc-dom-1{
+  background-color: unset;
+  color: unset;
+}
+
+.fc .fc-toolbar.fc-header-toolbar {
+  margin-bottom: 0.5em !important;
+}

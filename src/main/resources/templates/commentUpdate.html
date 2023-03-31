@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" , xmlns:sec="http://www.thymeleaf.org/extras/spring-security5">
+
+<head>
+    <meta charset="UTF-8">
+    <title>footballAdmin</title>
+    <link rel="stylesheet" th:href="@{/css/commentUpdate.css}">
+</head>
+
+<body>
+<div th:replace="~{fragment/common/adminHeader :: adminHeaderFragment}"></div>
+<div id="wrap">
+    <div th:replace="~{fragment/common/leftMenu :: leftMenuFragment}"></div>
+    <div class="right-menu">
+        <h1>게시글</h1>
+        <div class="right-con">
+            <div class="boardDetail">
+                <h2>게시글내역</h2>
+                <form th:action="@{comment/commentUpdate}" method="post" th:object="${boardDto}">
+                    <ul>
+                        <li class="s2">
+                            <label th:for="boardFile">파일</label>
+                            <div class="s4" th:if="${board.boardAttach==1}">
+                                <a th:href="@{|/admin/download/${board.bfileId}|}" th:text="${board.bfileNewName}"></a>
+                            </div>
+                            <div class="s4" th:unless="${board.boardAttach==1}">
+                                <span>없음</span>
+                            </div>
+                        </li>
+                        <li class="s2">
+                            <label th:for="boardTitle">제목</label>
+                            <span th:text="${board.boardTitle}"></span>
+                        </li>
+                        <li class="s2">
+                            <label th:for="boardHit">조회수</label>
+                            <span th:text="${board.boardHit}"></span>
+                        <li class="s2">
+                            <label th:for="boardCmcount">댓글수</label>
+                            <span th:text="${board.boardCmcount}"></span>
+                        <li class="s2">
+                            <label th:for="boardContent">내용</label>
+                            <textarea th:text="${board.boardContent}" cols="100" rows="30" style="overflow-y: auto;" readonly></textarea>
+                        </li>
+                        <li class="s3" th:if="${board.mEmail.equals(#authentication.getName())}">
+                            <a th:href="@{|/board/boardUpdate/${board.boardId}|}" class="s3sub">게시글수정</a>
+                            <a th:href="@{|/board/boardDelete/${board.boardId}|}" class="s3sub">게시글삭제</a>
+                        </li>
+                        <li class="s3">
+                            <a th:href="@{/board/boardList}" class="s3sub">게시글조회</a>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+            <div class="comment-update">
+                <h3>댓글수정</h3>
+                <form th:action="@{/comment/commentUpdate}" method="POST">
+                    <input type="hidden" readonly name="boardId" th:value="${board.boardId}">
+                    <input type="hidden" readonly name="commentId" th:value="${comment.commentId}">
+                        <ul>
+                            <li>
+                                <textarea th:value=${comment.commentContent}
+                                style="line-height:20px; padding:10px; box-sizing: border-box; font-size: 14pt; font-weight: bold;" 
+                                name="commentContent" id="commentContent" cols="100" rows="3"></textarea>
+                            </li>
+                            <li class="s3">
+                                <input type="submit" value="댓글수정" class="s3sub">
+                                <a th:href="@{|/board/boardDetail/${board.boardId}|}" class="s3sub">취소</a>
+                            </li>
+                        </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

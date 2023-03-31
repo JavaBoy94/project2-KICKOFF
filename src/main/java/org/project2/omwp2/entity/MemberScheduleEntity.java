@@ -4,7 +4,7 @@ import lombok.*;
 import org.project2.omwp2.dto.MemberScheduleDto;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -22,19 +22,19 @@ public class MemberScheduleEntity {
     private Long ScheduleId;
 
     //스케줄 내용
-    @Column(name = "schedule_content", nullable = false)
-    private String ScheduleBoard;
+    @Column(nullable = false,unique = true)
+    private String content;
 
     //스케줄 시작일
-    @Column(name = "schedule_start",nullable = false)
-    private LocalDateTime ScheduleStart;
+    @Column(nullable = false)
+    private Date start;
 
     //스케줄 종료일
-    @Column(name = "schedule_end",nullable = false)
-    private LocalDateTime ScheduleEnd;
+    @Column(nullable = false)
+    private Date end;
 
     //스케줄 완료여부 - 미완료 : N(기본값), 완료 : Y
-    @Column(name = "schedule_done",nullable = true)
+    @Column(name = "schedule_done",nullable = false)
     private String scheduleDone;
 
     //작성자
@@ -47,9 +47,9 @@ public class MemberScheduleEntity {
         MemberScheduleEntity memberScheduleEntity = new MemberScheduleEntity();
 
         memberScheduleEntity.setScheduleId(memberScheduleDto.getScheduleId());
-        memberScheduleEntity.setScheduleBoard(memberScheduleDto.getScheduleBoard());
-        memberScheduleEntity.setScheduleStart(memberScheduleDto.getScheduleStart());
-        memberScheduleEntity.setScheduleEnd(memberScheduleDto.getScheduleEnd());
+        memberScheduleEntity.setContent(memberScheduleDto.getContent());
+        memberScheduleEntity.setStart(memberScheduleDto.getStart());
+        memberScheduleEntity.setEnd(memberScheduleDto.getEnd());
         memberScheduleEntity.setScheduleDone(memberScheduleDto.getScheduleDone());
 
         return memberScheduleEntity;

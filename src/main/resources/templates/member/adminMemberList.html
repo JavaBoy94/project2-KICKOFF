@@ -52,39 +52,50 @@
                     </div>
                     <div class="tools">
                         <!-- 검색 -->
-                        <div class="search"></div>
+                        <div class="search">
+                            <form th:action="@{/member/adminMemberSearch}" method="get">
+                                <select name="type" id="type">
+                                    <option value="" selected>::검색기준::</option>
+                                    <option value="mName">이름</option>
+                                    <option value="mEmail">이메일</option>
+                                    <option value="mTel">연락처</option>
+                                </select>
+                                <input type="text" name="search" id="search">
+                                <input type="submit" value="검색">
+                            </form>
+                        </div>
                         <!-- 페이징 -->
                         <div class="page">
                             <ul>
                                 <li>
-                                  <span th:if="${1 == memberList.pageable.pageNumber+1}">START</span>
-                                  <a th:unless="${1 == memberList.pageable.pageNumber+1}"
-                                     style="color:#e61d8b" th:href="@{/member/memberList(page=0)}">처음</a>
+                                <span th:if="${1 == memberList.pageable.pageNumber+1}">≪</span>
+                                <a th:unless="${1 == memberList.pageable.pageNumber+1}"
+                                    th:href="@{/member/memberList(page=0)}">≪</a>
                                 </li>
                     
                                 <li>
-                                   <span th:if="${1 == memberList.pageable.pageNumber+1}">이전</span>
-                                  <a th:unless="${1 == memberList.pageable.pageNumber+1}"
-                                     th:href="@{/member/memberList(page=${ memberList.pageable.pageNumber - 1})}">이전</a>
+                                <span th:if="${1 == memberList.pageable.pageNumber+1}">＜</span>
+                                <a th:unless="${1 == memberList.pageable.pageNumber+1}"
+                                    th:href="@{/member/memberList(page=${ memberList.pageable.pageNumber - 1})}">＜</a>
                                 </li>
                     
                     
                                 <!-- 페이지 번호 -->
                                 <li th:each="i: ${#numbers.sequence(startPage, endPage)}">
-                                  <span th:if="${i == memberList.pageable.pageNumber+1}" style="color: red; font-weight: bold;" th:text="${i}"></span>
-                                  <a th:unless="${i == memberList.pageable.pageNumber+1}"
-                                     th:href="@{/member/memberList(page=${ i - 1})}" th:text="${i}"></a>
+                                <span th:if="${i == memberList.pageable.pageNumber+1}" style="color: red; font-weight: bold;" th:text="${i}"></span>
+                                <a th:unless="${i == memberList.pageable.pageNumber+1}"
+                                    th:href="@{/member/memberList(page=${ i - 1})}" th:text="${i}"></a>
                                 </li>
                                 <li>
-                                   <span th:if="${memberList.totalPages == memberList.pageable.pageNumber+1}">다음</span>
-                                  <a th:unless="${memberList.totalPages == memberList.pageable.pageNumber+1}"
-                                     th:href="@{/member/memberList(page=${ memberList.pageable.pageNumber + 1})}">다음</a>
+                                <span th:if="${memberList.totalPages == memberList.pageable.pageNumber+1}">＞</span>
+                                <a th:unless="${memberList.totalPages == memberList.pageable.pageNumber+1}"
+                                    th:href="@{/member/memberList(page=${ memberList.pageable.pageNumber + 1})}">＞</a>
                                 </li>
                     
                                 <li>
-                               <span th:if="${memberList.totalPages == memberList.pageable.pageNumber+1}">END</span>
-                                  <a th:unless="${memberList.totalPages == memberList.pageable.pageNumber+1}"
-                                      th:href="@{/member/memberList(page=${memberList.totalPages-1})}">END</a>
+                                <span th:if="${memberList.totalPages == memberList.pageable.pageNumber+1}">≫</span>
+                                <a th:unless="${memberList.totalPages == memberList.pageable.pageNumber+1}"
+                                    th:href="@{/member/memberList(page=${memberList.totalPages-1})}">≫</a>
                                 </li>
                               </ul>
                         </div>

@@ -70,14 +70,7 @@ public class IndexService {
         }
 
         for (NoticeEntity noticeEntity : noticeEntityList){
-            noticeDtoList.add(NoticeDto.builder()
-                    .noticeId(noticeEntity.getNoticeId())
-                    .noticeCreate(noticeEntity.getNoticeCreate())
-                    .noticeUpdate(noticeEntity.getNoticeUpdate())
-                    .noticeTitle(noticeEntity.getNoticeTitle())
-                    .noticeContent(noticeEntity.getNoticeContent())
-                    .noticeHit(noticeEntity.getNoticeHit())
-                    .build());
+            noticeDtoList.add(NoticeDto.toNoticeDto(noticeEntity));
 
             if(noticeDtoList.size()==5) {
 //               길이가 5가 되면 반복문 종료

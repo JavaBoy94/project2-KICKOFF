@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>공지사항</title>
+    <link rel="stylesheet" th:href="@{/css/notice/noticeInsert.css}">
+</head>
+<body>
+<div th:replace="~{fragment/common/adminHeader :: adminHeaderFragment}"></div>
+<div id="wrap">
+    <div th:replace="~{fragment/common/leftMenu :: leftMenuFragment}"></div>
+    <div class="right-menu">
+        <h1>공지사항추가</h1>
+        <div class="right-con">
+            <div class="noticeInsert">
+                <h2>공지사항추가</h2>
+              <form th:action="@{/notice/noticeInsert}" method="post" th:object="${noticeDto}">
+                <ul>
+                  <li class="s2">
+                    <label th:for="noticeTitle">제목</label>
+                    <input type="text" th:field="*{noticeTitle}" placeholder="제목을 입력하세요">
+                    <p th:if="${#fields.hasErrors('noticeTitle')}" th:errorclass="error" th:errors="*{noticeTitle}"></p>
+                  </li>
+                  <li class="s2">
+                    <label th:for="noticeContent">내용</label>
+                  </li>
+                  <textarea name="noticeContent" id="noticeContent" cols="100" rows="30" 
+                  style="overflow-y: auto; font-size: large; font-weight: 300;"></textarea>
+                  <p th:if="${#fields.hasErrors('noticeContent')}" th:errorclass="error"
+                               th:errors="*{noticeContent}"></p>
+                  <li class="s3">
+                    <input type="submit" value="공지사항작성" class="s3sub">
+                  </li>
+                </ul>
+              </form>         
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

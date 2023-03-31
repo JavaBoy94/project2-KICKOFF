@@ -25,6 +25,10 @@
   color: white;
 }
 
+input{
+  text-indent: 3px;
+}
+
 .wrap .login form{
   display: flex;
   flex-direction: column;
@@ -40,7 +44,7 @@
 }
 
 .wrap .login form .login-form .submit{
-  width: 52px;
+  width: 60px;
   height: 52px;
 }
 
@@ -52,6 +56,15 @@
 display: flex;
 justify-content: space-between;
 gap: 10px;
+}
+
+.wrap .login form .side-Menu{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.wrap .login form .side-Menu button{
+  width: 60px;
 }
 
 .wrap .login form .oauth{

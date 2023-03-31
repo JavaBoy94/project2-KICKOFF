@@ -66,3 +66,31 @@
   text-align: center;
 
 }
+
+.right-menu .con .right-con .notice .con2 table tbody tr td{
+
+  gap: 20px;
+  margin: 20px;
+
+
+}
+
+.right-menu .right-con .con2 table tbody tr td {
+
+  font-size: 20px;
+
+
+}
+
+
+ .right-menu .right-con .con2 .paging ul li span{
+
+  font-size: 20px;
+
+}
+
+.right-menu .right-con .con2 .paging ul li a{
+
+  font-size: 20px;
+
+}

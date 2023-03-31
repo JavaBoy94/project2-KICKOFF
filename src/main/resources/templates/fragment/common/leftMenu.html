@@ -1,10 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <link rel="stylesheet" href="/static/css/common/leftMenu.css">
-    <div class="left-menu" th:fragment="leftMenuFragment">
+<link rel="stylesheet" href="/static/css/common/leftMenu.css">
+<link rel="stylesheet" th:href="@{/static/css/common/chat-bot.css}">
+
+<div class="left-menu" th:fragment="leftMenuFragment">
+    <!--챗봇 -->
+    <script th:src="@{/js/chat.js}"></script>
+    <!-- 날씨 -->
+    <th:block th:if="${key} == null">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js" defer></script>
+    </th:block>
+        <script th:src="@{/js/weather.js}" defer></script>
         <div class="left-con">
             <div class="dash-board">
-                <h1 class="title">대시보드</a></h1>
+                <!-- <h1 class="title">대시보드</a></h1> -->
+                <div class="weather">
+                    <div class="title">
+                        <span class="nowtime"></span>
+                        <span>Seoul</span>
+                    </div>
+                    <div class="desc">
+                        <h3 class="SeoulIcon"></h3>
+                        <div class="today">
+                            <h3 class="SeoulWeatherDesc"></h3>
+                            <h2 class="SeoulNowtemp"> </h2>
+                        </div>
+                    </div>
+                    <div class="temp">
+                        <h4 class="SeoulHightemp"></h4>
+                        <h4>/ </h4>
+                        <h4 class="SeoulLowtemp"></h4>
+                    </div>
+                </div>
                 <div class="menu">
                     <ul>
                         <li>
@@ -17,7 +44,7 @@
                                     <a th:href="@{/member/update}">회원수정</a>
                                 </li>
                                 <li>
-                                    <a href="#">작성글 관리</a>
+                                    <a th:href="@{/member/myBoardList}">작성글 관리</a>
                                 </li>
                             </ul>
                         </li>
@@ -28,10 +55,10 @@
                                     <a th:href="@{/attend/attend}">근태 관리</a>
                                 </li>
                                 <li>
-                                    <a th:href="@{/teamSchedule/officialList}">공식 일정</a>
+                                    <a th:href="@{/memberSchedule/memberSchedule}">개인일정 관리</a>
                                 </li>
-                                <li>
-                                    <a th:href="@{/memberSchedule/officialList}">개인 일정</a>
+                                <li sec:authorize="hasRole('ADMIN')">
+                                    <a th:href="@{/teamSchedule/teamSchedule}">공식일정 관리</a>
                                 </li>
                             </ul>
                         </li>
@@ -56,58 +83,39 @@
                                     <a th:href="@{/member/management}">팀조회</a>
                                 </li>
                                 <li>
-                                    <a href="#">팀수정</a>
-                                </li>
-                                <li>
-                                    <a href="#">팀삭제</a>
+                                    <a th:href="@{/member/managementPlace}">팀배치</a>
                                 </li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="#">회계관리</a>
+                            <ul class="sub">
+                                <li>
+                                    <a th:href="@{/account/list}">수입지출 내역</a>
+                                </li>
+                            </ul>
+                        </li>
+
                         <li>
                             <a href="#">동호회게시판</a>
                             <ul class="sub">
                                 <li>
-                                    <a th:href="@{/admin/boardInsert}">게시글추가</a>
+                                    <a th:href="@{/board/boardInsert}">게시글추가</a>
                                 </li>
                                 <li>
-                                    <a th:href="@{/admin/boardList}">게시글조회</a>
-                                </li>
-                                <li>
-                                    <a href="#">게시글수정</a>
-                                </li>
-                                <li>
-                                    <a href="#">게시글삭제</a>
+                                    <a th:href="@{/board/boardList}">게시글조회</a>
                                 </li>
                             </ul>
                         </li>
-
-                        <li>
-                            <a th:href="@{/account/list}">회계관리</a>
-                            <ul class="sub">
-                                <li>
-                                    <a th:href="@{/account/list}">게시글</a>
-                                </li>
-
-                                <li>
-                                    <a href="#">잔여금</a>
-                                </li>
-                            </ul>
-                        </li>
-
+                        
                         <li>
                             <a href="">공지사항</a>
                             <ul class="sub">
                                 <li>
-                                    <a href="#">공지사항추가</a>
+                                    <a th:href="@{/notice/noticeInsert}">공지사항추가</a>
                                 </li>
                                 <li>
-                                    <a href="#">공지사항조회</a>
-                                </li>
-                                <li>
-                                    <a href="#">공지사항수정</a>
-                                </li>
-                                <li>
-                                    <a href="#">공지사항삭제</a>
+                                    <a th:href="@{/notice/noticePage}">공지사항조회</a>
                                 </li>
                             </ul>
                         </li>
@@ -130,19 +138,25 @@
                             <a href="#">관리자 메뉴</a>
                             <ul class="sub">
                                 <li>
-                                    <a th:href="@{/member/memberList}">회원관리</a>
+                                    <a th:href="@{/member/memberList}">회원 관리</a>
                                 </li>
                                 <li>
-                                    <a href="#">공지사항관리</a>
+                                    <a th:href="@{/board/adminNoticeList}">공지사항 관리</a>
                                 </li>
                                 <li>
-                                    <a href="#">게시판관리</a>
-                                </li>
-                                <li>
-                                    <a href="#">공식일정관리</a>
+                                    <a th:href="@{/board/adminBoardList}">게시판 관리</a>
                                 </li>
                             </ul>
                         </li>
+                        <!-- ChatBot -->
+                        <div class="bot-con">
+                            <div class="chat-bot">
+                                <div class="wrap">
+                                    <img th:src="@{/img/icon/chatbot.png}" id="btn-chat-open" onclick="openChat()">
+                                    <th:block th:insert="~{chatbot/chat-bot::#chat-disp}" />
+                                </div>
+                            </div>
+                        </div>
                     </ul>
                 </div>
             </div>

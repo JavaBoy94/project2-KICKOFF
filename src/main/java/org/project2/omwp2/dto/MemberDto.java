@@ -70,7 +70,10 @@ public class MemberDto {
         memberDto.setMPosition(memberEntity.getMPosition());
         memberDto.setMIntro(memberEntity.getMIntro());
         memberDto.setMAttach(memberEntity.getMAttach());
+
         if(memberEntity.getMAttach() == 1) {
+
+            System.out.println(memberEntity.getProfileEntities().get(0)+"  <<<<");
 //            프로필 사진이 존재할 경우
             memberDto.setOriginName(memberEntity.getProfileEntities().get(0).getProfileOrigin());
             memberDto.setSaveName(memberEntity.getProfileEntities().get(0).getProfileSave());

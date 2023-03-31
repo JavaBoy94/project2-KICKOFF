@@ -49,11 +49,9 @@
 
 /* 등록 영역 */
 #wrap .right-menu .container .right-con .account-list .btnZone{
-    border-bottom: 4px solid #878784;
     box-sizing: border-box;
     display: flex;
     justify-content: right;
-    padding-bottom: 10px;
     gap: 10px;
 }
 
@@ -68,6 +66,7 @@
     line-height: 26px;
     font-size: 14px;
     cursor: pointer;
+    border-radius: 2px;
 }
 
 /* 삭제버튼 */
@@ -80,7 +79,19 @@
     background-color: white;
     text-align: center;
     cursor: pointer;
+    border-radius: 2px;
 }
+
+/* 작성일, 수정일 */
+.time li span{
+    display: flex;
+    justify-content: right;
+    border-bottom: 4px solid #878784;
+    padding-bottom: 3px;
+    box-sizing: border-box;
+    font-size: 12px;
+}
+
 
 /* 제목, 이월금 */
 #wrap .right-menu .container .right-con .account-list .title-zone{
@@ -176,6 +187,8 @@ table tr:nth-child(2){
 
 #wrap .right-menu .container .right-con .account-list .income-expend-sum li:nth-child(1){
     flex: 6;
+    padding-left: 120px;
+    box-sizing: border-box;
 }
 
 #wrap .right-menu .container .right-con .account-list .income-expend-sum li:nth-child(1) input{
@@ -194,7 +207,7 @@ table tr:nth-child(2){
 #wrap .right-menu .container .right-con .account-list .sum{
     display: flex;
     justify-content: left;
-    padding: 20px 0;
+    padding: 20px 0 20px 120px;
     box-sizing: border-box;
     width: 80%;
 }
@@ -220,7 +233,7 @@ table tr:nth-child(2){
 }
 
 /* 소제목 */
-span{
+.title-sub{
     color: #ff0000;
     font-weight: bold;
     font-size: 14px;

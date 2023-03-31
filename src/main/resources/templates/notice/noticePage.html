@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>공지사항</title>
+    <link rel="stylesheet" th:href="@{/css/notice/noticePage.css}">
+</head>
+
+<body>
+    <div th:replace="~{fragment/common/adminHeader :: adminHeaderFragment}"></div>
+    <div id="wrap">
+        <div th:replace="~{fragment/common/leftMenu :: leftMenuFragment}"></div>
+        <div class="right-menu">
+            <h1>공지사항</h1>
+            <div class="right-con">
+                <div class="noticePage">
+                    <h2>공지사항</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="15%">공지사항번호</th>
+                                <th width="25%">공지사항제목</th>
+                                <!-- <th>공지사항내용</th> -->
+                                <th width="10%">조회수</th>
+                                <th width="15%">등록일</th>
+                                <th width="15%">수정일</th>
+                                <th width="10%">작성자</th>
+                                <th width="15%">상세</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="notice : ${noticePage}">
+                                <td th:text="${notice.noticeId}"></td>
+                                <td th:text="${notice.noticeTitle}"></td>
+                                <!-- <td th:text="${notice.noticeContent}"></td> -->
+                                <td th:text="${notice.noticeHit}"></td>
+                                <td th:text="${#temporals.format(notice.noticeCreate, 'yyyy년MM월dd일')}"></td>
+                                <td th:text="${#temporals.format(notice.noticeUpdate, 'yyyy년MM월dd일')}"></td>
+                                <td th:text="${notice.mName}"></td>
+                                <td><a th:href="@{|/notice/noticeDetail/${notice.noticeId}|}">보기</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="nav">
+                        <div class="search">
+                            <form th:action="@{/notice/noticeSearch}" method="get">
+                                <select name="type" id="type">
+                                    <option value="" selected>::검색기준::</option>
+                                    <option value="noticeId">공지사항번호</option>
+                                    <option value="noticeTitle">공지사항제목</option>
+                                    <option value="noticeContent">공지사항내용</option>
+                                </select>
+                                <input type="text" name="search" id="search">
+                                <input type="submit" value="검색" class="button1">
+                            </form>
+                        </div>
+                        <div class="page">
+                            <div class="paging">
+                                <a th:href="@{noticePage.first} ? '#' : @{/notice/noticePage(page=${noticePage.number-2})}">
+                                    <span>《 </span>
+                                </a>
+                                <a th:href="@{noticePage.first} ? '#' : @{/notice/noticePage(page=${noticePage.number-1})}">
+                                    <span>〈 </span>
+                                </a>
+                                <th:block th:each="page : ${#numbers.sequence(startPage,endPage)}">
+                                    <span th:if="${page == nowPage}" th:text="${page}"></span>
+                                    <span th:unless="${page == nowPage}">
+                                        <a th:href="@{/notice/noticePage(page=${page-1})}" th:text="${page}"
+                                           style="background-color: yellow;"></a>
+                                    </span>
+                                </th:block>
+                                <a th:href="${noticePage.last} ? '#' : @{/notice/noticePage(page=${noticePage.number+1})}">
+                                    <span> 〉</span>
+                                </a>
+                                <a th:href="${noticePage.last} ? '#' : @{/notice/noticePage(page=${noticePage.number+2})}">
+                                    <span> 》</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

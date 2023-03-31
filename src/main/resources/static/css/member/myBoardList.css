@@ -1,0 +1,84 @@
+@import url(/css/common/reset.css);
+@import url(/css/common/adminHeader.css);
+@import url(/css/common/leftMenu.css);
+
+#wrap{
+  width: 100%;
+  /* border: 5px solid #000000; */
+  padding-top: 50px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  /* gap: 5px; */
+}
+
+.right-menu{
+  flex: 1;
+  height: auto;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  /* border-top: 1px solid #000000; */
+  /* border: 1px solid #ffff00; */
+  padding: 30px;
+  padding-left: 330px;
+}
+
+.right-menu .con{
+  box-shadow: 5px 5px 5px 1px grey;
+}
+
+.right-menu .con .right-con{
+  /* border: 1px solid purple; */
+  height: auto;
+  padding: 30px;
+}
+
+.right-menu .con .right-con .con-box{
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.right-menu .con .right-con .con-box table {
+  width: 83%;
+  text-align: center;
+  border-collapse: collapse;
+}
+
+table tr{
+  border-bottom: 1px solid grey;
+}
+
+table th{
+  background-color: #a7c2e54d;
+  padding: 5px 0;
+  box-sizing: border-box;
+  font-weight: bold;
+}
+
+table td{
+  padding: 3px 0;
+  box-sizing: border-box;
+}
+
+h2{
+  background-color: #000000;
+  color: #ffffff;
+  padding: 5px;
+  /* border: 1px solid #000000; */
+}
+
+/* 페이징 */
+
+.page{
+  padding: 5px 10px;
+  box-sizing: border-box;
+}
+
+.page>ul{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}

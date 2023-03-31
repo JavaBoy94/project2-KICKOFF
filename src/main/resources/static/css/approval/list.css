@@ -8,19 +8,21 @@
   padding-top: 50px;
   box-sizing: border-box;
   display: flex;
-  /* justify-content:center; */
+  justify-content: space-between;
   /* gap: 5px; */
-
-  margin-left: 320px
 }
 
 .container .approvalListGrid {
-  width: 1000px;
-  gap: 20px;
-  padding: 10px 10px;
-
-  border: 1px solid #4d4d4d3a;
+  flex: 1;
+  height: auto;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  /* border-top: 1px solid #000000; */
+  /* border: 1px solid #ffff00; */
+  padding: 30px;
+  padding-left: 330px;
 }
+
 
 .container .approvalListGrid h2{
   display: flex;
@@ -29,20 +31,42 @@
   background-color: #000000;
   color: #ffffff;
 
-  padding: 30px 20px;
-  margin: 20px 20px;
+  /* padding: 30px 20px; */
+  padding: 5px;
+  /* margin: 20px 20px; */
+}
+
+/* Page--------------------------------- */
+.container .approvalListGrid .page{
+  text-align: center;
+
+}
+
+.container .approvalListGrid .page ul{
+  display: flex;
+  justify-content: center;
+}
+
+.container .approvalListGrid .page ul li{
+  margin: 5px;
+}
+/* Page--------------------------------- */
+
+.container .approvalListGrid .con{
+  box-shadow: 5px 5px 5px 1px grey;
 }
 
 .container .approvalListGrid .approvalList{
   width: 100%;
-  /* border: 1px solid #ff0000; */
   box-sizing: border-box;
 
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 100px 100px;
-  grid-auto-rows: minmax(0, 500px);
-  gap: 40px;
+  grid-template-rows: 100px;
+  grid-auto-rows: minmax(auto, 100px);
+  gap: 20px;
+  padding: 30px;
+  box-sizing: border-box;
 }
 
 
@@ -53,7 +77,6 @@
   
   /* box-shadow: 1px 1px 5px #4d4d4d; */
   color: 525252;
-  margin: 10px 10px;
 }
 
 .container .approvalList ul li{
@@ -62,10 +85,14 @@
 }
 
 .container .approvalList ul li.division{
-  width: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 
+}
+
+.container .approvalList ul li.division span:nth-child(1){
   border-bottom: 1px solid #000000;
-
 }
 
 .container .approvalList ul li span{

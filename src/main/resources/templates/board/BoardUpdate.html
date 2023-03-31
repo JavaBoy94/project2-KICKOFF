@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <title>footballAdmin</title>
+    <link rel="stylesheet" th:href="@{/css/board/BoardUpdate.css}">
+</head>
+
+<body>
+    <div th:replace="~{fragment/common/adminHeader :: adminHeaderFragment}"></div>
+    <div id="wrap">
+        <div th:replace="~{fragment/common/leftMenu :: leftMenuFragment}"></div>
+        <div class="right-menu">
+            <h1>게시글수정</h1>
+            <div class="right-con">
+                <div class="boardUpdate">
+                    <h2>게시글수정</h2>
+                    <form th:action="@{/board/boardUpdate}" method="post"
+                          enctype="multipart/form-data" >
+                        <ul>
+                            <input type="hidden" name="boardId"   th:field="*{board.boardId}" th:value="${board.boardId}">
+                            <li class="s2">
+                                <label th:for="boardTitle">제목</label>
+                                <input type="text" name="boardTitle"  th:value="${board.boardTitle}">
+<!--                                <p th:if="${#fields.hasErrors('boardTitle')}" th:errorclass="error" th:errors="*{boardTitle}"></p>-->
+                            </li>
+                            <li class="s2">
+                                <label th:for="boardContent">내용</label>
+                                <!--                                <p th:if="${#fields.hasErrors('boardContent')}" th:errorclass="error" th:errors="*{boardContent}"></p>-->
+                            </li>
+                            <textarea name="boardContent"  cols="100" rows="10"  th:text="${board.boardContent}"></textarea>
+                            <li class="s3">
+                                <input type="submit" value="게시글수정" class="s3sub">
+                                <a th:href="@{|/board/boardDetail/${board.boardId}|}" class="s3sub">취소</a>
+                                <a th:href="@{/board/boardList}" class="s3sub">게시글조회</a>
+                            </li>
+                        </ul>
+                             <label th:for="boardFile"></label> <br>
+                                <span th:if="${board.boardAttach==1}">
+                                <input type="hidden"  name="bfileOldName" th:value="${board.bfileOldName}" readonly> <br>
+                                </span>
+                                <span th:if="${board.boardAttach==0}">
+                                <input type="hidden"  name="bfileOldName" th:value="${board.bfileOldName}" readonly> <br>
+                                </span>
+                        <input type="hidden"  name="boardHit" th:value="${board.boardHit}" readonly> <br>
+                        <input type="hidden"  name="boardCmcount" th:value="${board.boardCmcount}" readonly> <br>
+                        <input type="hidden"  name="memberId" th:value="${board.memberId}" readonly> <br>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

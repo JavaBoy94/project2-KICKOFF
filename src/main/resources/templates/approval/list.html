@@ -8,36 +8,73 @@
 </head>
 
 <body>
-    <div th:replace="~{fragment/common/adminHeader :: adminHeaderFragment}"></div>
-    <div class="container">
-        <div th:replace="~{fragment/common/leftMenu :: leftMenuFragment}"></div>
-        <div class="approvalListGrid">
-            <h2>결재문서</h2>
+<div th:replace="~{fragment/common/adminHeader :: adminHeaderFragment}"></div>
+<div class="container">
+    <div th:replace="~{fragment/common/leftMenu :: leftMenuFragment}"></div>
+    <div class="approvalListGrid">
+        <h2>결재문서</h2>
+        <div class="con">
             <div class="approvalList">
                 <!-- ul 클릭시에 디테일 페이지로 이동하게 끔 -->
-                <ul th:each="approval: ${approvalDtoList}">
+                <!--                <ul th:each="approval: ${approvalDtoList}">-->
+                <ul th:each="approval: ${approvalList}">
                     <li class="division">
                         <!-- <span>구분 :</span> -->
                         <span th:text="${approval.appDivision}"></span>
+                        <span th:if="${approval.appStatus}==0" style="font-weight: bold;">결재대기</span>
+                        <span th:if="${approval.appStatus}==1" style="color: blue; font-weight: bold;">승인</span>
+                        <span th:if="${approval.appStatus}==2" style="color: red; font-weight: bold;">반려</span>
                     </li>
                     <li>
-                        <a th:href="@{|/approval/listDetail/${approval.appId}|}"><span class="title" th:text="${approval.appTitle}"></span></a>
+                        <a th:href="@{|/approval/listDetail/${approval.appId}|}"><span class="title"
+                            th:text="${approval.appTitle}"></span></a>
                         <span class="time" th:text="*{#temporals.format(approval.appCreate, 'yyyy.MM.dd')}"></span>
                     </li>
-                    
-                    <!-- 나중에 member와 조인시에 기안자 나타낼 예정 -->
-                    <!-- <li>
-                        <span>작성자 :</span>
-                        <span th:text="${member.mId}"></span>
-                    </li> -->
-
+                </ul>
+            </div>
+            <div class="page">
+                <ul>
                     <li>
-<!--                         <a th:href="@{|/approval/listDetail/${approval.appId}|}">상세보기</a>-->
+                            <span th:if="${1 == approvalList.pageable.pageNumber+1}" style="color:#a2e413">
+                                START
+                            </span>
+                        <a th:unless="${1 == approvalList.pageable.pageNumber+1}" style="color:#e61d8b"
+                           th:href="@{/approval/list(page=0)}">처음</a>
+                    </li>
+    
+                    <li>
+                        <span th:if="${1 == approvalList.pageable.pageNumber+1}" style="color:#a2e413">이전</span>
+                        <a th:unless="${1 == approvalList.pageable.pageNumber+1}" style="color:#e61d8b"
+                           th:href="@{/approval/list(page=${ approvalList.pageable.pageNumber - 1})}">이전</a>
+                    </li>
+    
+    
+                    <!-- 페이지 번호 -->
+                    <li th:each="i: ${#numbers.sequence(startPage, endPage)}">
+                            <span th:if="${i == approvalList.pageable.pageNumber+1}" style="color:#a2e413"
+                                  th:text="${i}"></span>
+                        <a th:unless="${i == approvalList.pageable.pageNumber+1}" style="color:#e61d8b"
+                           th:href="@{/approval/list(page=${ i - 1})}" th:text="${i}"></a>
+                    </li>
+                    <li>
+                            <span th:if="${approvalList.totalPages == approvalList.pageable.pageNumber+1}"
+                                  style="color:#a2e413">다음</span>
+                        <a th:unless="${approvalList.totalPages == approvalList.pageable.pageNumber+1}"
+                           style="color:#e61d8b"
+                           th:href="@{/approval/list(page=${ approvalList.pageable.pageNumber + 1})}">다음</a>
+                    </li>
+    
+                    <li>
+                            <span th:if="${approvalList.totalPages == approvalList.pageable.pageNumber+1}"
+                                  style="color:#a2e413">END</span>
+                        <a th:unless="${approvalList.totalPages == approvalList.pageable.pageNumber+1}"
+                           style="color:#e61d8b" th:href="@{/approval/list(page=${approvalList.totalPages-1})}">END</a>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
+</div>
 </body>
 
 </html>

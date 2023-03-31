@@ -13,130 +13,146 @@
         <div th:replace="~{fragment/common/leftMenu :: leftMenuFragment}"></div>
         <div class="approvalList">
             <h2>결재문서 상세</h2>
-            <div class="conform">
-                <h3>결재선</h3>
-                <div class="conformMain">
-                    <div class="sub1">
-                        <tr>
-                            <th>
-                                <div>결재</div>
-                            </th>
-                        </tr>
-                    </div>
-                    <div class="sub2">
-                        <div class="sub2-1">Sign</div>
-                        <div class="sub2-2">
-                            <!-- 승인 처리시 이미지 -->
-                            <th:block th:if="${approval.appStatus == 1}">
-                                <img th:src="@{/img/approve.png}" alt="" style="width: 100%; height: 100%; object-fit: contain;">
-                            </th:block>
-                            <!-- 반려 처리시 이미지 -->
-                            <th:block th:if="${approval.appStatus == 2}">
-                                <img th:src="@{/img/Companion.png}" alt="" style="width: 100%; height: 100%; object-fit: contain;">
-                            </th:block>
-                        </div>
-                        <div class="sub2-3" style="display: flex; justify-content: center; gap: 10px;">
-                            <span>결재상태 : </span>
-                            <th:block th:if="${approval.appStatus == 0}">
-                                <span>승인대기</span>
-                            </th:block>
-                            <th:block th:if="${approval.appStatus == 1}">
-                                <span style="color: blue; font-weight: bold;">승인완료</span>
-                            </th:block>
-                            <th:block th:if="${approval.appStatus == 2}">
-                                <span style="color: red; font-weight: bold;">반려</span>
-                            </th:block>
-                        </div>
-                    </div>
-                    <div class="sub3">
-                        <tr>
-                            <th>
-                                <div class="sub3-1">
-                                    <span>결재자 :</span>
-                                    <span th:text="${approval.approverName}" style="color:blue; font-weight: bold;" ></span>
-                                    </label>
+            <div class="con">
+                <div class="con2">
+                    <div class="con3">
+                        <div class="conform">
+                            <h3>결재선</h3>
+                            <div class="conformMain">
+                                <div class="sub1">
+                                    <tr>
+                                        <th>
+                                            <div>결재</div>
+                                        </th>
+                                    </tr>
                                 </div>
-                                <!-- 승인대기중(0) 일때 -->
-                                <th:block th:if="${approval.appStatus == 0}">
-                                    <th:block th:if="${approval.approverEmail==mEmail}">
-                                        <!-- 현재 로그인한 회원 이메일과 결재자 이메일이 일치할 때만 승인/반려 활성화 -->
-                                        <form th:action="@{|/approval/reject/${approval.appId}|}" method="get">
-                                            <!-- 의견(사유) -->
-                                            <div class="sub3-2"><textarea name="appReason" id="appReason" cols="40" rows="5"
-                                                    placeholder="결재자 의견 입력"></textarea></div>
-                                            <div class="sub3-3">
-                                                <input type="submit" value="반려">
-                                                <button><a th:href="@{|/approval/approve/${approval.appId}|}">승인</a></button>
-                                            </div>
-                                        </form>
-                                    </th:block>
-                                </th:block>
-                                <!-- 승인(1) 혹은 반려(2) 처리시 -->
-                                <th:block th:if="${approval.appStatus == 1 || approval.appStatus == 2}">
-                                    <div class="sub3-2">
-                                        <textarea cols="40" rows="5" style="resize: none;"
-                                        th:text="${approval.appReason}" readonly></textarea>
+                                <div class="sub2">
+                                    <div class="sub2-1">Sign</div>
+                                    <div class="sub2-2">
+                                        <!-- 승인 처리시 이미지 -->
+                                        <th:block th:if="${approval.appStatus == 1}">
+                                            <img th:src="@{/img/approve.png}" alt=""
+                                                style="width: 100%; height: 100%; object-fit: contain;">
+                                        </th:block>
+                                        <!-- 반려 처리시 이미지 -->
+                                        <th:block th:if="${approval.appStatus == 2}">
+                                            <img th:src="@{/img/Companion.png}" alt=""
+                                                style="width: 100%; height: 100%; object-fit: contain;">
+                                        </th:block>
                                     </div>
-                                </th:block>
-                            </th>
-                        </tr>
+                                    <div class="sub2-3" style="display: flex; justify-content: center; gap: 10px;">
+                                        <span>결재상태 : </span>
+                                        <th:block th:if="${approval.appStatus == 0}">
+                                            <span>승인대기</span>
+                                        </th:block>
+                                        <th:block th:if="${approval.appStatus == 1}">
+                                            <span style="color: blue; font-weight: bold;">승인완료</span>
+                                        </th:block>
+                                        <th:block th:if="${approval.appStatus == 2}">
+                                            <span style="color: red; font-weight: bold;">반려</span>
+                                        </th:block>
+                                    </div>
+                                </div>
+                                <div class="sub3">
+                                    <tr>
+                                        <th>
+                                            <div class="sub3-1">
+                                                <span>결재자 :</span>
+                                                <span th:text="${approval.approverName}"
+                                                    style="color:blue; font-weight: bold;"></span>
+                                                </label>
+                                            </div>
+                                            <!-- 승인대기중(0) 일때 -->
+                                            <th:block th:if="${approval.appStatus == 0}">
+                                                <th:block th:if="${approval.approverEmail==mEmail}">
+                                                    <!-- 현재 로그인한 회원 이메일과 결재자 이메일이 일치할 때만 승인/반려 활성화 -->
+                                                    <form th:action="@{|/approval/reject/${approval.appId}|}"
+                                                        method="get">
+                                                        <!-- 의견(사유) -->
+                                                        <div class="sub3-2"><textarea name="appReason" id="appReason"
+                                                                cols="40" rows="5" placeholder="결재자 의견 입력"></textarea>
+                                                        </div>
+                                                        <div class="sub3-3">
+                                                            <input type="submit" value="반려">
+                                                            <button><a
+                                                                    th:href="@{|/approval/approve/${approval.appId}|}">승인</a></button>
+                                                        </div>
+                                                    </form>
+                                                </th:block>
+                                            </th:block>
+                                            <!-- 승인(1) 혹은 반려(2) 처리시 -->
+                                            <th:block th:if="${approval.appStatus == 1 || approval.appStatus == 2}">
+                                                <div class="sub3-2">
+                                                    <textarea cols="40" rows="5" style="resize: none;"
+                                                        th:text="${approval.appReason}" readonly></textarea>
+                                                </div>
+                                            </th:block>
+                                        </th>
+                                    </tr>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="approvalListDetail">
+                            <ul>
+                                <li class="division">
+                                    <span>구분 :</span>
+                                    <span th:text="${approval.appDivision}"></span>
+                                </li>
+                                <li class="title">
+                                    <!-- <span>제목 :</span> -->
+                                    <span th:text="${approval.appTitle}"></span>
+                                </li>
+
+                                <div class="sub1">
+                                    <!-- 나중에 member와 조인시에 기안자 나타낼 예정 -->
+                                    <li class="id">
+                                        <span>작성자 : </span>
+                                        <span class="drafter" th:text="${approval.drafterName}"></span>
+                                    </li>
+
+                                    <li class="email">
+                                        <span>이메일 : </span>
+                                        <span class="drafter" th:text="${approval.drafterEmail}"></span>
+                                    </li>
+
+                                    <li class="time">
+                                        <span>등록일 : </span>
+                                        <span class="drafter"
+                                            th:text="*{#temporals.format(approval.appCreate, 'yyyy.MM.dd HH:mm')}"></span>
+                                    </li>
+                                </div>
+
+                                <div class="line">
+                                    <!-- -------------------------------------------------------------------------- -->
+                                </div>
+
+                                <li class="content">
+                                    <span>기안내용</span>
+                                    <span class="sub1" th:text="${approval.appContent}"></span>
+                                </li>
+
+                                <div class="fileparents">
+                                    <li class="file">
+                                        <span>첨부파일</span>
+                                        <div class="filesub" th:if="${approval.appAttach==1}"></div>
+                                        <a th:href="@{|/upload/${approval.docSave}|}" download="">다운로드</a>
+                                        <div th:if="${approval.appAttach==0}"></div>
+                                    </li>
+                                </div>
+
+                                <div class="move">
+                                    <li>
+                                        <th:block th:if="${approval.appStatus == 0 && approval.drafterEmail == memberDto.mEmail}">
+                                            <!-- 결재대기 상태고, 현재 로그인한 회원과 기안서 작성자가 일치할때만 활성화 -->
+                                            <button><a th:href="@{|/approval/listUpdate/${approval.appId}|}">수정</a></button>
+                                            <button><a th:href="@{|/approval/listDelete/${approval.appId}|}">삭제</a></button>
+                                        </th:block>
+                                    </li>
+                                </div>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="approvalListDetail">
-                <ul>
-                    <li class="division">
-                        <span>구분 :</span>
-                        <span th:text="${approval.appDivision}"></span>
-                    </li>
-                    <li class="title">
-                        <!-- <span>제목 :</span> -->
-                        <span th:text="${approval.appTitle}"></span>
-                    </li>
-
-                    <div class="sub1">
-                        <!-- 나중에 member와 조인시에 기안자 나타낼 예정 -->
-                        <li class="id">
-                            <span>작성자 : </span>
-                            <span class="drafter" th:text="${approval.drafterName}"></span>
-                        </li>
-                        
-                        <li class="email">
-                            <span>이메일 : </span>
-                            <span class="drafter" th:text="${approval.drafterEmail}"></span>
-                        </li>
-
-                        <li class="time">
-                            <span>등록일 : </span>
-                            <span class="drafter" th:text="*{#temporals.format(approval.appCreate, 'yyyy.MM.dd HH:mm')}"></span>
-                        </li>
-                    </div>
-
-                    <div class="line">
-                        <!-- -------------------------------------------------------------------------- -->
-                    </div>
-
-                    <li class="content">
-                        <span>기안내용</span>
-                        <span class="sub1" th:text="${approval.appContent}"></span>
-                    </li>
-
-                    <div class="fileparents">
-                        <li class="file">
-                            <span>첨부파일</span>
-                            <div class="filesub" th:if="${approval.appAttach==1}"></div>
-                            <a th:href="@{|/upload/${approval.docSave}|}" download="">다운로드</a>
-                            <div th:if="${approval.appAttach==0}"></div>
-                        </li>
-                    </div>
-
-                    <div class="move">
-                        <li>
-                            <button><a th:href="@{|/approval/listUpdate/${approval.appId}|}">수정</a></button>
-                            <button><a th:href="@{|/approval/listDelete/${approval.appId}|}">삭제</a></button>
-                        </li>
-                    </div>
-                </ul>
             </div>
         </div>
     </div>

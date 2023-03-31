@@ -8,17 +8,18 @@
   padding-top: 50px;
   box-sizing: border-box;
   display: flex;
-  /* justify-content:center; */
+  justify-content:space-between;
   /* gap: 5px; */
 
-  margin-left: 310px
+  /* margin-left: 310px */
 }
 
 .container .approvalWrite h2{
-  width: 500px;
+  /* width: 500px; */
 
   text-align: left;
-  padding: 30px 20px;
+  /* padding: 30px 20px; */
+  padding: 5px;
 
   background-color: black;
   color: #ffffff;
@@ -26,14 +27,34 @@
 
 .container .approvalWrite{
   /* border: 1px solid #ffff00; */
-  padding: 20px;
+  flex: 1;
+  height: auto;
+  box-sizing: border-box;
+  background-color: #ffffff;
 
-  margin: 10px 10px;
-  box-shadow: 2px 2px 5px #4d4d4d;
-  color: #525252;
+  padding: 30px;
+  padding-left: 330px;
+
+  /* margin: 10px 10px; */
+}
+
+.container .approvalWrite .con{
+  box-shadow: 5px 5px 5px 1px grey;
+}
+
+.container .approvalWrite form{
+  height: auto;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+
+  align-items: center;
 }
 
 .container .approvalWrite ul{
+  border: 1px solid #4d4d4d3a;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -42,7 +63,7 @@
 .container .approvalWrite ul li{
   /* border: 1px solid #00ff00; */
   padding: 10px 10px;
-  border-bottom: 1px solid #222;
+  /* border-bottom: 1px solid #222; */
 }
 
 .container .approvalWrite ul li label{

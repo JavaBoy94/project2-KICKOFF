@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" , xmlns:sec="http://www.thymeleaf.org/extras/spring-security5">
+
+<head>
+    <meta charset="UTF-8">
+    <title>footballAdmin</title>
+    <link rel="stylesheet" th:href="@{/css/notice/noticeDetail.css}">
+</head>
+
+<body>
+<div th:replace="~{fragment/common/adminHeader :: adminHeaderFragment}"></div>
+<div id="wrap">
+    <div th:replace="~{fragment/common/leftMenu :: leftMenuFragment}"></div>
+    <div class="right-menu">
+        <h1>게시글</h1>
+        <div class="right-con">
+            <div class="noticeDetail">
+                <h2>공지사항내역</h2>
+                    <ul>
+                        <li class="s2">
+                            <label th:for="noticeTitle">제목</label>
+                            <span th:text="${notice.noticeTitle}"></span>
+                        </li>
+                        <li class="s2">
+                            <label th:for="noticeHit">조회수</label>
+                            <span th:text="${notice.noticeHit}"></span>
+                        </li>
+                        <li class="s2">
+                            <label th:for="noticeContent">내용</label>
+                        </li>
+                        <textarea th:text="${notice.noticeContent}" cols="100" rows="30" style=
+                                "overflow-y: auto; font-size: large; font-weight: 300; "  readonly></textarea>
+
+                        <li class="s3" th:if="${notice.mEmail.equals(#authentication.getName())}">
+                            <a th:href="@{|/notice/noticeUpdate/${notice.noticeId}|}" class="s3sub">공지사항수정</a>
+                            <a th:href="@{|/notice/noticeDelete/${notice.noticeId}|}" class="s3sub">공지사항삭제</a>
+                            <a th:href="@{/notice/noticePage}" class="s3sub">공지사항조회</a>
+                        </li>
+                        <li class="s3" th:unless="${notice.mEmail.equals(#authentication.getName())}">
+                            <a th:href="@{/notice/noticePage}" class="s3sub">공지사항조회</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

@@ -130,5 +130,77 @@ public class MemberScheduleService {
     }
 
 
+    //개인 일정 조회
+    public List<MemberScheduleDto> memberEventListAll(Long id) {
 
+        List<MemberScheduleDto> memberScheduleDtoList = new ArrayList<>();
+
+        List<MemberScheduleEntity> memberScheduleEntityList = memberScheduleRepository.findAllByMId(id);
+
+
+        for (MemberScheduleEntity memberScheduleEntity : memberScheduleEntityList){
+            memberScheduleDtoList.add(MemberScheduleDto.toMemberScheduleDto(memberScheduleEntity));
+
+        }
+        return memberScheduleDtoList;
+
+    }
+
+    //개인 일정 추가
+    public void setCalendar(MemberScheduleDto memberScheduleDto, Long id) {
+
+        MemberScheduleEntity memberScheduleEntity = MemberScheduleEntity.toMemberScheduleEntity(memberScheduleDto);
+
+        MemberEntity memberEntity = memberRepository.findById(id).get();
+
+//        memberEntity.setMId(id);
+
+        memberScheduleEntity.setScheduleDone("N");
+        memberScheduleEntity.setMemberEntity(memberEntity);
+
+        memberScheduleRepository.save(memberScheduleEntity);
+    }
+
+    //개인 일정 삭제
+    public void findContentAndDelete(MemberScheduleDto memberScheduleDto) {
+
+        Optional<MemberScheduleEntity> optionalMemberScheduleEntity = memberScheduleRepository.findByContentId(memberScheduleDto.getContent());
+
+        MemberScheduleEntity memberScheduleEntity = optionalMemberScheduleEntity.get();
+
+        memberScheduleRepository.delete(memberScheduleEntity);
+
+    }
+
+    //컨텐츠 이름 있는지 확인
+    public int findContentName(MemberScheduleDto memberScheduleDto) {
+
+        List<MemberScheduleEntity> memberScheduleEntityList = memberScheduleRepository.findByContentCount(memberScheduleDto.getContent());
+
+        if(memberScheduleEntityList.size()<1){
+            return 0;
+        } else {
+            return 1;
+        }
+
+    }
+    
+    //개인 일정 수정
+    public void updateEvent(MemberScheduleDto memberScheduleDto) {
+
+        MemberScheduleEntity memberScheduleEntity = MemberScheduleEntity.toMemberScheduleEntity(memberScheduleDto);
+
+        //여기문제
+        Optional<MemberScheduleEntity> optionalMemberScheduleEntity = memberScheduleRepository.findByContentId(memberScheduleEntity.getContent());
+
+        MemberScheduleEntity memberScheduleEntity1 = optionalMemberScheduleEntity.get();
+
+
+        memberScheduleEntity1.setStart(memberScheduleDto.getStart());
+        memberScheduleEntity1.setEnd(memberScheduleDto.getEnd());
+
+
+
+        memberScheduleRepository.save(memberScheduleEntity1);
+    }
 }

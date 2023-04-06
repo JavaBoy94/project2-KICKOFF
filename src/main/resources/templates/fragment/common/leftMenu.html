@@ -124,13 +124,22 @@
                             <a href="">NAVER API</a>
                             <ul class="sub">
                                 <li>
-                                    <a href="">Naver login</a>
+                                    <a href="https://kickoff.ncpworkplace.com/v/home/">Naver login</a>
                                 </li>
                                 <li>
-                                    <a href="">Naver Object</a>
+                                    <form action="https://auth.worksmobile.com/oauth2/v2.0/authorize" method="get">
+                                        <input type="hidden" name="client_id" value="H8paKKaUOVv57BJBdBm9">
+                                        <input type="hidden" name="redirect_uri" value="http://localhost:8099/naver/auth2">
+                                        <input type="hidden" name="scope" value="directory,directory.read,orgunit,orgunit.read">
+                                        <input type="hidden" name="response_type" value="code">
+                                        <input type="hidden" name="state" value="test">
+                                        <button>조직인증</button>
+                                    </form>
                                 </li>
                                 <li>
-                                    <a href="">Naver Mail</a>
+                                    <form id="mail" onsubmit="window.open('https://mail.worksmobile.com/write/popup', '_blank', 'width=600, height=400,resizeable,scrollbars');" >
+					                    <button>메일연동</button>
+				                    </form>
                                 </li>
                             </ul>
                         </li>

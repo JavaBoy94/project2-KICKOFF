@@ -35,6 +35,8 @@ dependencies {
 	testImplementation 'org.springframework.security:spring-security-test'
 //	OAuth2
 	implementation ("org.springframework.boot:spring-boot-starter-oauth2-client")
+//	네이버 api
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 }
 
 tasks.named('test') {

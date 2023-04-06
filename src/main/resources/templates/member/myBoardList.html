@@ -51,13 +51,13 @@
                                 <li>
                                 <span th:if="${1 == boardList.pageable.pageNumber+1}">≪</span>
                                 <a th:unless="${1 == boardList.pageable.pageNumber+1}"
-                                    th:href="@{/board/adminBoardList(page=0)}">≪</a>
+                                    th:href="@{/member/myBoardList(page=0)}">≪</a>
                                 </li>
                     
                                 <li>
                                 <span th:if="${1 == boardList.pageable.pageNumber+1}">＜</span>
                                 <a th:unless="${1 == boardList.pageable.pageNumber+1}"
-                                    th:href="@{/board/adminBoardList(page=${ boardList.pageable.pageNumber - 1})}">＜</a>
+                                    th:href="@{/member/myBoardList(page=${ boardList.pageable.pageNumber - 1})}">＜</a>
                                 </li>
                     
                     
@@ -65,18 +65,18 @@
                                 <li th:each="i: ${#numbers.sequence(startPage, endPage)}">
                                 <span th:if="${i == boardList.pageable.pageNumber+1}" style="color: red; font-weight: bold;" th:text="${i}"></span>
                                 <a th:unless="${i == boardList.pageable.pageNumber+1}"
-                                    th:href="@{/board/adminBoardList(page=${ i - 1})}" th:text="${i}"></a>
+                                    th:href="@{/member/myBoardList(page=${ i - 1})}" th:text="${i}"></a>
                                 </li>
                                 <li>
                                 <span th:if="${boardList.totalPages == boardList.pageable.pageNumber+1}">＞</span>
                                 <a th:unless="${boardList.totalPages == boardList.pageable.pageNumber+1}"
-                                    th:href="@{/board/adminBoardList(page=${ boardList.pageable.pageNumber + 1})}">＞</a>
+                                    th:href="@{/member/myBoardList(page=${ boardList.pageable.pageNumber + 1})}">＞</a>
                                 </li>
                     
                                 <li>
                                 <span th:if="${boardList.totalPages == boardList.pageable.pageNumber+1}">≫</span>
                                     <a th:unless="${boardList.totalPages == boardList.pageable.pageNumber+1}"
-                                        th:href="@{/board/adminBoardList(page=${boardList.totalPages-1})}">≫</a>
+                                        th:href="@{/member/myBoardList(page=${boardList.totalPages-1})}">≫</a>
                                 </li>
                             </ul>
                         </div>

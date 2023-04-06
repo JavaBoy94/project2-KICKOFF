@@ -28,5 +28,6 @@ spring:
   profiles:
     include: oauth
 
-
+navar.api.client-id: H8paKKaUOVv57BJBdBm9
+navar.api.client-secret: r_8mQX3Nx3
 

@@ -64,7 +64,7 @@
                                             </div>
                                             <!-- 승인대기중(0) 일때 -->
                                             <th:block th:if="${approval.appStatus == 0}">
-                                                <th:block th:if="${approval.approverEmail==mEmail}">
+                                                <th:block th:if="${approval.approverEmail == memberDto.mEmail}">
                                                     <!-- 현재 로그인한 회원 이메일과 결재자 이메일이 일치할 때만 승인/반려 활성화 -->
                                                     <form th:action="@{|/approval/reject/${approval.appId}|}"
                                                         method="get">

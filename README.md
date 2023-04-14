@@ -62,7 +62,7 @@
 <details>
 <summary>상세보기</summary>
 <br>
-  <p align="center"><img src="" style="width: 700px"></p> 
+  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/231950119-3478b0a0-5bc1-4da0-9d0a-81f874d26a91.png" style="width: 700px"></p> 
 <br>
   <p align="center">페이지의 인증 및 인가를 처리하는 SecurityFilterChain객체를 통해 페이지별 접근권한과 기본적인 로그인 설정을 구현합니다.</p>
   
@@ -171,22 +171,130 @@ public class LoginService implements UserDetailsService {
   ```
   
 <br>
-  <p align="center"><img src="" style="width: 700px"></p>
+  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/231950129-6ae46cd3-0cda-4216-976f-f781a26e3927.png" style="width: 700px"></p>
 <br>
   <p align="center">.yml에 oauth2를 통한 소셜로그인(google, naver, kakao)을 위한 api설정을 합니다.</p>
 <br>
-  <p align="center"><img src="" style="width: 700px"></p>
+  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/231950130-35133640-cadb-4690-b3d2-414dfb213336.png" style="width: 700px"></p>
 <br>
   <p align="center">회원가입시 우편번호 API를 활용하여 사용자의 주소를 입력받으며, multipartfile 객체를 통해 프로필 사진을 등록할 수 있습니다.</p>
 <br>
-  <p align="center"><img src="" style="width: 700px"></p>
+  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/231950133-d8cd18df-eacb-4b01-aca4-ab8e8e7648a2.png" style="width: 700px"></p>
 <br>
   <p align="center">@Valid와 BindingResult 객체를 통해 필수입력정보에 대한 유효성 검사를 진행합니다.</p>
-<br>
-  <p align="center"><img src="" style="width: 700px"></p>
-<br>
-  <p align="center"></p>
-<br>
+  
+  ```java
+// ---------- MemberDto ------------
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@ToString
+public class MemberDto {
+
+    private Long mId;
+
+    @NotBlank(message = "이메일은 필수 입력 사항입니다.")
+    @Pattern(regexp = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,6}$", message = "이메일 형식이 맞지 않습니다." )
+    private String mEmail;
+
+    @NotBlank(message = "비밀번호는 필수 입력 사항입니다.")
+    private String mPw;
+
+    private String mZipcode;
+    private String mAddr1;
+    private String mAddr2;
+
+    @NotBlank(message = "닉네임은 필수 입력 사항입니다.")
+    @Pattern(regexp = "[A-Za-z0-9가-힣]{2,}", message = "닉네임 형식이 올바르지 않습니다.")
+    private String mName;
+
+    @NotBlank(message = "전화번호는 필수 입력 사항입니다")
+    @Pattern(regexp = "[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}", message = "전화번호 형식이 맞지 않습니다.")
+    private String mTel;
+
+    private String mIntro;
+    private LocalDateTime mCreate;
+    private Role mRole;
+    private String mDept;
+    private String mPosition;
+    private int mAttach;
+    private MultipartFile profileImg;
+
+    private String originName;
+    private String saveName;
+
+// --------- MainController -----------
+
+  //    회원가입
+    @PostMapping("/joinOk")
+    public String joinOk(@Valid MemberDto memberDto, BindingResult bindingResult) throws IOException {
+
+        if(bindingResult.hasErrors()){
+            return "join";
+        }
+
+        int rs = memberService.memberJoin(memberDto);
+
+        if (rs!=1) {
+            System.out.println("join fail !");
+            return "redirect:/join";
+        } else {
+            System.out.println("join success !");
+            return "redirect:/login";
+        }
+
+    }
+    
+// ---------- MemberService ------------
+
+//    회원가입
+    @Transactional
+    public int memberJoin(MemberDto memberDto) throws IOException {
+
+        if(memberDto.getProfileImg().isEmpty()){
+//            파일이 없을때
+            Long id = memberRepository.save(MemberEntity.toMemberEntity(memberDto,passwordEncoder)).getMId();
+
+            if (memberRepository.findById(id).isEmpty()){
+                return 0;
+            } else {
+                return 1;
+            }
+
+        } else {
+//            파일이 있을때
+            
+//            1. 실제 파일 저장
+
+            MultipartFile multipartFile = memberDto.getProfileImg();
+            String originName = multipartFile.getOriginalFilename();  // 원본파일명
+            UUID uuid = UUID.randomUUID();  // 랜덤파일명 생성
+
+            String saveName = uuid+"_"+originName;  // 저장파일명
+            String filePath = "C:/saveFiles/"+saveName;  // 파일저장경로
+
+            multipartFile.transferTo(new File(filePath));  // 해당 경로에 저장
+            
+//            2. DB에 파일 정보 저장 (회원정보 저장 후, 그 id를 받아서 file entity에도 저장)
+
+            Long id = memberRepository.save(MemberEntity.toMemberEntity(memberDto,passwordEncoder)).getMId();
+            MemberEntity memberEntity = memberRepository.findById(id).get();
+
+            Long profileId = profileRepository.save(ProfileEntity.toProfileEntity(memberEntity,originName,saveName)).getProfileId();
+
+            if(profileRepository.findById(profileId).isEmpty()){
+                return 0;
+            } else {
+                return 1;
+            }
+
+        }
+
+    }
+  ```
+
 </details>
 
 - 회원관리 CRUD 구현

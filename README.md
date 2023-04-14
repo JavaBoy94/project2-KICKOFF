@@ -3,7 +3,7 @@
 </p>
 
 # KICKOFF (킥오프)
-## Open API와 챗봇을 활용한 동호회 운영/관리 그룹웨어 
+## Open API와 챗봇을 활용한 축구 동호회 운영/관리 그룹웨어 
 ## [프로젝트 소개 PDF(영상포함)](https://drive.google.com/file/d/18gtjqQk1KOKh-EcekBsUl4dJVbOpZ3JZ/view?usp=share_link)
 
 ## 📅 프로젝트 기간 - 2023.03.14 ~ 2023.04.06
@@ -494,25 +494,192 @@ public class MemberController {
 <details>
 <summary>상세보기</summary>
 <br>
-  <p align="center"><img src=""></p> 
+  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/231962498-90ed947f-56cb-4bc4-8400-d982f1f4a5e8.png"></p> 
 <br>
-  <p align="center"></p>
+  <p align="center">Open API를 활용하여 날씨(Openweather)와 일정관리(fullcalender) 기능을 추가하였으며,</p>
+  <p align="center">공지사항 및 커뮤니티 게시판의 최신 글목록도 조회하도록 하였습니다.</p>
+  
+  
+  ```javascript
+  
+// ------------ weather.js --------------
+  
+  // 현재시간 출력
+    $(document).ready(function () {
+    
+      function convertTime() {
+          let now = new Date();
+    
+          let year = now.getFullYear();
+          let month = now.getMonth() + 1;
+          let date = now.getDate();
+          let hours = now.getHours();
+          let minutes = now.getMinutes() <= 9 ? '0' + now.getMinutes() : now.getMinutes();
+          // hour(시)가 12 이상이면 오후(pm), 12 미만이면 오전(am)으로 설정
+          let ampm = hours >= 12 ? 'pm' : 'am';
+          // heour(시)를 12시간 단위로 변경 => 13시부터 12로 나눈 나머지(1~12)로, 그 미만은 그대로
+          let hours2 = hours > 12 ? hours % 12 : hours;
+
+          let weekday = new Array(7);
+          weekday[0] = "일";
+          weekday[1] = "월";
+          weekday[2] = "화";
+          weekday[3] = "수";
+          weekday[4] = "목";
+          weekday[5] = "금";
+          weekday[6] = "토";
+    
+          let n = weekday[now.getDay()];
+    
+          return year +'.'+ month + '.' + date + '(' + n + ') ' + hours2 + ':' + minutes + ampm;
+      }
+    
+      let currentTime = convertTime();
+      $('.nowtime').append(currentTime);
+    });
+    
+    // API 요청
+    $.getJSON('https://api.openweathermap.org/data/2.5/weather?q=Seoul,kr&appid=5a87979705c7dd0e87fc7cfda0976f92&lang=kr&units=metric',
+    function (WeatherResult) {
+    
+      // 파라미터
+      // q : 도시명
+      // appid : apikey (발급필요)
+      // lang : 언어 (kr : 한국어)
+      // units : 온도표시 방식 (metric : 섭씨)
+    
+      // 날씨정보 출력
+      Math.round
+      $('.SeoulWeatherDesc').append(WeatherResult.weather[0].description);
+      $('.SeoulNowtemp').append(Math.round(WeatherResult.main.temp,1)+'°C');
+      $('.SeoulLowtemp').append(Math.round(WeatherResult.main.temp_min,1)+'°C');
+      $('.SeoulHightemp').append(Math.round(WeatherResult.main.temp_max,1)+'°C');
+    
+      //날씨아이콘출력
+      //WeatherResult.weater[0].icon
+      let weathericonUrl =
+          '<img src= "http://openweathermap.org/img/wn/'
+          + WeatherResult.weather[0].icon +
+          '.png" alt="' + WeatherResult.weather[0].description + '"/>'
+    
+      $('.SeoulIcon').html(weathericonUrl);
+    });
+
+};
+  ```
+  
 <br>
-  <p align="center"><img src=""></p>
+  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/231962503-bab18dc4-db88-429a-8fa6-cf0227712c9c.png"></p>
 <br>
-  <p align="center"></p>
+  <p align="center">관리자메뉴 내 회원관리 페이지에선 전체회원목록을 Page객체를 통해 정보를 가져오며, 검색기능도 추가하였습니다.</p>
+  <p align="center">display:gird 설정을 통해 일정한 사이즈의 회원정보 요소가 자동을 생성되도록 하였습니다.</p>
+  
+  ```java
+// ------------ MemberController -------------
+
+  //    관리자메뉴 - 전체 회원목록
+    @GetMapping("/memberList")
+    public String memberList(@PageableDefault(page = 0, size = 8, sort = "mCreate", direction = Sort.Direction.DESC)
+                             Pageable pageable, Model model,
+                             @RequestParam(value = "type",required = false) String type,
+                             @RequestParam(value = "search",required = false) String search) {
+
+        Page<MemberDto> memberList = memberService.getMemberList(pageable);
+
+//        검색조회
+        if(type != null && search != null) {
+
+            if(type.equals("mName")) {
+//                이름으로 검색
+                memberList = memberService.findMemberName(search,pageable);
+            } else if (type.equals("mEmail")) {
+//                이메일로 검색
+                memberList = memberService.findMemberEmail(search,pageable);
+            } else if (type.equals("mTel")) {
+//                연락처로 검색
+                memberList = memberService.findMemberTel(search,pageable);
+            }
+
+        }
+
+        int totalPage = memberList.getTotalPages();  // 총 페이지 수
+        int blockNum = 3;                            // 화면에 표시할 페이지 수 => 2페이지씩 표시
+        int nowPage = memberList.getNumber();        // 현재페이지
+        int startPage = (int)((Math.floor(nowPage/blockNum)*blockNum)+1 <= totalPage ? (Math.floor(nowPage/blockNum)*blockNum)+1 : totalPage);
+        // 블록의 첫페지이지
+        // 블록이 3일 경우     123 -> 1, 456  -> 4 , 789 -> 7
+        // Math.floor -> 올림
+
+        int endPage = (startPage + blockNum-1 < totalPage ? startPage + blockNum-1 : totalPage);
+        // 블록의 마지막 페이지
+        // 블록이 3일 경우      123 -> 3, 456  -> 5 , 789 -> 9
+        // 시작페이지+블록-1> 전체 페이지 -> 마지막페이지숫자(시작페이지+블록-1)
+
+        model.addAttribute("memberList", memberList);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+
+        return "member/adminMemberList";
+    }
+    
+// --------- MemberService -----------
+
+//    관리자메뉴 내 회원목록 검색 - 이름 기준
+    public Page<MemberDto> findMemberName(String search, Pageable pageable) {
+        
+        Page<MemberEntity> memberEntityPage = memberRepository.findBymNameContaining(search,pageable);
+
+        if (memberEntityPage.isEmpty()){
+            return null;
+        }
+
+        Page<MemberDto> memberDtoPage = memberEntityPage.map(MemberDto::toMemberDto);
+
+        return memberDtoPage;
+    }
+
+//    관리자메뉴 내 회원목록 검색 - 이메일 기준
+    public Page<MemberDto> findMemberEmail(String search, Pageable pageable) {
+
+        Page<MemberEntity> memberEntityPage = memberRepository.findBymEmailContaining(search,pageable);
+
+        if (memberEntityPage.isEmpty()){
+            return null;
+        }
+
+        Page<MemberDto> memberDtoPage = memberEntityPage.map(MemberDto::toMemberDto);
+
+        return memberDtoPage;
+    }
+
+//    관리자메뉴 내 회원목록 검색 - 연락처 기준
+    public Page<MemberDto> findMemberTel(String search, Pageable pageable) {
+
+        Page<MemberEntity> memberEntityPage = memberRepository.findBymTelContaining(search,pageable);
+
+        if (memberEntityPage.isEmpty()){
+            return null;
+        }
+
+        Page<MemberDto> memberDtoPage = memberEntityPage.map(MemberDto::toMemberDto);
+
+        return memberDtoPage;
+    }
+    
+  ```
+  
 <br>
-  <p align="center"><img src=""></p>
+  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/231962509-fa6723b9-48a2-42b0-a835-8170301f1788.png"></p>
 <br>
-  <p align="center"></p>
+  <p align="center">회원목록에서 특정회원 정보 클릭시 회원상세 페이지로 이동합니다.</p>
 <br>
-  <p align="center"><img src=""></p>
+  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/231962515-6f286f7f-7b8e-425e-be49-304479530ac7.png"></p>
 <br>
-  <p align="center"></p>
+  <p align="center">공지사항 관리에선 전체 공지사항 게시물에 대한 RUD가 가능합니다.</p>
 <br>
-  <p align="center"><img src=""></p>
+  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/231962518-11b91f74-4777-4acc-9468-80532627ddfd.png"></p>
 <br>
-  <p align="center"></p>
+  <p align="center">게시판 관리에선 전체 커뮤니티 게시판의 게시물에 대한 RUD가 가능합니다.</p>
 <br>
 </details>
   

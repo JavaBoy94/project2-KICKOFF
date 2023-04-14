@@ -13,6 +13,14 @@
 - Komoran(한국어 형태소 분석기)을 활용한 시나리오형 챗봇을 구현하였습니다.
 - Github Actions와 AWS EC2를 기반으로 CI/CD(지속통합/지속배포) 환경을 구축하였습니다.
 
+## ⚙️ 개발 환경
+- Language : Java 11, HTML5, CSS3, JavaScript
+- IDE : IntelliJ IDEA, Visual Studio Code
+- Framework : Springboot
+- Database : MySQL
+- Template Engine : Thymeleaf 
+- ORM : JPA <br>
+
 ## 🧑‍🤝‍🧑 팀 구성 및 역할
 #### 👨‍💻팀장 : 김필수 <br>
 #### java package : config / member / admin / entity / dto <br>
@@ -52,12 +60,3 @@
 - 결재관리 CRUD 구현
 - 조직관리 CRUD 구현
 - Komoran 기반 챗봇 구현 <br>
-
-## ⚙️ 개발 환경
-- Language : Java 11, HTML5, CSS3, JavaScript
-- IDE : IntelliJ IDEA, Visual Studio Code
-- Framework : Springboot
-- Database : MySQL
-- Template Engine : Thymeleaf 
-- ORM : JPA <br>
-

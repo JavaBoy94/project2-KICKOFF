@@ -57,9 +57,167 @@
 </details>
 
 - 데이터 모델링 및 Entity, DTO 구현
-- 회원관리 CRUD 구현
-- 메인 페이지, 관리자 페이지 구현
 - Spring Security, Oauth2 기반 로그인 및 회원가입 구현
+
+<details>
+<summary>상세보기</summary>
+<br>
+  <p align="center"><img src="" style="width: 700px"></p> 
+<br>
+  <p align="center">페이지의 인증 및 인가를 처리하는 SecurityFilterChain객체를 통해 페이지별 접근권한과 기본적인 로그인 설정을 구현합니다.</p>
+  
+  ```java
+// --------- Security config ----------
+  
+@Configuration
+@EnableWebSecurity
+@RequiredArgsConstructor
+public class WebSecurityConfig {
+
+    @Autowired
+    private LoginService loginService;
+
+//    private final AuthenticationFailureHandler failureHandler;
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
+
+        http.csrf().disable();
+
+        // 권한 => GUEST(회원가입 후 관리자 승인 필요), MEMBER(일반회원), ADMIN(관리자), BLACK(정지회원)
+        http.authorizeHttpRequests()
+                .antMatchers("/login","/join","/naver").permitAll()  // 모든 유저 접근 가능
+                .antMatchers("/css/**", "/js/**", "/img/**").permitAll()
+  
+  
+  // 로그인
+  
+        http.formLogin()
+                .loginPage("/login")
+                .usernameParameter("mEmail") // 로그인시 해당하는 아이디 name->userEmail
+                .passwordParameter("mPw")
+                .loginProcessingUrl("/loginOk") // POST 로 보내는 액션
+              .failureUrl("/login")
+                .defaultSuccessUrl("/index", true)   // 성공시 URL
+                .and()
+                .oauth2Login()
+                .loginPage("/login")
+        ;
+
+
+
+  // 로그아웃
+  
+        http.logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login");
+
+        http.userDetailsService(loginService);
+
+        return http.build();
+    }
+  
+// --------- SecurityUser ----------
+  
+@Getter
+@Setter
+@ToString
+public class SecurityUser extends User {
+
+    // 로그인 정보 사용자
+    private MemberEntity memberEntity;
+
+    public SecurityUser(MemberEntity memberEntity) {
+        super(memberEntity.getMEmail(), memberEntity.getMPw(),
+                AuthorityUtils.createAuthorityList(memberEntity.getMRole().toString()));
+
+        this.memberEntity = memberEntity;
+    }
+}
+  
+// --------- LoginService ----------
+  
+@Service
+@RequiredArgsConstructor
+public class LoginService implements UserDetailsService {
+
+    private final MemberRepository memberRepository;
+
+    @Override
+    public UserDetails loadUserByUsername(String mEmail) throws UsernameNotFoundException {
+        // DB에 해당 회원정보가 있는지 확인
+        Optional<MemberEntity> memberEntity = memberRepository.findBymEmail(mEmail);
+
+        if(memberEntity.isEmpty()){
+            throw new UsernameNotFoundException("사용자가 없습니다.");
+        }
+
+
+        MemberEntity memberEntity1 = memberEntity.get();
+
+        System.out.println(memberEntity1.getMEmail() + "<<<<<<<< email");
+        System.out.println(memberEntity1.getMPw() + "<<<<<<<< pw");
+        System.out.println(memberEntity1.getMName() + "<<<<<<<< name");
+        System.out.println(memberEntity1.getMTel() + "<<<<<< tel");
+
+        return User.builder()
+                .username(memberEntity1.getMEmail())
+                .password(memberEntity1.getMPw())
+                .roles(memberEntity1.getMRole().toString())
+                .build();
+    }
+}
+  
+  ```
+  
+<br>
+  <p align="center"><img src="" style="width: 700px"></p>
+<br>
+  <p align="center">.yml에 oauth2를 통한 소셜로그인(google, naver, kakao)을 위한 api설정을 합니다.</p>
+<br>
+  <p align="center"><img src="" style="width: 700px"></p>
+<br>
+  <p align="center">회원가입시 우편번호 API를 활용하여 사용자의 주소를 입력받으며, multipartfile 객체를 통해 프로필 사진을 등록할 수 있습니다.</p>
+<br>
+  <p align="center"><img src="" style="width: 700px"></p>
+<br>
+  <p align="center">@Valid와 BindingResult 객체를 통해 필수입력정보에 대한 유효성 검사를 진행합니다.</p>
+<br>
+  <p align="center"><img src="" style="width: 700px"></p>
+<br>
+  <p align="center"></p>
+<br>
+</details>
+
+- 회원관리 CRUD 구현
+
+<details>
+<summary>상세보기</summary>
+<br>
+  <p align="center"><img src="" style="width: 700px"></p> 
+<br>
+  <p align="center">프로젝트 형상관리를 위한 기본 저장소를 생성합니다.</p>
+<br>
+  <p align="center"><img src="" style="width: 700px"></p>
+<br>
+  <p align="center">팀원들을 collaborators 및 contributers로 지정하여 저장소에 대한 pull Request뿐만 아니라 직접적인 push, pull의 권한을 부여하였습니다.</p>
+<br>
+  <p align="center"><img src="" style="width: 700px"></p>
+<br>
+  <p align="center">프로젝트 저장소를 fork하여 팀원 각자가 복사한 저장소를 통해 담당 파트별 소스코드를 업데이트할 수 있도록 합니다.</p>
+<br>
+  <p align="center"><img src="" style="width: 700px"></p>
+<br>
+  <p align="center">특정 파트의 코드가 업데이트 되는대로 fork 저장소에서 프로젝트 저장소에 pull Request를 보냅니다.</p>
+<br>
+  <p align="center"><img src="" style="width: 700px"></p>
+<br>
+  <p align="center">pull request의 커밋 내역을 확인하여 confirm을 통해 해당 수정사항을 프로젝트 저장소의 소스와 merge한 뒤,</p>
+  <p align="center">각자의 fork 저장소에서 최신화합니다.</p>
+<br>
+</details>
+
+- 메인 페이지, 관리자 페이지 구현
 - 날씨(Openweathermap), 우편번호(다음 우편번호) API 연동
 - 결재서류 승인/반려 처리 구현 <br>
 

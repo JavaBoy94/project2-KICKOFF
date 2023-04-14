@@ -33,23 +33,23 @@
 <details>
 <summary>상세보기</summary>
 <br>
-  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/231946224-024f51b0-332d-4b84-873d-ae8d5f70f93b.png" style="width: 700px"></p> 
+  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/231946224-024f51b0-332d-4b84-873d-ae8d5f70f93b.png"></p> 
 <br>
   <p align="center">프로젝트 형상관리를 위한 기본 저장소를 생성합니다.</p>
 <br>
-  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/231946228-d8212fef-59a7-431a-94f3-99f76ccc340b.png" style="width: 700px"></p>
+  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/231946228-d8212fef-59a7-431a-94f3-99f76ccc340b.png"></p>
 <br>
   <p align="center">팀원들을 collaborators 및 contributers로 지정하여 저장소에 대한 pull Request뿐만 아니라 직접적인 push, pull의 권한을 부여하였습니다.</p>
 <br>
-  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/231946229-022ab668-468c-4acb-9b14-26cd3b3444e8.png" style="width: 700px"></p>
+  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/231946229-022ab668-468c-4acb-9b14-26cd3b3444e8.png"></p>
 <br>
   <p align="center">프로젝트 저장소를 fork하여 팀원 각자가 복사한 저장소를 통해 담당 파트별 소스코드를 업데이트할 수 있도록 합니다.</p>
 <br>
-  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/231946230-60aa3a72-5905-4790-880a-a3ec82558599.png" style="width: 700px"></p>
+  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/231946230-60aa3a72-5905-4790-880a-a3ec82558599.png"></p>
 <br>
   <p align="center">특정 파트의 코드가 업데이트 되는대로 fork 저장소에서 프로젝트 저장소에 pull Request를 보냅니다.</p>
 <br>
-  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/231946232-acf9471d-85b8-4f90-a9b8-83d54c3af94a.png" style="width: 700px"></p>
+  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/231946232-acf9471d-85b8-4f90-a9b8-83d54c3af94a.png"></p>
 <br>
   <p align="center">pull request의 커밋 내역을 확인하여 confirm을 통해 해당 수정사항을 프로젝트 저장소의 소스와 merge한 뒤,</p>
   <p align="center">각자의 fork 저장소에서 최신화합니다.</p>
@@ -62,7 +62,7 @@
 <details>
 <summary>상세보기</summary>
 <br>
-  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/231950119-3478b0a0-5bc1-4da0-9d0a-81f874d26a91.png" style="width: 700px"></p> 
+  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/231950119-3478b0a0-5bc1-4da0-9d0a-81f874d26a91.png"></p> 
 <br>
   <p align="center">페이지의 인증 및 인가를 처리하는 SecurityFilterChain객체를 통해 페이지별 접근권한과 기본적인 로그인 설정을 구현합니다.</p>
   
@@ -167,15 +167,15 @@ public class LoginService implements UserDetailsService {
   ```
   
 <br>
-  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/231950129-6ae46cd3-0cda-4216-976f-f781a26e3927.png" style="width: 700px"></p>
+  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/231950129-6ae46cd3-0cda-4216-976f-f781a26e3927.png"></p>
 <br>
   <p align="center">.yml에 oauth2를 통한 소셜로그인(google, naver, kakao)을 위한 api설정을 합니다.</p>
 <br>
-  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/231950130-35133640-cadb-4690-b3d2-414dfb213336.png" style="width: 700px"></p>
+  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/231950130-35133640-cadb-4690-b3d2-414dfb213336.png"></p>
 <br>
   <p align="center">회원가입시 우편번호 API를 활용하여 사용자의 주소를 입력받으며, multipartfile 객체를 통해 프로필 사진을 등록할 수 있습니다.</p>
 <br>
-  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/231950133-d8cd18df-eacb-4b01-aca4-ab8e8e7648a2.png" style="width: 700px"></p>
+  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/231950133-d8cd18df-eacb-4b01-aca4-ab8e8e7648a2.png"></p>
 <br>
   <p align="center">@Valid와 BindingResult 객체를 통해 필수입력정보에 대한 유효성 검사를 진행합니다.</p>
   
@@ -290,7 +290,8 @@ public class MemberDto {
 
     }
   ```
-
+  
+<br>
 </details>
 
 - 회원관리 CRUD 구현
@@ -298,26 +299,193 @@ public class MemberDto {
 <details>
 <summary>상세보기</summary>
 <br>
-  <p align="center"><img src="" style="width: 700px"></p> 
+  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/231952108-cdb090f3-0bae-4257-ba17-95e018937c93.png"></p> 
 <br>
-  <p align="center">프로젝트 형상관리를 위한 기본 저장소를 생성합니다.</p>
+  <p align="center">회원상세 메뉴에선 Principal 객체를 통해 현재 로그인한 회원정보를 불러옵니다.</p>
+  
+  ```java
+// ----------- MemberController ------------
+
+@Controller
+@RequiredArgsConstructor
+@RequestMapping("/member")
+public class MemberController {
+
+    private final MemberService memberService;
+    private final MemberRepository memberRepository;
+    private final BoardService boardService;
+
+//    회원정보 상세 (로그인 회원)
+    @GetMapping("/detail")
+    public String memberDetail(Model model, Principal principal){
+
+        String mEmail = principal.getName();
+        System.out.println(mEmail+"<<<< member Email");
+
+        MemberDto memberDto = memberService.getMemberDetail(mEmail);
+
+        model.addAttribute("memberDto",memberDto);
+
+        return "member/memberDetail";
+    }
+    
+// ------------ MemberService --------------
+
+    public MemberDto getMemberDetail(String mEmail) {
+
+        MemberEntity memberEntity = memberRepository.findBymEmail(mEmail).get();
+
+        if(memberEntity==null){
+            System.out.println("======== memberDetail fail ========");
+            return null;
+        }
+
+        return MemberDto.toMemberDto(memberEntity);
+    }
+    
+  ```
+  
 <br>
-  <p align="center"><img src="" style="width: 700px"></p>
+  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/231952118-a699b845-1817-46b1-80d9-b0b501df3455.png"></p>
 <br>
-  <p align="center">팀원들을 collaborators 및 contributers로 지정하여 저장소에 대한 pull Request뿐만 아니라 직접적인 push, pull의 권한을 부여하였습니다.</p>
+  <p align="center">회원수정시 기존의 회원ID값을 넘겨줌으로써, save 메소드가 수정으로 처리될 수 있도록 하였습니다.</p>
+  <p align="center">프로필 사진을 수정하지 않을 경우 현재 저장파일명을 계속 사용하여 기존 이미지를 그대로 사용하도록 하였습니다.</p>
+  
+```java
+// ----------- MemberController -------------
+
+//    회원수정 실행
+    @PostMapping("/updateOk")
+    public String memberUpdateDo(@Valid MemberDto memberDto, BindingResult bindingResult,
+                                 Principal principal, Model model) throws IOException {
+
+        if(bindingResult.hasErrors()){
+//            유효성 검사 에러 발생시
+            String mEmail = principal.getName();
+
+            MemberDto memberDto2 = memberService.getMemberDetail(mEmail);
+            model.addAttribute("memberDto",memberDto);
+
+            return "member/memberUpdate";
+        }
+
+        int rs = memberService.memberUpdate(memberDto);
+
+        if(rs!=1){
+            System.out.println("member update fail !");
+            return null;
+        }
+        return "redirect:/member/detail";
+    }
+    
+// ------------ MemberService ---------------
+
+ @Transactional
+    public int memberUpdate(MemberDto memberDto) throws IOException {
+
+        if(memberDto.getProfileImg().isEmpty()) {
+//            수정할 파일이 없을 때 => 기존 이미지 사용
+
+            memberRepository.save(MemberEntity.toMemberEntity2(memberDto,passwordEncoder));
+
+        } else {
+//            수정할 파일이 있을 때 => 기존 파일 삭제 후, 수정할 파일 저장
+//            1. 기존 파일 삭제
+           ProfileEntity profileEntity =
+                   profileRepository.findAllByMId(memberDto.getMId());
+           
+           if(profileEntity!=null){
+//              기존에 등록된 이미지가 존재할 경우 삭제
+               profileRepository.delete(profileEntity);
+           }
+
+//               기존 파일 삭제 성공하면 다시 파일 추가
+            MultipartFile multipartFile = memberDto.getProfileImg();
+            String originName = multipartFile.getOriginalFilename();  // 원본파일명
+            UUID uuid = UUID.randomUUID();  // 랜덤파일명 생성
+
+            String saveName = uuid+"_"+originName;  // 저장파일명
+            String filePath = "C:/saveFiles/"+saveName;  // 파일저장경로
+
+            multipartFile.transferTo(new File(filePath));  // 해당 경로에 저장
+
+//            2. DB에 파일 정보 저장 (회원정보 저장 후, 그 id를 받아서 file entity에도 저장)
+
+            Long id = memberRepository.save(MemberEntity.toMemberEntity2(memberDto,passwordEncoder)).getMId();
+            MemberEntity memberEntity = memberRepository.findById(id).get();
+
+            Long profileId = profileRepository.save(ProfileEntity.toProfileEntity(memberEntity,originName,saveName)).getProfileId();
+
+            if(profileRepository.findById(profileId).isEmpty()){
+                return 0;
+            }
+        }
+            return 1;
+    }
+
+```
+
 <br>
-  <p align="center"><img src="" style="width: 700px"></p>
+  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/231952120-482b082c-1671-462a-934a-dcd426e0f768.png"></p>
 <br>
-  <p align="center">프로젝트 저장소를 fork하여 팀원 각자가 복사한 저장소를 통해 담당 파트별 소스코드를 업데이트할 수 있도록 합니다.</p>
-<br>
-  <p align="center"><img src="" style="width: 700px"></p>
-<br>
-  <p align="center">특정 파트의 코드가 업데이트 되는대로 fork 저장소에서 프로젝트 저장소에 pull Request를 보냅니다.</p>
-<br>
-  <p align="center"><img src="" style="width: 700px"></p>
-<br>
-  <p align="center">pull request의 커밋 내역을 확인하여 confirm을 통해 해당 수정사항을 프로젝트 저장소의 소스와 merge한 뒤,</p>
-  <p align="center">각자의 fork 저장소에서 최신화합니다.</p>
+  <p align="center">작성글 관리 메뉴에서 전체 게시글 중, 현재 로그인한 회원의 ID값을 갖는 게시글만 findAllby 메소드를 사용하여 가져옵니다.</p>
+  
+  ```java
+// ----------- MemberController --------------
+
+  //    작성글 관리 => 해당 회원이 쓴 글 목록
+    @GetMapping("/myBoardList")
+    public String myBoardList(@PageableDefault(page = 0, size = 10, sort = "board_id",
+                            direction = Sort.Direction.DESC) Pageable pageable,
+                            Model model, Principal principal) {
+
+            String mEmail = principal.getName();
+            Long mId = memberRepository.findBymEmail(mEmail).get().getMId();
+
+            Page<BoardDto> boardList = null;
+
+            boardList = boardService.myBoardListDo(mId, pageable);
+
+            int totalPage = boardList.getTotalPages();  // 총 페이지 수
+            int blockNum = 3;                            // 화면에 표시할 페이지 수
+            int nowPage = boardList.getNumber();        // 현재페이지
+            int startPage = (int) ((Math.floor(nowPage / blockNum) * blockNum) + 1 <= totalPage ? (Math.floor(nowPage / blockNum) * blockNum) + 1 : totalPage);
+            // 블록의 첫페지이지
+            // 블록이 3일 경우     123 -> 1, 456  -> 4 , 789 -> 7
+
+            int endPage = (startPage + blockNum - 1 < totalPage ? startPage + blockNum - 1 : totalPage);
+
+            model.addAttribute("boardList", boardList);
+            model.addAttribute("nowPage", nowPage);
+            model.addAttribute("startPage", startPage);
+            model.addAttribute("endPage", endPage);
+
+            return "member/myBoardList";
+    }
+    
+// ------------- MemberService --------------
+
+@Transactional
+    public void boardDeleteDo(Long productId) {
+        boardReposistory.deleteById(productId);
+    }
+
+    public Page<BoardDto> myBoardListDo(Long mId, Pageable pageable) {
+
+        Page<BoardEntity> boardEntityPage = boardReposistory.findAllBymId(mId,pageable);
+        Page<BoardDto> boardDtoPage = boardEntityPage.map(boardEntity -> BoardDto.toBoardDto(boardEntity));
+
+        return boardDtoPage;
+    }
+    
+// -------------- MemberRepository --------------
+
+    @Query(value = "select * from board " +
+            "where m_id=:mId",nativeQuery = true)
+    Page<BoardEntity> findAllBymId(@Param("mId") Long mId, Pageable pageable);
+    
+  ```
+  
 <br>
 </details>
 

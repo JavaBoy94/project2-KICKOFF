@@ -33,23 +33,23 @@
 <details>
 <summary>상세보기</summary>
 <br>
-  <p align="center"><img src="" style="width: 700px"></p> 
+  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/231946224-024f51b0-332d-4b84-873d-ae8d5f70f93b.png" style="width: 700px"></p> 
 <br>
   <p align="center">프로젝트 형상관리를 위한 기본 저장소를 생성합니다.</p>
 <br>
-  <p align="center"><img src="" style="width: 700px"></p>
+  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/231946228-d8212fef-59a7-431a-94f3-99f76ccc340b.png" style="width: 700px"></p>
 <br>
   <p align="center">팀원들을 collaborators 및 contributers로 지정하여 저장소에 대한 pull Request뿐만 아니라 직접적인 push, pull의 권한을 부여하였습니다.</p>
 <br>
-  <p align="center"><img src="" style="width: 700px"></p>
+  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/231946229-022ab668-468c-4acb-9b14-26cd3b3444e8.png" style="width: 700px"></p>
 <br>
   <p align="center">프로젝트 저장소를 fork하여 팀원 각자가 복사한 저장소를 통해 담당 파트별 소스코드를 업데이트할 수 있도록 합니다.</p>
 <br>
-  <p align="center"><img src="" style="width: 700px"></p>
+  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/231946230-60aa3a72-5905-4790-880a-a3ec82558599.png" style="width: 700px"></p>
 <br>
   <p align="center">특정 파트의 코드가 업데이트 되는대로 fork 저장소에서 프로젝트 저장소에 pull Request를 보냅니다.</p>
 <br>
-  <p align="center"><img src="" style="width: 700px"></p>
+  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/231946232-acf9471d-85b8-4f90-a9b8-83d54c3af94a.png" style="width: 700px"></p>
 <br>
   <p align="center">pull request의 커밋 내역을 확인하여 confirm을 통해 해당 수정사항을 프로젝트 저장소의 소스와 merge한 뒤,</p>
   <p align="center">각자의 fork 저장소에서 최신화합니다.</p>

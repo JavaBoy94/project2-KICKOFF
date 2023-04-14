@@ -89,7 +89,6 @@ public class WebSecurityConfig {
                 .antMatchers("/login","/join","/naver").permitAll()  // 모든 유저 접근 가능
                 .antMatchers("/css/**", "/js/**", "/img/**").permitAll()
   
-  
   // 로그인
   
         http.formLogin()
@@ -101,10 +100,7 @@ public class WebSecurityConfig {
                 .defaultSuccessUrl("/index", true)   // 성공시 URL
                 .and()
                 .oauth2Login()
-                .loginPage("/login")
-        ;
-
-
+                .loginPage("/login");
 
   // 로그아웃
   

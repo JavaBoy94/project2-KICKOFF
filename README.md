@@ -67,7 +67,7 @@
   <p align="center">페이지의 인증 및 인가를 처리하는 SecurityFilterChain객체를 통해 페이지별 접근권한과 기본적인 로그인 설정을 구현합니다.</p>
   
   ```java
-// --------- Security config ----------
+// --------- WebSecurityConfig ----------
   
 @Configuration
 @EnableWebSecurity
@@ -490,6 +490,32 @@ public class MemberController {
 </details>
 
 - 메인 페이지, 관리자 페이지 구현
+  
+<details>
+<summary>상세보기</summary>
+<br>
+  <p align="center"><img src=""></p> 
+<br>
+  <p align="center"></p>
+<br>
+  <p align="center"><img src=""></p>
+<br>
+  <p align="center"></p>
+<br>
+  <p align="center"><img src=""></p>
+<br>
+  <p align="center"></p>
+<br>
+  <p align="center"><img src=""></p>
+<br>
+  <p align="center"></p>
+<br>
+  <p align="center"><img src=""></p>
+<br>
+  <p align="center"></p>
+<br>
+</details>
+  
 - 날씨(Openweathermap), 우편번호(다음 우편번호) API 연동
 - 결재서류 승인/반려 처리 구현 <br>
 

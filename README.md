@@ -23,7 +23,7 @@
 - `IDE` : IntelliJ IDEA, Visual Studio Code
 - `Framework` : Springboot
 - `Database` : MySQL
-- `Template` Engine : Thymeleaf 
+- `Template Engine` : Thymeleaf 
 - `ORM` : JPA <br>
 
 ## 🧑‍🤝‍🧑 팀 구성 및 역할

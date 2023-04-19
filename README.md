@@ -63,11 +63,11 @@
 <details>
 <summary>상세보기</summary>
 <br>
-  <p align="center"><img src=""></p> 
+  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/232982939-2c9ecd10-3f30-42bd-8025-9b5aff8c7c33.png"></p> 
 <br>
   <p align="center">기획단계에서 프로젝트에 구현할 기능목록을 정리 후, 그에 맞춰 테이블 명세서를 작성하였습니다.</p>
 <br>
-  <p align="center"><img src=""></p> 
+  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/232982944-dad9e4eb-f5af-4b86-b8ef-9e8670ab3341.png"></p> 
 <br>
   <p align="center">회원(Member) 테이블을 중심으로 전반적인 연관관계를 설정하였습니다. </p>
   <p align="center">프로필사진, 게시판 첨부파일, 결재서류 등을 저장하기 위한 각각의 파일 테이블들 생성하였습니다.</p>

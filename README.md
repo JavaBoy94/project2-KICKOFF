@@ -60,6 +60,23 @@
 </details>
 
 - 데이터 모델링 및 Entity, DTO 구현
+<details>
+<summary>상세보기</summary>
+<br>
+  <p align="center"><img src=""></p> 
+<br>
+  <p align="center">기획단계에서 프로젝트에 구현할 기능목록을 정리 후, 그에 맞춰 테이블 명세서를 작성하였습니다.</p>
+<br>
+  <p align="center"><img src=""></p> 
+<br>
+  <p align="center">회원(Member) 테이블을 중심으로 전반적인 연관관계를 설정하였습니다. </p>
+  <p align="center">프로필사진, 게시판 첨부파일, 결재서류 등을 저장하기 위한 각각의 파일 테이블들 생성하였습니다.</p>
+  <p align="center">일정관리 테이블은 fullcalender API를 통해 입력받은 일정을 고려하여 필드를 설정하였습니다.</p>
+  <p align="center">결재관리 테이블에선 기안자와 결재자의 정보를 모두 받기 위해 not null과 일대다 연관관계를 설정하였습니다.</p>
+<br>
+</details>
+
+
 - Spring Security, Oauth2 기반 로그인 및 회원가입 구현
 
 <details>

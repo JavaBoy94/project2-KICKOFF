@@ -76,7 +76,6 @@
 <br>
 </details>
 
-
 - Spring Security, Oauth2 기반 로그인 및 회원가입 구현
 
 <details>

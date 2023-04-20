@@ -5,8 +5,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/project2
-    username: root
-    password: 1234
+    username: 
+    password: 
 
   jpa:
     database: mysql
@@ -28,6 +28,6 @@ spring:
   profiles:
     include: oauth
 
-navar.api.client-id: H8paKKaUOVv57BJBdBm9
-navar.api.client-secret: r_8mQX3Nx3
+navar.api.client-id: 
+navar.api.client-secret: 
 

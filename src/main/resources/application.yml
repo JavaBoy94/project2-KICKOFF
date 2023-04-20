@@ -28,6 +28,7 @@ spring:
   profiles:
     include: oauth
 
+# workplace, works api
 navar.api.client-id: 
 navar.api.client-secret: 
 

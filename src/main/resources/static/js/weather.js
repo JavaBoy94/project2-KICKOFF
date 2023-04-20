@@ -35,7 +35,8 @@ window.onload = function(){
     });
     
     //제이쿼리사용
-    $.getJSON('https://api.openweathermap.org/data/2.5/weather?q=Seoul,kr&appid=5a87979705c7dd0e87fc7cfda0976f92&lang=kr&units=metric',
+    let appId = "";
+    $.getJSON(`https://api.openweathermap.org/data/2.5/weather?q=Seoul,kr&appid=${appId}&units=metric`,
     function (WeatherResult) {
     
       // 파라미터
